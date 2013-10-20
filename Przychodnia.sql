@@ -1,17 +1,17 @@
 USE [master]
 GO
 
-/****** Object:  Database [Przychodnia]    Script Date: 10/19/2013 5:11:03 PM ******/
+/****** Object:  Database [Przychodnia]    Script Date: 10/20/2013 11:30:54 AM ******/
 DROP DATABASE [Przychodnia]
 GO
 
-/****** Object:  Database [Przychodnia]    Script Date: 10/19/2013 5:11:03 PM ******/
+/****** Object:  Database [Przychodnia]    Script Date: 10/20/2013 11:30:54 AM ******/
 CREATE DATABASE [Przychodnia]
  CONTAINMENT = NONE
  ON  PRIMARY 
 ( NAME = N'Przychodnia', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\Przychodnia.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'Przychodnia_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\Przychodnia_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'Przychodnia_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\Przychodnia_log.ldf' , SIZE = 1280KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 
 ALTER DATABASE [Przychodnia] SET COMPATIBILITY_LEVEL = 110
