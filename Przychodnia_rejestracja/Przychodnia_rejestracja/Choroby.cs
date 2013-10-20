@@ -16,13 +16,13 @@ namespace Przychodnia_rejestracja
     {
         public Choroby()
         {
-            this.Diagnozies = new HashSet<Diagnozy>();
+            this.Diagnozy = new HashSet<Diagnozy>();
         }
     
         public int ID_Choroby { get; set; }
         public string nazwa { get; set; }
         public string opis { get; set; }
     
-        public virtual ICollection<Diagnozy> Diagnozies { get; set; }
+        public virtual ICollection<Diagnozy> Diagnozy { get; set; }
     }
 }

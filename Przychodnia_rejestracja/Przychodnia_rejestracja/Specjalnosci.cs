@@ -16,12 +16,12 @@ namespace Przychodnia_rejestracja
     {
         public Specjalnosci()
         {
-            this.LekarzSpecjalnoscs = new HashSet<LekarzSpecjalnosc>();
+            this.LekarzSpecjalnosc = new HashSet<LekarzSpecjalnosc>();
         }
     
         public int ID_Specjalnosci { get; set; }
         public string nazwa { get; set; }
     
-        public virtual ICollection<LekarzSpecjalnosc> LekarzSpecjalnoscs { get; set; }
+        public virtual ICollection<LekarzSpecjalnosc> LekarzSpecjalnosc { get; set; }
     }
 }

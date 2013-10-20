@@ -16,8 +16,8 @@ namespace Przychodnia_rejestracja
     {
         public Lekarze()
         {
-            this.LekarzSpecjalnoscs = new HashSet<LekarzSpecjalnosc>();
-            this.Wizyties = new HashSet<Wizyty>();
+            this.LekarzSpecjalnosc = new HashSet<LekarzSpecjalnosc>();
+            this.Wizyty = new HashSet<Wizyty>();
         }
     
         public int ID_Lekarza { get; set; }
@@ -31,7 +31,7 @@ namespace Przychodnia_rejestracja
         public string ulica { get; set; }
         public string kod_pocztowy { get; set; }
     
-        public virtual ICollection<LekarzSpecjalnosc> LekarzSpecjalnoscs { get; set; }
-        public virtual ICollection<Wizyty> Wizyties { get; set; }
+        public virtual ICollection<LekarzSpecjalnosc> LekarzSpecjalnosc { get; set; }
+        public virtual ICollection<Wizyty> Wizyty { get; set; }
     }
 }

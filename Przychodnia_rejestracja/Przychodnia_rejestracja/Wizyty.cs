@@ -16,9 +16,9 @@ namespace Przychodnia_rejestracja
     {
         public Wizyty()
         {
-            this.Badanias = new HashSet<Badania>();
-            this.Diagnozies = new HashSet<Diagnozy>();
-            this.Recepties = new HashSet<Recepty>();
+            this.Badania = new HashSet<Badania>();
+            this.Diagnozy = new HashSet<Diagnozy>();
+            this.Recepty = new HashSet<Recepty>();
         }
     
         public int ID_Wizyty { get; set; }
@@ -28,10 +28,10 @@ namespace Przychodnia_rejestracja
         public Nullable<System.TimeSpan> czas { get; set; }
         public Nullable<bool> czy_odbyta { get; set; }
     
-        public virtual ICollection<Badania> Badanias { get; set; }
-        public virtual ICollection<Diagnozy> Diagnozies { get; set; }
+        public virtual ICollection<Badania> Badania { get; set; }
+        public virtual ICollection<Diagnozy> Diagnozy { get; set; }
         public virtual Lekarze Lekarze { get; set; }
         public virtual Pacjenci Pacjenci { get; set; }
-        public virtual ICollection<Recepty> Recepties { get; set; }
+        public virtual ICollection<Recepty> Recepty { get; set; }
     }
 }

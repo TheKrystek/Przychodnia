@@ -4,26 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="18f1d6037d72422989b84a8756d46670" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="PrzychodniaModel.Badania" Width="1.5" PointX="6.625" PointY="9.125" IsExpanded="true" />
+      <Diagram DiagramId="7e6ee7410a914ff7971adf61871f2021" Name="Diagram1">
+        <EntityTypeShape EntityType="PrzychodniaModel.Badania" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrzychodniaModel.Choroby" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="PrzychodniaModel.Diagnozy" Width="1.5" PointX="8.25" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrzychodniaModel.Lekarstwa" Width="1.5" PointX="13.5" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrzychodniaModel.Lekarze" Width="1.5" PointX="3.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrzychodniaModel.LekarzSpecjalnosc" Width="1.5" PointX="0.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrzychodniaModel.Lekarstwa" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrzychodniaModel.Lekarze" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrzychodniaModel.LekarzSpecjalnosc" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrzychodniaModel.Pacjenci" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrzychodniaModel.Recepty" Width="1.5" PointX="11" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrzychodniaModel.Specjalnosci" Width="1.5" PointX="2.5" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrzychodniaModel.Swiadczenia" Width="1.5" PointX="6.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrzychodniaModel.sysdiagram" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrzychodniaModel.Recepty" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrzychodniaModel.Specjalnosci" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrzychodniaModel.Swiadczenia" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrzychodniaModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrzychodniaModel.Wizyty" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="PrzychodniaModel.FK_Badania_Swiadczenia" ManuallyRouted="true" >
-          <ConnectorPoint PointX="8.25" PointY="13.584469280129055" />
-          <ConnectorPoint PointX="8.5" PointY="13.584469280129055" />
-          <ConnectorPoint PointX="8.5" PointY="12.375" />
-          <ConnectorPoint PointX="7.375" PointY="12.375" />
-          <ConnectorPoint PointX="7.375" PointY="11.297587890625" />
-        </AssociationConnector>
+        <AssociationConnector Association="PrzychodniaModel.FK_Badania_Swiadczenia" ManuallyRouted="false" />
         <AssociationConnector Association="PrzychodniaModel.FK_Badania_Wizyty" ManuallyRouted="false" />
         <AssociationConnector Association="PrzychodniaModel.FK_Diagnozy_Choroby" ManuallyRouted="false" />
         <AssociationConnector Association="PrzychodniaModel.FK_Diagnozy_Wizyty" ManuallyRouted="false" />

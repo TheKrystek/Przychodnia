@@ -36,7 +36,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabLekarze = new System.Windows.Forms.TabPage();
             this.splitLekarze = new System.Windows.Forms.SplitContainer();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvLekarze = new System.Windows.Forms.DataGridView();
             this.tabWizyty = new System.Windows.Forms.TabPage();
             this.splitWizyty = new System.Windows.Forms.SplitContainer();
             this.tabPacjenci = new System.Windows.Forms.TabPage();
@@ -49,13 +49,21 @@
             this.splitLekarstwa = new System.Windows.Forms.SplitContainer();
             this.tabSwiadczenia = new System.Windows.Forms.TabPage();
             this.splitSwiadczenia = new System.Windows.Forms.SplitContainer();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.miejsce_ur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data_ur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.miescje_zam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kod_pocztowy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabLekarze.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarze)).BeginInit();
             this.splitLekarze.Panel2.SuspendLayout();
             this.splitLekarze.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLekarze)).BeginInit();
             this.tabWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitWizyty)).BeginInit();
             this.splitWizyty.SuspendLayout();
@@ -152,18 +160,33 @@
             // 
             // splitLekarze.Panel2
             // 
-            this.splitLekarze.Panel2.Controls.Add(this.dataGridView1);
+            this.splitLekarze.Panel2.Controls.Add(this.dgvLekarze);
             this.splitLekarze.Size = new System.Drawing.Size(872, 465);
-            this.splitLekarze.SplitterDistance = 190;
+            this.splitLekarze.SplitterDistance = 82;
             this.splitLekarze.TabIndex = 0;
             // 
-            // dataGridView1
+            // dgvLekarze
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(195, 31);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvLekarze.AllowUserToOrderColumns = true;
+            this.dgvLekarze.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLekarze.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLekarze.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.imie,
+            this.nazwisko,
+            this.miejsce_ur,
+            this.data_ur,
+            this.adres,
+            this.miescje_zam,
+            this.kod_pocztowy});
+            this.dgvLekarze.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvLekarze.Location = new System.Drawing.Point(0, 0);
+            this.dgvLekarze.Name = "dgvLekarze";
+            this.dgvLekarze.ReadOnly = true;
+            this.dgvLekarze.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvLekarze.ShowCellToolTips = false;
+            this.dgvLekarze.Size = new System.Drawing.Size(872, 379);
+            this.dgvLekarze.TabIndex = 0;
             // 
             // tabWizyty
             // 
@@ -286,6 +309,68 @@
             this.splitSwiadczenia.SplitterDistance = 269;
             this.splitSwiadczenia.TabIndex = 0;
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "Lp.";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 47;
+            // 
+            // imie
+            // 
+            this.imie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.imie.DataPropertyName = "imie";
+            this.imie.HeaderText = "Imię";
+            this.imie.Name = "imie";
+            this.imie.ReadOnly = true;
+            // 
+            // nazwisko
+            // 
+            this.nazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazwisko.DataPropertyName = "nazwisko";
+            this.nazwisko.HeaderText = "Nazwisko";
+            this.nazwisko.Name = "nazwisko";
+            this.nazwisko.ReadOnly = true;
+            // 
+            // miejsce_ur
+            // 
+            this.miejsce_ur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.miejsce_ur.DataPropertyName = "miejsce_ur";
+            this.miejsce_ur.HeaderText = "Miejsce Urodzenia";
+            this.miejsce_ur.Name = "miejsce_ur";
+            this.miejsce_ur.ReadOnly = true;
+            // 
+            // data_ur
+            // 
+            this.data_ur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.data_ur.DataPropertyName = "data_ur";
+            this.data_ur.HeaderText = "Data urodzenia";
+            this.data_ur.Name = "data_ur";
+            this.data_ur.ReadOnly = true;
+            // 
+            // adres
+            // 
+            this.adres.DataPropertyName = "adres";
+            this.adres.HeaderText = "Adres";
+            this.adres.Name = "adres";
+            this.adres.ReadOnly = true;
+            // 
+            // miescje_zam
+            // 
+            this.miescje_zam.DataPropertyName = "miescje_zam";
+            this.miescje_zam.HeaderText = "Miasto";
+            this.miescje_zam.Name = "miescje_zam";
+            this.miescje_zam.ReadOnly = true;
+            // 
+            // kod_pocztowy
+            // 
+            this.kod_pocztowy.DataPropertyName = "kod_pocztowy";
+            this.kod_pocztowy.HeaderText = "Kod Pocztowy";
+            this.kod_pocztowy.Name = "kod_pocztowy";
+            this.kod_pocztowy.ReadOnly = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,7 +389,7 @@
             this.splitLekarze.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarze)).EndInit();
             this.splitLekarze.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLekarze)).EndInit();
             this.tabWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitWizyty)).EndInit();
             this.splitWizyty.ResumeLayout(false);
@@ -350,7 +435,15 @@
         private System.Windows.Forms.SplitContainer splitChoroby;
         private System.Windows.Forms.SplitContainer splitLekarstwa;
         private System.Windows.Forms.SplitContainer splitSwiadczenia;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvLekarze;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imie;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazwisko;
+        private System.Windows.Forms.DataGridViewTextBoxColumn miejsce_ur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data_ur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn miescje_zam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kod_pocztowy;
     }
 }
 

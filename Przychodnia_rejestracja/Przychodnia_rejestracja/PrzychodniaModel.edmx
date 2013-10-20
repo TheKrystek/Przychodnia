@@ -303,58 +303,58 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PrzychodniaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="PrzychodniaEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Badanias" EntityType="PrzychodniaModel.Badania" />
-          <EntitySet Name="Chorobies" EntityType="PrzychodniaModel.Choroby" />
-          <EntitySet Name="Diagnozies" EntityType="PrzychodniaModel.Diagnozy" />
-          <EntitySet Name="Lekarstwas" EntityType="PrzychodniaModel.Lekarstwa" />
-          <EntitySet Name="Lekarzes" EntityType="PrzychodniaModel.Lekarze" />
-          <EntitySet Name="LekarzSpecjalnoscs" EntityType="PrzychodniaModel.LekarzSpecjalnosc" />
-          <EntitySet Name="Pacjencis" EntityType="PrzychodniaModel.Pacjenci" />
-          <EntitySet Name="Recepties" EntityType="PrzychodniaModel.Recepty" />
-          <EntitySet Name="Specjalnoscis" EntityType="PrzychodniaModel.Specjalnosci" />
-          <EntitySet Name="Swiadczenias" EntityType="PrzychodniaModel.Swiadczenia" />
-          <EntitySet Name="sysdiagrams" EntityType="PrzychodniaModel.sysdiagram" />
-          <EntitySet Name="Wizyties" EntityType="PrzychodniaModel.Wizyty" />
+        <EntityContainer Name="EntitiesPrzychodnia" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Badania" EntityType="PrzychodniaModel.Badania" />
+          <EntitySet Name="Choroby" EntityType="PrzychodniaModel.Choroby" />
+          <EntitySet Name="Diagnozy" EntityType="PrzychodniaModel.Diagnozy" />
+          <EntitySet Name="Lekarstwa" EntityType="PrzychodniaModel.Lekarstwa" />
+          <EntitySet Name="Lekarze" EntityType="PrzychodniaModel.Lekarze" />
+          <EntitySet Name="LekarzSpecjalnosc" EntityType="PrzychodniaModel.LekarzSpecjalnosc" />
+          <EntitySet Name="Pacjenci" EntityType="PrzychodniaModel.Pacjenci" />
+          <EntitySet Name="Recepty" EntityType="PrzychodniaModel.Recepty" />
+          <EntitySet Name="Specjalnosci" EntityType="PrzychodniaModel.Specjalnosci" />
+          <EntitySet Name="Swiadczenia" EntityType="PrzychodniaModel.Swiadczenia" />
+          <EntitySet Name="sysdiagrams" EntityType="PrzychodniaModel.sysdiagrams" />
+          <EntitySet Name="Wizyty" EntityType="PrzychodniaModel.Wizyty" />
           <AssociationSet Name="FK_Badania_Swiadczenia" Association="PrzychodniaModel.FK_Badania_Swiadczenia">
-            <End Role="Swiadczenia" EntitySet="Swiadczenias" />
-            <End Role="Badania" EntitySet="Badanias" />
+            <End Role="Swiadczenia" EntitySet="Swiadczenia" />
+            <End Role="Badania" EntitySet="Badania" />
           </AssociationSet>
           <AssociationSet Name="FK_Badania_Wizyty" Association="PrzychodniaModel.FK_Badania_Wizyty">
-            <End Role="Wizyty" EntitySet="Wizyties" />
-            <End Role="Badania" EntitySet="Badanias" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+            <End Role="Badania" EntitySet="Badania" />
           </AssociationSet>
           <AssociationSet Name="FK_Diagnozy_Choroby" Association="PrzychodniaModel.FK_Diagnozy_Choroby">
-            <End Role="Choroby" EntitySet="Chorobies" />
-            <End Role="Diagnozy" EntitySet="Diagnozies" />
+            <End Role="Choroby" EntitySet="Choroby" />
+            <End Role="Diagnozy" EntitySet="Diagnozy" />
           </AssociationSet>
           <AssociationSet Name="FK_Diagnozy_Wizyty" Association="PrzychodniaModel.FK_Diagnozy_Wizyty">
-            <End Role="Wizyty" EntitySet="Wizyties" />
-            <End Role="Diagnozy" EntitySet="Diagnozies" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+            <End Role="Diagnozy" EntitySet="Diagnozy" />
           </AssociationSet>
           <AssociationSet Name="FK_Recepty_Lekarstwa" Association="PrzychodniaModel.FK_Recepty_Lekarstwa">
-            <End Role="Lekarstwa" EntitySet="Lekarstwas" />
-            <End Role="Recepty" EntitySet="Recepties" />
+            <End Role="Lekarstwa" EntitySet="Lekarstwa" />
+            <End Role="Recepty" EntitySet="Recepty" />
           </AssociationSet>
           <AssociationSet Name="FK_LekarzSpecjalnosc_Lekarze" Association="PrzychodniaModel.FK_LekarzSpecjalnosc_Lekarze">
-            <End Role="Lekarze" EntitySet="Lekarzes" />
-            <End Role="LekarzSpecjalnosc" EntitySet="LekarzSpecjalnoscs" />
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="LekarzSpecjalnosc" EntitySet="LekarzSpecjalnosc" />
           </AssociationSet>
           <AssociationSet Name="FK_Wizyty_Lekarze" Association="PrzychodniaModel.FK_Wizyty_Lekarze">
-            <End Role="Lekarze" EntitySet="Lekarzes" />
-            <End Role="Wizyty" EntitySet="Wizyties" />
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
           </AssociationSet>
           <AssociationSet Name="FK_LekarzSpecjalnosc_Specjalnosci" Association="PrzychodniaModel.FK_LekarzSpecjalnosc_Specjalnosci">
-            <End Role="Specjalnosci" EntitySet="Specjalnoscis" />
-            <End Role="LekarzSpecjalnosc" EntitySet="LekarzSpecjalnoscs" />
+            <End Role="Specjalnosci" EntitySet="Specjalnosci" />
+            <End Role="LekarzSpecjalnosc" EntitySet="LekarzSpecjalnosc" />
           </AssociationSet>
           <AssociationSet Name="FK_Wizyty_Pacjenci" Association="PrzychodniaModel.FK_Wizyty_Pacjenci">
-            <End Role="Pacjenci" EntitySet="Pacjencis" />
-            <End Role="Wizyty" EntitySet="Wizyties" />
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
           </AssociationSet>
           <AssociationSet Name="FK_Recepty_Wizyty" Association="PrzychodniaModel.FK_Recepty_Wizyty">
-            <End Role="Wizyty" EntitySet="Wizyties" />
-            <End Role="Recepty" EntitySet="Recepties" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+            <End Role="Recepty" EntitySet="Recepty" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Badania">
@@ -375,7 +375,7 @@
           <Property Name="ID_Choroby" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
           <Property Name="opis" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Diagnozies" Relationship="PrzychodniaModel.FK_Diagnozy_Choroby" FromRole="Choroby" ToRole="Diagnozy" />
+          <NavigationProperty Name="Diagnozy" Relationship="PrzychodniaModel.FK_Diagnozy_Choroby" FromRole="Choroby" ToRole="Diagnozy" />
         </EntityType>
         <EntityType Name="Diagnozy">
           <Key>
@@ -412,8 +412,8 @@
           <Property Name="miejsce_zamieszkania" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
           <Property Name="ulica" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
           <Property Name="kod_pocztowy" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="LekarzSpecjalnoscs" Relationship="PrzychodniaModel.FK_LekarzSpecjalnosc_Lekarze" FromRole="Lekarze" ToRole="LekarzSpecjalnosc" />
-          <NavigationProperty Name="Wizyties" Relationship="PrzychodniaModel.FK_Wizyty_Lekarze" FromRole="Lekarze" ToRole="Wizyty" />
+          <NavigationProperty Name="LekarzSpecjalnosc" Relationship="PrzychodniaModel.FK_LekarzSpecjalnosc_Lekarze" FromRole="Lekarze" ToRole="LekarzSpecjalnosc" />
+          <NavigationProperty Name="Wizyty" Relationship="PrzychodniaModel.FK_Wizyty_Lekarze" FromRole="Lekarze" ToRole="Wizyty" />
         </EntityType>
         <EntityType Name="LekarzSpecjalnosc">
           <Key>
@@ -440,7 +440,7 @@
           <Property Name="kod_pocztowy" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
           <Property Name="plec" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
           <Property Name="data_urodzenia" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Wizyties" Relationship="PrzychodniaModel.FK_Wizyty_Pacjenci" FromRole="Pacjenci" ToRole="Wizyty" />
+          <NavigationProperty Name="Wizyty" Relationship="PrzychodniaModel.FK_Wizyty_Pacjenci" FromRole="Pacjenci" ToRole="Wizyty" />
         </EntityType>
         <EntityType Name="Recepty">
           <Key>
@@ -459,7 +459,7 @@
           </Key>
           <Property Name="ID_Specjalnosci" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="nazwa" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="LekarzSpecjalnoscs" Relationship="PrzychodniaModel.FK_LekarzSpecjalnosc_Specjalnosci" FromRole="Specjalnosci" ToRole="LekarzSpecjalnosc" />
+          <NavigationProperty Name="LekarzSpecjalnosc" Relationship="PrzychodniaModel.FK_LekarzSpecjalnosc_Specjalnosci" FromRole="Specjalnosci" ToRole="LekarzSpecjalnosc" />
         </EntityType>
         <EntityType Name="Swiadczenia">
           <Key>
@@ -470,7 +470,7 @@
           <Property Name="koszt" Type="Double" />
           <NavigationProperty Name="Badania" Relationship="PrzychodniaModel.FK_Badania_Swiadczenia" FromRole="Swiadczenia" ToRole="Badania" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -490,11 +490,11 @@
           <Property Name="data" Type="DateTime" Precision="0" />
           <Property Name="czas" Type="Time" Precision="7" />
           <Property Name="czy_odbyta" Type="Boolean" />
-          <NavigationProperty Name="Badanias" Relationship="PrzychodniaModel.FK_Badania_Wizyty" FromRole="Wizyty" ToRole="Badania" />
-          <NavigationProperty Name="Diagnozies" Relationship="PrzychodniaModel.FK_Diagnozy_Wizyty" FromRole="Wizyty" ToRole="Diagnozy" />
+          <NavigationProperty Name="Badania" Relationship="PrzychodniaModel.FK_Badania_Wizyty" FromRole="Wizyty" ToRole="Badania" />
+          <NavigationProperty Name="Diagnozy" Relationship="PrzychodniaModel.FK_Diagnozy_Wizyty" FromRole="Wizyty" ToRole="Diagnozy" />
           <NavigationProperty Name="Lekarze" Relationship="PrzychodniaModel.FK_Wizyty_Lekarze" FromRole="Wizyty" ToRole="Lekarze" />
           <NavigationProperty Name="Pacjenci" Relationship="PrzychodniaModel.FK_Wizyty_Pacjenci" FromRole="Wizyty" ToRole="Pacjenci" />
-          <NavigationProperty Name="Recepties" Relationship="PrzychodniaModel.FK_Recepty_Wizyty" FromRole="Wizyty" ToRole="Recepty" />
+          <NavigationProperty Name="Recepty" Relationship="PrzychodniaModel.FK_Recepty_Wizyty" FromRole="Wizyty" ToRole="Recepty" />
         </EntityType>
         <Association Name="FK_Badania_Swiadczenia">
           <End Role="Swiadczenia" Type="PrzychodniaModel.Swiadczenia" Multiplicity="1" />
@@ -621,8 +621,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PrzychodniaModelStoreContainer" CdmEntityContainer="PrzychodniaEntities">
-          <EntitySetMapping Name="Badanias">
+        <EntityContainerMapping StorageEntityContainer="PrzychodniaModelStoreContainer" CdmEntityContainer="EntitiesPrzychodnia">
+          <EntitySetMapping Name="Badania">
             <EntityTypeMapping TypeName="PrzychodniaModel.Badania">
               <MappingFragment StoreEntitySet="Badania">
                 <ScalarProperty Name="ID_Badania" ColumnName="ID_Badania" />
@@ -632,7 +632,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Chorobies">
+          <EntitySetMapping Name="Choroby">
             <EntityTypeMapping TypeName="PrzychodniaModel.Choroby">
               <MappingFragment StoreEntitySet="Choroby">
                 <ScalarProperty Name="ID_Choroby" ColumnName="ID_Choroby" />
@@ -641,7 +641,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Diagnozies">
+          <EntitySetMapping Name="Diagnozy">
             <EntityTypeMapping TypeName="PrzychodniaModel.Diagnozy">
               <MappingFragment StoreEntitySet="Diagnozy">
                 <ScalarProperty Name="ID_Diagnozy" ColumnName="ID_Diagnozy" />
@@ -651,7 +651,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Lekarstwas">
+          <EntitySetMapping Name="Lekarstwa">
             <EntityTypeMapping TypeName="PrzychodniaModel.Lekarstwa">
               <MappingFragment StoreEntitySet="Lekarstwa">
                 <ScalarProperty Name="ID_Lekarstwa" ColumnName="ID_Lekarstwa" />
@@ -661,7 +661,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Lekarzes">
+          <EntitySetMapping Name="Lekarze">
             <EntityTypeMapping TypeName="PrzychodniaModel.Lekarze">
               <MappingFragment StoreEntitySet="Lekarze">
                 <ScalarProperty Name="ID_Lekarza" ColumnName="ID_Lekarza" />
@@ -677,7 +677,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LekarzSpecjalnoscs">
+          <EntitySetMapping Name="LekarzSpecjalnosc">
             <EntityTypeMapping TypeName="PrzychodniaModel.LekarzSpecjalnosc">
               <MappingFragment StoreEntitySet="LekarzSpecjalnosc">
                 <ScalarProperty Name="ID_LekarzSpecjalnosc" ColumnName="ID_LekarzSpecjalnosc" />
@@ -687,7 +687,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Pacjencis">
+          <EntitySetMapping Name="Pacjenci">
             <EntityTypeMapping TypeName="PrzychodniaModel.Pacjenci">
               <MappingFragment StoreEntitySet="Pacjenci">
                 <ScalarProperty Name="ID_Pacjenta" ColumnName="ID_Pacjenta" />
@@ -703,7 +703,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Recepties">
+          <EntitySetMapping Name="Recepty">
             <EntityTypeMapping TypeName="PrzychodniaModel.Recepty">
               <MappingFragment StoreEntitySet="Recepty">
                 <ScalarProperty Name="ID_Recepty" ColumnName="ID_Recepty" />
@@ -713,7 +713,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Specjalnoscis">
+          <EntitySetMapping Name="Specjalnosci">
             <EntityTypeMapping TypeName="PrzychodniaModel.Specjalnosci">
               <MappingFragment StoreEntitySet="Specjalnosci">
                 <ScalarProperty Name="ID_Specjalnosci" ColumnName="ID_Specjalnosci" />
@@ -721,7 +721,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Swiadczenias">
+          <EntitySetMapping Name="Swiadczenia">
             <EntityTypeMapping TypeName="PrzychodniaModel.Swiadczenia">
               <MappingFragment StoreEntitySet="Swiadczenia">
                 <ScalarProperty Name="ID_Swiadczenia" ColumnName="ID_Swiadczenia" />
@@ -731,7 +731,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PrzychodniaModel.sysdiagram">
+            <EntityTypeMapping TypeName="PrzychodniaModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -741,7 +741,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Wizyties">
+          <EntitySetMapping Name="Wizyty">
             <EntityTypeMapping TypeName="PrzychodniaModel.Wizyty">
               <MappingFragment StoreEntitySet="Wizyty">
                 <ScalarProperty Name="ID_Wizyty" ColumnName="ID_Wizyty" />

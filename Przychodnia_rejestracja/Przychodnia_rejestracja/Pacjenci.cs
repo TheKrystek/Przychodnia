@@ -16,7 +16,7 @@ namespace Przychodnia_rejestracja
     {
         public Pacjenci()
         {
-            this.Wizyties = new HashSet<Wizyty>();
+            this.Wizyty = new HashSet<Wizyty>();
         }
     
         public int ID_Pacjenta { get; set; }
@@ -30,6 +30,6 @@ namespace Przychodnia_rejestracja
         public string plec { get; set; }
         public Nullable<System.DateTime> data_urodzenia { get; set; }
     
-        public virtual ICollection<Wizyty> Wizyties { get; set; }
+        public virtual ICollection<Wizyty> Wizyty { get; set; }
     }
 }
