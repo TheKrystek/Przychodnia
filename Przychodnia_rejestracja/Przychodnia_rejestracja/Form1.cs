@@ -4,9 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Data.Linq;
+using System.Data.Linq.Mapping;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
 
 namespace Przychodnia_rejestracja
 {
@@ -15,6 +19,9 @@ namespace Przychodnia_rejestracja
         public MainWindow()
         {
             InitializeComponent();
+
+            var x 
+
         }
 
 

@@ -36,6 +36,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabLekarze = new System.Windows.Forms.TabPage();
             this.splitLekarze = new System.Windows.Forms.SplitContainer();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabWizyty = new System.Windows.Forms.TabPage();
             this.splitWizyty = new System.Windows.Forms.SplitContainer();
             this.tabPacjenci = new System.Windows.Forms.TabPage();
@@ -52,7 +53,9 @@
             this.tabControl.SuspendLayout();
             this.tabLekarze.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarze)).BeginInit();
+            this.splitLekarze.Panel2.SuspendLayout();
             this.splitLekarze.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitWizyty)).BeginInit();
             this.splitWizyty.SuspendLayout();
@@ -135,7 +138,7 @@
             this.tabLekarze.Location = new System.Drawing.Point(4, 4);
             this.tabLekarze.Name = "tabLekarze";
             this.tabLekarze.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLekarze.Size = new System.Drawing.Size(878, 232);
+            this.tabLekarze.Size = new System.Drawing.Size(878, 471);
             this.tabLekarze.TabIndex = 0;
             this.tabLekarze.Text = "Lekarze";
             this.tabLekarze.UseVisualStyleBackColor = true;
@@ -146,9 +149,21 @@
             this.splitLekarze.Location = new System.Drawing.Point(3, 3);
             this.splitLekarze.Name = "splitLekarze";
             this.splitLekarze.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.splitLekarze.Size = new System.Drawing.Size(872, 226);
-            this.splitLekarze.SplitterDistance = 135;
+            // 
+            // splitLekarze.Panel2
+            // 
+            this.splitLekarze.Panel2.Controls.Add(this.dataGridView1);
+            this.splitLekarze.Size = new System.Drawing.Size(872, 465);
+            this.splitLekarze.SplitterDistance = 190;
             this.splitLekarze.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(195, 31);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 0;
             // 
             // tabWizyty
             // 
@@ -156,7 +171,7 @@
             this.tabWizyty.Location = new System.Drawing.Point(4, 4);
             this.tabWizyty.Name = "tabWizyty";
             this.tabWizyty.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWizyty.Size = new System.Drawing.Size(878, 232);
+            this.tabWizyty.Size = new System.Drawing.Size(878, 471);
             this.tabWizyty.TabIndex = 1;
             this.tabWizyty.Text = "Wizyty";
             this.tabWizyty.UseVisualStyleBackColor = true;
@@ -166,7 +181,7 @@
             this.splitWizyty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitWizyty.Location = new System.Drawing.Point(3, 3);
             this.splitWizyty.Name = "splitWizyty";
-            this.splitWizyty.Size = new System.Drawing.Size(872, 226);
+            this.splitWizyty.Size = new System.Drawing.Size(872, 465);
             this.splitWizyty.SplitterDistance = 290;
             this.splitWizyty.TabIndex = 0;
             // 
@@ -176,7 +191,7 @@
             this.tabPacjenci.Location = new System.Drawing.Point(4, 4);
             this.tabPacjenci.Name = "tabPacjenci";
             this.tabPacjenci.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPacjenci.Size = new System.Drawing.Size(878, 232);
+            this.tabPacjenci.Size = new System.Drawing.Size(878, 471);
             this.tabPacjenci.TabIndex = 2;
             this.tabPacjenci.Text = "Pacjenci";
             this.tabPacjenci.UseVisualStyleBackColor = true;
@@ -186,7 +201,7 @@
             this.splitPacjenci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitPacjenci.Location = new System.Drawing.Point(3, 3);
             this.splitPacjenci.Name = "splitPacjenci";
-            this.splitPacjenci.Size = new System.Drawing.Size(872, 226);
+            this.splitPacjenci.Size = new System.Drawing.Size(872, 465);
             this.splitPacjenci.SplitterDistance = 290;
             this.splitPacjenci.TabIndex = 0;
             // 
@@ -196,7 +211,7 @@
             this.tabSpecjalnosci.Location = new System.Drawing.Point(4, 4);
             this.tabSpecjalnosci.Name = "tabSpecjalnosci";
             this.tabSpecjalnosci.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSpecjalnosci.Size = new System.Drawing.Size(878, 232);
+            this.tabSpecjalnosci.Size = new System.Drawing.Size(878, 471);
             this.tabSpecjalnosci.TabIndex = 3;
             this.tabSpecjalnosci.Text = "Specjalnosci";
             this.tabSpecjalnosci.UseVisualStyleBackColor = true;
@@ -206,7 +221,7 @@
             this.splitSpecjalnosci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitSpecjalnosci.Location = new System.Drawing.Point(3, 3);
             this.splitSpecjalnosci.Name = "splitSpecjalnosci";
-            this.splitSpecjalnosci.Size = new System.Drawing.Size(872, 226);
+            this.splitSpecjalnosci.Size = new System.Drawing.Size(872, 465);
             this.splitSpecjalnosci.SplitterDistance = 290;
             this.splitSpecjalnosci.TabIndex = 0;
             // 
@@ -216,7 +231,7 @@
             this.tabChoroby.Location = new System.Drawing.Point(4, 4);
             this.tabChoroby.Name = "tabChoroby";
             this.tabChoroby.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChoroby.Size = new System.Drawing.Size(878, 232);
+            this.tabChoroby.Size = new System.Drawing.Size(878, 471);
             this.tabChoroby.TabIndex = 4;
             this.tabChoroby.Text = "Choroby";
             this.tabChoroby.UseVisualStyleBackColor = true;
@@ -226,7 +241,7 @@
             this.splitChoroby.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitChoroby.Location = new System.Drawing.Point(3, 3);
             this.splitChoroby.Name = "splitChoroby";
-            this.splitChoroby.Size = new System.Drawing.Size(872, 226);
+            this.splitChoroby.Size = new System.Drawing.Size(872, 465);
             this.splitChoroby.SplitterDistance = 290;
             this.splitChoroby.TabIndex = 0;
             // 
@@ -236,7 +251,7 @@
             this.tabLekarstwa.Location = new System.Drawing.Point(4, 4);
             this.tabLekarstwa.Name = "tabLekarstwa";
             this.tabLekarstwa.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLekarstwa.Size = new System.Drawing.Size(878, 232);
+            this.tabLekarstwa.Size = new System.Drawing.Size(878, 471);
             this.tabLekarstwa.TabIndex = 5;
             this.tabLekarstwa.Text = "Lekarstwa";
             this.tabLekarstwa.UseVisualStyleBackColor = true;
@@ -246,7 +261,7 @@
             this.splitLekarstwa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitLekarstwa.Location = new System.Drawing.Point(3, 3);
             this.splitLekarstwa.Name = "splitLekarstwa";
-            this.splitLekarstwa.Size = new System.Drawing.Size(872, 226);
+            this.splitLekarstwa.Size = new System.Drawing.Size(872, 465);
             this.splitLekarstwa.SplitterDistance = 290;
             this.splitLekarstwa.TabIndex = 0;
             // 
@@ -286,8 +301,10 @@
             this.menuStrip.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabLekarze.ResumeLayout(false);
+            this.splitLekarze.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarze)).EndInit();
             this.splitLekarze.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitWizyty)).EndInit();
             this.splitWizyty.ResumeLayout(false);
@@ -333,6 +350,7 @@
         private System.Windows.Forms.SplitContainer splitChoroby;
         private System.Windows.Forms.SplitContainer splitLekarstwa;
         private System.Windows.Forms.SplitContainer splitSwiadczenia;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
