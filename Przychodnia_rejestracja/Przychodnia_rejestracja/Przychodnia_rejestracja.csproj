@@ -91,6 +91,12 @@
     <Compile Include="Lekarze.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LekarzeSzczegoly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LekarzeSzczegoly.Designer.cs">
+      <DependentUpon>LekarzeSzczegoly.cs</DependentUpon>
+    </Compile>
     <Compile Include="LekarzSpecjalnosc.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
@@ -131,6 +137,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LekarzeSzczegoly.resx">
+      <DependentUpon>LekarzeSzczegoly.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

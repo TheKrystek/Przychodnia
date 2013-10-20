@@ -64,7 +64,10 @@ namespace Przychodnia_rejestracja
                 int id = (int)dgvLekarze.Rows[index].Cells["id"].Value;
 
                 if (item.Name == "lekarze_szczegoly")
-                    MessageBox.Show("test" + id);
+                {
+                    LekarzeSzczegoly win = new LekarzeSzczegoly(id);
+                    win.Show();
+                }
                 if (item.Name == "lekarze_edycja")
                      MessageBox.Show("test");
                 if (item.Name == "lekarze_dodaj")
