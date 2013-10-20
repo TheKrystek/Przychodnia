@@ -22,7 +22,9 @@ namespace Przychodnia_rejestracja
             wyswietlLekarzy();
 
         }
-            
+        
+
+        // Wyswietl lekarzy w data grid view
         public void wyswietlLekarzy(){
             using (var dc = new  EntitiesPrzychodnia()){
                 var lekarze = from c in dc.Lekarze select new { 
@@ -40,6 +42,37 @@ namespace Przychodnia_rejestracja
             }
         }
 
+
+
+        private void dgv_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                DataGridView dgv = (DataGridView)sender;
+                dgv.Rows[e.RowIndex].Selected = true;
+                dgv.Focus();
+            }
+            catch { }
+        }
+
+        private void cmsLekarze_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            ToolStripItem item = e.ClickedItem;
+            int index = dgvLekarze.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (index > -1)
+            {
+                int id = (int)dgvLekarze.Rows[index].Cells["id"].Value;
+
+                if (item.Name == "lekarze_szczegoly")
+                    MessageBox.Show("test" + id);
+                if (item.Name == "lekarze_edycja")
+                     MessageBox.Show("test");
+                if (item.Name == "lekarze_dodaj")
+                    MessageBox.Show("test");
+            }
+        }
+
+ 
 
 
 
