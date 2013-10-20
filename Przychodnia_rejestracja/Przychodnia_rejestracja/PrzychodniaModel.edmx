@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PrzychodniaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PrzychodniaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="PrzychodniaModelStoreContainer">
           <EntitySet Name="Badania" EntityType="PrzychodniaModel.Store.Badania" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Choroby" EntityType="PrzychodniaModel.Store.Choroby" store:Type="Tables" Schema="dbo" />
@@ -73,7 +73,7 @@
             <PropertyRef Name="ID_Choroby" />
           </Key>
           <Property Name="ID_Choroby" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="nazwa" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="opis" Type="text" />
         </EntityType>
         <EntityType Name="Diagnozy">
@@ -90,7 +90,7 @@
             <PropertyRef Name="ID_Lekarstwa" />
           </Key>
           <Property Name="ID_Lekarstwa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="nazwa" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="cena" Type="float" />
           <Property Name="ulotka" Type="xml" />
         </EntityType>
@@ -99,15 +99,15 @@
             <PropertyRef Name="ID_Lekarza" />
           </Key>
           <Property Name="ID_Lekarza" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="imie" Type="nchar" MaxLength="40" />
-          <Property Name="nazwisko" Type="nchar" MaxLength="40" />
-          <Property Name="plec" Type="nchar" MaxLength="1" />
-          <Property Name="PESEL" Type="nchar" MaxLength="11" />
+          <Property Name="imie" Type="nvarchar" MaxLength="50" />
+          <Property Name="nazwisko" Type="nvarchar" MaxLength="50" />
+          <Property Name="plec" Type="nchar" Nullable="false" MaxLength="1" />
+          <Property Name="PESEL" Type="nvarchar" MaxLength="11" />
           <Property Name="data_urodzenia" Type="date" />
-          <Property Name="miejsce_urodzenia" Type="nchar" MaxLength="40" />
-          <Property Name="miejsce_zamieszkania" Type="nchar" MaxLength="40" />
-          <Property Name="ulica" Type="nchar" MaxLength="40" />
-          <Property Name="kod_pocztowy" Type="nchar" MaxLength="10" />
+          <Property Name="miejsce_urodzenia" Type="nvarchar" MaxLength="50" />
+          <Property Name="miejsce_zamieszkania" Type="nvarchar" MaxLength="50" />
+          <Property Name="ulica" Type="nvarchar" MaxLength="50" />
+          <Property Name="kod_pocztowy" Type="nvarchar" MaxLength="6" />
         </EntityType>
         <EntityType Name="LekarzSpecjalnosc">
           <Key>
@@ -123,14 +123,14 @@
             <PropertyRef Name="ID_Pacjenta" />
           </Key>
           <Property Name="ID_Pacjenta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nazwisko" Type="nchar" MaxLength="30" />
-          <Property Name="imie" Type="nchar" MaxLength="30" />
-          <Property Name="PESEL" Type="nchar" MaxLength="11" />
-          <Property Name="miejsce_urodzenia" Type="nchar" MaxLength="100" />
-          <Property Name="miejsce_zamieszkania" Type="nchar" MaxLength="100" />
-          <Property Name="ulica" Type="nchar" MaxLength="30" />
-          <Property Name="kod_pocztowy" Type="nchar" MaxLength="6" />
-          <Property Name="plec" Type="nchar" MaxLength="1" />
+          <Property Name="nazwisko" Type="nvarchar" MaxLength="50" />
+          <Property Name="imie" Type="nvarchar" MaxLength="50" />
+          <Property Name="PESEL" Type="nvarchar" MaxLength="50" />
+          <Property Name="miejsce_urodzenia" Type="nvarchar" MaxLength="100" />
+          <Property Name="miejsce_zamieszkania" Type="nvarchar" MaxLength="100" />
+          <Property Name="ulica" Type="nvarchar" MaxLength="50" />
+          <Property Name="kod_pocztowy" Type="nvarchar" MaxLength="50" />
+          <Property Name="plec" Type="nvarchar" MaxLength="50" />
           <Property Name="data_urodzenia" Type="date" />
         </EntityType>
         <EntityType Name="Recepty">
@@ -147,14 +147,14 @@
             <PropertyRef Name="ID_Specjalnosci" />
           </Key>
           <Property Name="ID_Specjalnosci" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="nchar" MaxLength="50" />
+          <Property Name="nazwa" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Swiadczenia">
           <Key>
             <PropertyRef Name="ID_Swiadczenia" />
           </Key>
           <Property Name="ID_Swiadczenia" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="nazwa" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="koszt" Type="float" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -298,8 +298,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PrzychodniaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -373,7 +372,7 @@
             <PropertyRef Name="ID_Choroby" />
           </Key>
           <Property Name="ID_Choroby" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="opis" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Diagnozy" Relationship="PrzychodniaModel.FK_Diagnozy_Choroby" FromRole="Choroby" ToRole="Diagnozy" />
         </EntityType>
@@ -393,7 +392,7 @@
             <PropertyRef Name="ID_Lekarstwa" />
           </Key>
           <Property Name="ID_Lekarstwa" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="cena" Type="Double" />
           <Property Name="ulotka" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Recepty" Relationship="PrzychodniaModel.FK_Recepty_Lekarstwa" FromRole="Lekarstwa" ToRole="Recepty" />
@@ -403,15 +402,15 @@
             <PropertyRef Name="ID_Lekarza" />
           </Key>
           <Property Name="ID_Lekarza" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="imie" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
-          <Property Name="nazwisko" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
-          <Property Name="plec" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
-          <Property Name="PESEL" Type="String" MaxLength="11" Unicode="true" FixedLength="true" />
+          <Property Name="imie" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="plec" Type="String" MaxLength="1" Unicode="true" FixedLength="true" Nullable="false" />
+          <Property Name="PESEL" Type="String" MaxLength="11" Unicode="true" FixedLength="false" />
           <Property Name="data_urodzenia" Type="DateTime" Precision="0" />
-          <Property Name="miejsce_urodzenia" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
-          <Property Name="miejsce_zamieszkania" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
-          <Property Name="ulica" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
-          <Property Name="kod_pocztowy" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="miejsce_urodzenia" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="miejsce_zamieszkania" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ulica" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="kod_pocztowy" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="LekarzSpecjalnosc" Relationship="PrzychodniaModel.FK_LekarzSpecjalnosc_Lekarze" FromRole="Lekarze" ToRole="LekarzSpecjalnosc" />
           <NavigationProperty Name="Wizyty" Relationship="PrzychodniaModel.FK_Wizyty_Lekarze" FromRole="Lekarze" ToRole="Wizyty" />
         </EntityType>
@@ -431,14 +430,14 @@
             <PropertyRef Name="ID_Pacjenta" />
           </Key>
           <Property Name="ID_Pacjenta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="nazwisko" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
-          <Property Name="imie" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
-          <Property Name="PESEL" Type="String" MaxLength="11" Unicode="true" FixedLength="true" />
-          <Property Name="miejsce_urodzenia" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
-          <Property Name="miejsce_zamieszkania" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
-          <Property Name="ulica" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
-          <Property Name="kod_pocztowy" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
-          <Property Name="plec" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="imie" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PESEL" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="miejsce_urodzenia" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="miejsce_zamieszkania" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ulica" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="kod_pocztowy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="plec" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="data_urodzenia" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Wizyty" Relationship="PrzychodniaModel.FK_Wizyty_Pacjenci" FromRole="Pacjenci" ToRole="Wizyty" />
         </EntityType>
@@ -458,7 +457,7 @@
             <PropertyRef Name="ID_Specjalnosci" />
           </Key>
           <Property Name="ID_Specjalnosci" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="nazwa" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="LekarzSpecjalnosc" Relationship="PrzychodniaModel.FK_LekarzSpecjalnosc_Specjalnosci" FromRole="Specjalnosci" ToRole="LekarzSpecjalnosc" />
         </EntityType>
         <EntityType Name="Swiadczenia">
@@ -466,7 +465,7 @@
             <PropertyRef Name="ID_Swiadczenia" />
           </Key>
           <Property Name="ID_Swiadczenia" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="koszt" Type="Double" />
           <NavigationProperty Name="Badania" Relationship="PrzychodniaModel.FK_Badania_Swiadczenia" FromRole="Swiadczenia" ToRole="Badania" />
         </EntityType>
@@ -767,7 +766,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

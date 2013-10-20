@@ -16,7 +16,7 @@ namespace Przychodnia_rejestracja
     public partial class EntitiesPrzychodnia : DbContext
     {
         public EntitiesPrzychodnia()
-            : base("name=PrzychodniaModel")
+            : base("name=EntitiesPrzychodnia")
         {
         }
     

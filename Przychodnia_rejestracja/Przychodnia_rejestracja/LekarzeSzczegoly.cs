@@ -13,21 +13,16 @@ namespace Przychodnia_rejestracja
     public partial class LekarzeSzczegoly : Form
     {
         private int index;
-
+        public bool szczegoly = true;
         public LekarzeSzczegoly(int i)
         {
             InitializeComponent();
             index = i;
 
-
-            wypenijDanymi();
-            wypenijDanymiSpecjalnosci();
-            wypenijDanymiWizyty();
         }
 
         public void wypenijDanymi(){
-            using (var dc = new EntitiesPrzychodnia())
-            {
+            using (var dc = new EntitiesPrzychodnia()){
                 var lekarz = from c in dc.Lekarze
                               where c.ID_Lekarza == this.index
                               select new
@@ -39,7 +34,8 @@ namespace Przychodnia_rejestracja
                                   id = c.ID_Lekarza,
                                   miescje_zam = c.miejsce_zamieszkania,
                                   adres = c.ulica,
-                                  kod_pocztowy = c.kod_pocztowy
+                                  kod_pocztowy = c.kod_pocztowy,
+                                  pesel = c.PESEL
                               };
 
                 this.imie.Text = lekarz.First().imie;
@@ -49,6 +45,7 @@ namespace Przychodnia_rejestracja
                 this.miejsce_zam.Text = lekarz.First().miescje_zam;
                 this.ulica.Text = lekarz.First().adres;
                 this.kod.Text = lekarz.First().kod_pocztowy;
+                this.pesel.Text = lekarz.First().pesel;
             }   
         }
 
@@ -88,7 +85,90 @@ namespace Przychodnia_rejestracja
             }
         }
 
+        private void button_Click(object sender, EventArgs e)
+        {
+            if (szczegoly) {
+                using (var dc = new EntitiesPrzychodnia()){
+                    var lekarz = dc.Lekarze.Single(p => p.ID_Lekarza == index);
+
+                    lekarz.imie = imie.Text;
+                    lekarz.nazwisko = nazwisko.Text;
+                    lekarz.data_urodzenia = Convert.ToDateTime(data_ur.Text);
+                    lekarz.miejsce_urodzenia = miejsce_ur.Text;
+                    lekarz.miejsce_zamieszkania = miejsce_zam.Text;
+                    lekarz.PESEL = pesel.Text;
+                    lekarz.ulica = ulica.Text;
+                    lekarz.kod_pocztowy = kod.Text;
+                    try { 
+                        dc.SaveChanges();
+                    }
+                    catch{
+                        MessageBox.Show("Nie udało się zaktualizować rekordu");
+                    }
+                }
+            }
+            else{
+                using (var dc = new EntitiesPrzychodnia()){
+                    var lekarz = new Lekarze();
+                    lekarz.imie = imie.Text;
+                    lekarz.nazwisko = nazwisko.Text;
+                    try {
+                        lekarz.data_urodzenia = Convert.ToDateTime(data_ur.Text);
+                    }
+                    catch {
+                        MessageBox.Show("Błędny format daty - spróbuj jescze raz!");
+                    }
+                    lekarz.miejsce_urodzenia = miejsce_ur.Text;
+                    lekarz.miejsce_zamieszkania = miejsce_zam.Text;
+                    lekarz.PESEL = pesel.Text;
+                    lekarz.ulica = ulica.Text;
+                    lekarz.kod_pocztowy = kod.Text;                    
+                    try
+                    {
+                        dc.Lekarze.Add(lekarz);
+                        dc.SaveChanges();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Nie udało się dodać rekordu");
+                    }
+                }
+            }
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void LekarzeSzczegoly_Load(object sender, EventArgs e)
+        {
+            if (szczegoly)
+            {
+                wypenijDanymi();
+                this.Text = String.Format("{0} {1} - Szczegóły", imie.Text, nazwisko.Text);
+                button.Text = "Zapisz";
+                wypenijDanymiSpecjalnosci();
+                wypenijDanymiWizyty();
+            }
+            else
+            {
+                this.Text = "Dodaj Lekarza";
+                button.Text = "Dodaj";
+                this.Height = this.Height - panel1.Height;
+                panel1.Visible = false;
+            }
+        }
+
+
+
+        
+
 
 
     }
 }
+
+    
+

@@ -48,7 +48,6 @@
             this.kod_pocztowy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsLekarze = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lekarze_szczegoly = new System.Windows.Forms.ToolStripMenuItem();
-            this.lekarze_edycja = new System.Windows.Forms.ToolStripMenuItem();
             this.lekarze_dodaj = new System.Windows.Forms.ToolStripMenuItem();
             this.tabWizyty = new System.Windows.Forms.TabPage();
             this.splitWizyty = new System.Windows.Forms.SplitContainer();
@@ -192,6 +191,7 @@
             this.dgvLekarze.Name = "dgvLekarze";
             this.dgvLekarze.ReadOnly = true;
             this.dgvLekarze.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvLekarze.RowHeadersVisible = false;
             this.dgvLekarze.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLekarze.ShowCellToolTips = false;
             this.dgvLekarze.Size = new System.Drawing.Size(872, 379);
@@ -264,10 +264,9 @@
             // 
             this.cmsLekarze.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lekarze_szczegoly,
-            this.lekarze_edycja,
             this.lekarze_dodaj});
             this.cmsLekarze.Name = "cmsLekarze";
-            this.cmsLekarze.Size = new System.Drawing.Size(126, 70);
+            this.cmsLekarze.Size = new System.Drawing.Size(126, 48);
             this.cmsLekarze.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsLekarze_ItemClicked);
             // 
             // lekarze_szczegoly
@@ -275,12 +274,6 @@
             this.lekarze_szczegoly.Name = "lekarze_szczegoly";
             this.lekarze_szczegoly.Size = new System.Drawing.Size(152, 22);
             this.lekarze_szczegoly.Text = "Szczegóły";
-            // 
-            // lekarze_edycja
-            // 
-            this.lekarze_edycja.Name = "lekarze_edycja";
-            this.lekarze_edycja.Size = new System.Drawing.Size(152, 22);
-            this.lekarze_edycja.Text = "Edytuj";
             // 
             // lekarze_dodaj
             // 
@@ -485,7 +478,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn kod_pocztowy;
         private System.Windows.Forms.ContextMenuStrip cmsLekarze;
         private System.Windows.Forms.ToolStripMenuItem lekarze_szczegoly;
-        private System.Windows.Forms.ToolStripMenuItem lekarze_edycja;
         private System.Windows.Forms.ToolStripMenuItem lekarze_dodaj;
     }
 }

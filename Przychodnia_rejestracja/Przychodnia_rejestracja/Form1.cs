@@ -37,7 +37,6 @@ namespace Przychodnia_rejestracja
                     adres = c.ulica,
                     kod_pocztowy = c.kod_pocztowy
                 };
-      
                 dgvLekarze.DataSource = lekarze.ToList();
             }
         }
@@ -63,16 +62,18 @@ namespace Przychodnia_rejestracja
             {
                 int id = (int)dgvLekarze.Rows[index].Cells["id"].Value;
 
-                if (item.Name == "lekarze_szczegoly")
-                {
+                if (item.Name == "lekarze_szczegoly"){
                     LekarzeSzczegoly win = new LekarzeSzczegoly(id);
-                    win.Show();
+                    win.ShowDialog();
                 }
-                if (item.Name == "lekarze_edycja")
-                     MessageBox.Show("test");
-                if (item.Name == "lekarze_dodaj")
-                    MessageBox.Show("test");
-            }
+                else if (item.Name == "lekarze_dodaj") {
+                    LekarzeSzczegoly win = new LekarzeSzczegoly(id);
+                    win.szczegoly = false;
+                    win.ShowDialog();
+                }
+                wyswietlLekarzy();
+            }      
+            
         }
 
  
