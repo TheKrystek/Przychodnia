@@ -44,13 +44,18 @@
             this.ulica = new System.Windows.Forms.TextBox();
             this.miejsce_zam = new System.Windows.Forms.TextBox();
             this.miejsce_ur = new System.Windows.Forms.TextBox();
-            this.data_ur = new System.Windows.Forms.TextBox();
             this.nazwisko = new System.Windows.Forms.TextBox();
             this.imie = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvSpecjalnosci = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.specjalnosc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data_nad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsSpecjalnosci = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.spec_dodaj = new System.Windows.Forms.ToolStripMenuItem();
+            this.spec_usun = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvWizyty = new System.Windows.Forms.DataGridView();
             this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,12 +68,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button = new System.Windows.Forms.Button();
-            this.cmsSpecjalnosci = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.spec_dodaj = new System.Windows.Forms.ToolStripMenuItem();
-            this.spec_usun = new System.Windows.Forms.ToolStripMenuItem();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.specjalnosc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.data_nad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtpUrodzenia = new System.Windows.Forms.DateTimePicker();
             this.p_imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ppesel = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,12 +83,12 @@
             this.tabcontrol.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpecjalnosci)).BeginInit();
+            this.cmsSpecjalnosci.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWizyty)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPacjenci)).BeginInit();
             this.panel2.SuspendLayout();
-            this.cmsSpecjalnosci.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -106,6 +106,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dtpUrodzenia);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.pesel);
             this.groupBox1.Controls.Add(this.label7);
@@ -119,7 +120,6 @@
             this.groupBox1.Controls.Add(this.ulica);
             this.groupBox1.Controls.Add(this.miejsce_zam);
             this.groupBox1.Controls.Add(this.miejsce_ur);
-            this.groupBox1.Controls.Add(this.data_ur);
             this.groupBox1.Controls.Add(this.nazwisko);
             this.groupBox1.Controls.Add(this.imie);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -237,13 +237,6 @@
             this.miejsce_ur.Size = new System.Drawing.Size(147, 20);
             this.miejsce_ur.TabIndex = 3;
             // 
-            // data_ur
-            // 
-            this.data_ur.Location = new System.Drawing.Point(132, 108);
-            this.data_ur.Name = "data_ur";
-            this.data_ur.Size = new System.Drawing.Size(147, 20);
-            this.data_ur.TabIndex = 2;
-            // 
             // nazwisko
             // 
             this.nazwisko.Location = new System.Drawing.Point(132, 56);
@@ -307,6 +300,49 @@
             this.dgvSpecjalnosci.Size = new System.Drawing.Size(660, 214);
             this.dgvSpecjalnosci.TabIndex = 0;
             this.dgvSpecjalnosci.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "Column1";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            // 
+            // specjalnosc
+            // 
+            this.specjalnosc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.specjalnosc.DataPropertyName = "specjalnosc";
+            this.specjalnosc.HeaderText = "Specjalność";
+            this.specjalnosc.Name = "specjalnosc";
+            // 
+            // data_nad
+            // 
+            this.data_nad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.data_nad.DataPropertyName = "data_nad";
+            this.data_nad.HeaderText = "Data nadania";
+            this.data_nad.Name = "data_nad";
+            // 
+            // cmsSpecjalnosci
+            // 
+            this.cmsSpecjalnosci.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.spec_dodaj,
+            this.spec_usun});
+            this.cmsSpecjalnosci.Name = "cmsSpecjalnosci";
+            this.cmsSpecjalnosci.Size = new System.Drawing.Size(106, 48);
+            this.cmsSpecjalnosci.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsSpecjalnosci_ItemClicked);
+            // 
+            // spec_dodaj
+            // 
+            this.spec_dodaj.AccessibleName = "Dodaj";
+            this.spec_dodaj.Name = "spec_dodaj";
+            this.spec_dodaj.Size = new System.Drawing.Size(105, 22);
+            this.spec_dodaj.Text = "Dodaj";
+            // 
+            // spec_usun
+            // 
+            this.spec_usun.Name = "spec_usun";
+            this.spec_usun.Size = new System.Drawing.Size(105, 22);
+            this.spec_usun.Text = "Usuń";
             // 
             // tabPage2
             // 
@@ -438,94 +474,67 @@
             this.button.UseVisualStyleBackColor = true;
             this.button.Click += new System.EventHandler(this.button_Click);
             // 
-            // cmsSpecjalnosci
+            // dtpUrodzenia
             // 
-            this.cmsSpecjalnosci.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.spec_dodaj,
-            this.spec_usun});
-            this.cmsSpecjalnosci.Name = "cmsSpecjalnosci";
-            this.cmsSpecjalnosci.Size = new System.Drawing.Size(106, 48);
-            this.cmsSpecjalnosci.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsSpecjalnosci_ItemClicked);
-            // 
-            // spec_dodaj
-            // 
-            this.spec_dodaj.AccessibleName = "Dodaj";
-            this.spec_dodaj.Name = "spec_dodaj";
-            this.spec_dodaj.Size = new System.Drawing.Size(105, 22);
-            this.spec_dodaj.Text = "Dodaj";
-            // 
-            // spec_usun
-            // 
-            this.spec_usun.Name = "spec_usun";
-            this.spec_usun.Size = new System.Drawing.Size(105, 22);
-            this.spec_usun.Text = "Usuń";
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "Column1";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            // 
-            // specjalnosc
-            // 
-            this.specjalnosc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.specjalnosc.DataPropertyName = "specjalnosc";
-            this.specjalnosc.HeaderText = "Specjalność";
-            this.specjalnosc.Name = "specjalnosc";
-            // 
-            // data_nad
-            // 
-            this.data_nad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.data_nad.DataPropertyName = "data_nad";
-            this.data_nad.HeaderText = "Data nadania";
-            this.data_nad.Name = "data_nad";
+            this.dtpUrodzenia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpUrodzenia.Location = new System.Drawing.Point(132, 109);
+            this.dtpUrodzenia.Name = "dtpUrodzenia";
+            this.dtpUrodzenia.Size = new System.Drawing.Size(147, 20);
+            this.dtpUrodzenia.TabIndex = 16;
             // 
             // p_imie
             // 
             this.p_imie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_imie.DataPropertyName = "p_imie";
             this.p_imie.HeaderText = "Imię";
             this.p_imie.Name = "p_imie";
             // 
             // p_nazwisko
             // 
             this.p_nazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_nazwisko.DataPropertyName = "p_nazwisko";
             this.p_nazwisko.HeaderText = "Nazwisko";
             this.p_nazwisko.Name = "p_nazwisko";
             // 
             // ppesel
             // 
             this.ppesel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ppesel.DataPropertyName = "ppesel";
             this.ppesel.HeaderText = "PESEL";
             this.ppesel.Name = "ppesel";
             // 
             // p_data_ur
             // 
             this.p_data_ur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_data_ur.DataPropertyName = "p_data_ur";
             this.p_data_ur.HeaderText = "Data urodzenia";
             this.p_data_ur.Name = "p_data_ur";
             // 
             // p_miejsce_ur
             // 
             this.p_miejsce_ur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_miejsce_ur.DataPropertyName = "p_miejsce_ur";
             this.p_miejsce_ur.HeaderText = "Miejsce urodzenia";
             this.p_miejsce_ur.Name = "p_miejsce_ur";
             // 
             // p_ulica
             // 
             this.p_ulica.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_ulica.DataPropertyName = "p_ulica";
             this.p_ulica.HeaderText = "Ulica";
             this.p_ulica.Name = "p_ulica";
             // 
             // p_adres
             // 
             this.p_adres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_adres.DataPropertyName = "p_adres";
             this.p_adres.HeaderText = "Adres";
             this.p_adres.Name = "p_adres";
             // 
             // p_kod
             // 
             this.p_kod.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_kod.DataPropertyName = "p_kod";
             this.p_kod.HeaderText = "Kod pocztowy";
             this.p_kod.Name = "p_kod";
             // 
@@ -547,12 +556,12 @@
             this.tabcontrol.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpecjalnosci)).EndInit();
+            this.cmsSpecjalnosci.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvWizyty)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPacjenci)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.cmsSpecjalnosci.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -564,7 +573,6 @@
         private System.Windows.Forms.TextBox ulica;
         private System.Windows.Forms.TextBox miejsce_zam;
         private System.Windows.Forms.TextBox miejsce_ur;
-        private System.Windows.Forms.TextBox data_ur;
         private System.Windows.Forms.TextBox nazwisko;
         private System.Windows.Forms.TextBox imie;
         private System.Windows.Forms.Label label6;
@@ -599,6 +607,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn specjalnosc;
         private System.Windows.Forms.DataGridViewTextBoxColumn data_nad;
+        private System.Windows.Forms.DateTimePicker dtpUrodzenia;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_imie;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_nazwisko;
         private System.Windows.Forms.DataGridViewTextBoxColumn ppesel;

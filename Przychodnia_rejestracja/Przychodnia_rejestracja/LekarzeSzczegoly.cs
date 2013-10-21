@@ -40,7 +40,7 @@ namespace Przychodnia_rejestracja
 
                 this.imie.Text = lekarz.First().imie;
                 this.nazwisko.Text = lekarz.First().nazwisko;
-                this.data_ur.Text = lekarz.First().data_ur.ToString();
+                this.dtpUrodzenia.Value = (DateTime)lekarz.First().data_ur;
                 this.miejsce_ur.Text = lekarz.First().miejsce_ur;
                 this.miejsce_zam.Text = lekarz.First().miescje_zam;
                 this.ulica.Text = lekarz.First().adres;
@@ -59,7 +59,8 @@ namespace Przychodnia_rejestracja
                                    select new
                                    {
                                        specjalnosc = s.nazwa,
-                                       data_nad = ls.data_nadania
+                                       data_nad = ls.data_nadania,
+                                       id = s.ID_Specjalnosci
                                    };
                 dgvSpecjalnosci.DataSource = specjalnosci.ToList();
             }
@@ -116,7 +117,7 @@ namespace Przychodnia_rejestracja
 
                     lekarz.imie = imie.Text;
                     lekarz.nazwisko = nazwisko.Text;
-                    lekarz.data_urodzenia = Convert.ToDateTime(data_ur.Text);
+                    lekarz.data_urodzenia = this.dtpUrodzenia.Value;
                     lekarz.miejsce_urodzenia = miejsce_ur.Text;
                     lekarz.miejsce_zamieszkania = miejsce_zam.Text;
                     lekarz.PESEL = pesel.Text;
@@ -135,19 +136,14 @@ namespace Przychodnia_rejestracja
                     var lekarz = new Lekarze();
                     lekarz.imie = imie.Text;
                     lekarz.nazwisko = nazwisko.Text;
-                    try {
-                        lekarz.data_urodzenia = Convert.ToDateTime(data_ur.Text);
+    
+                    try
+                    {
+                        lekarz.data_urodzenia = this.dtpUrodzenia.Value;                
                     }
                     catch
                     {
-                        try
-                        {
-                            lekarz.data_urodzenia = Convert.ToDateTime(data_ur.Text + " 12:00:00");                
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Błędny format daty - spróbuj jescze raz!");
-                        }
+                        MessageBox.Show("Błędny format daty - spróbuj jescze raz!");
                     }
                     lekarz.miejsce_urodzenia = miejsce_ur.Text;
                     lekarz.miejsce_zamieszkania = miejsce_zam.Text;
@@ -187,6 +183,7 @@ namespace Przychodnia_rejestracja
 
         private void LekarzeSzczegoly_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             if (szczegoly)
             {
                 wypenijDanymi();
@@ -217,6 +214,24 @@ namespace Przychodnia_rejestracja
             catch { }
         }
 
+        private void usunSpecjalizacje(int id)
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var specjalizacja = from ls in dc.LekarzSpecjalnosc
+                                    where ls.ID_Specjalnosci == id && ls.ID_Lekarza == this.index
+                                    select ls;
+
+                dc.LekarzSpecjalnosc.RemoveRange(specjalizacja);
+                try
+                {
+                    dc.SaveChanges();
+                }
+                catch { }
+            }
+
+        }
+
         private void cmsSpecjalnosci_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             ToolStripItem item = e.ClickedItem;
@@ -226,13 +241,14 @@ namespace Przychodnia_rejestracja
                 int id = (int)dgvSpecjalnosci.Rows[index].Cells["id"].Value;
                 if (item.Name == "spec_usun")
                 {
-                    LekarzeSzczegoly win = new LekarzeSzczegoly(index);
-                    win.ShowDialog();
+                    usunSpecjalizacje(id);
                 }         
             }
-            else if (item.Name == "spec_dodaj")
+            
+            if (item.Name == "spec_dodaj")
             {
-                DodajSpecjalnosc win = new DodajSpecjalnosc(index);
+                DodajSpecjalnosc win = new DodajSpecjalnosc(this.index);
+                win.Text = "Dodaj specjalnosc - " + imie.Text + " " + nazwisko.Text;
                 win.lekarz = false;
                 win.ShowDialog();
             }

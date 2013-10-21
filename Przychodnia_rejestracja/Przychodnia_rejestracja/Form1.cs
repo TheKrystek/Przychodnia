@@ -54,6 +54,10 @@ namespace Przychodnia_rejestracja
             catch { }
         }
 
+
+   
+
+
         private void cmsLekarze_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             ToolStripItem item = e.ClickedItem;

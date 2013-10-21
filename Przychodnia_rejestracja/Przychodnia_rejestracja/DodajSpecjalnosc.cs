@@ -16,7 +16,7 @@ namespace Przychodnia_rejestracja
         public bool lekarz = false;
         public DodajSpecjalnosc(int id = -1)
         {
-            this.index =  id;
+            this.index = id;
             InitializeComponent();
         }
 
@@ -35,36 +35,24 @@ namespace Przychodnia_rejestracja
             else
             {
                 using (var dc = new EntitiesPrzychodnia())
-                {             
-                    var specjalnosci = from s in dc.Specjalnosci      
-                                       where s.nazwa == cbSpecjalnosci.Text 
-                                   select new
-                                   {
-                                       id = s.ID_Specjalnosci
-                                   };
+                {
+                    var specjalnosci = from s in dc.Specjalnosci
+                                       where s.nazwa == cbSpecjalnosci.Text
+                                       select new
+                                       {
+                                           id = s.ID_Specjalnosci
+                                       };
                     int id_specjalnosci = specjalnosci.First().id;
-
-
                     var lekarzSpecjalnosc = new LekarzSpecjalnosc();
                     lekarzSpecjalnosc.ID_Lekarza = index;
-                    lekarzSpecjalnosc.ID_LekarzSpecjalnosc = id_specjalnosci;
+                    lekarzSpecjalnosc.ID_Specjalnosci = id_specjalnosci;
                     lekarzSpecjalnosc.data_nadania = dataPicker.Value;
-                  
                     try
                     {
                         dc.LekarzSpecjalnosc.Add(lekarzSpecjalnosc);
                         dc.SaveChanges();
                     }
-                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-                    {
-                        foreach (var validationErrors in dbEx.EntityValidationErrors)
-                        {
-                            foreach (var validationError in validationErrors.ValidationErrors)
-                            {
-                                Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                            }
-                        }
-                    }
+                    catch {}
                 }
             }
         }
@@ -73,7 +61,7 @@ namespace Przychodnia_rejestracja
         {
             using (var dc = new EntitiesPrzychodnia())
             {
-                var specjalnosci = from s in dc.Specjalnosci      
+                var specjalnosci = from s in dc.Specjalnosci
                                    select new
                                    {
                                        specjalnosc = s.nazwa
@@ -83,15 +71,33 @@ namespace Przychodnia_rejestracja
             }
         }
 
+        public void wypenijDanymiLekarze()
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var lekarze = from l in dc.Lekarze
+                                   select new
+                                   {
+                                       imie = l.imie,
+                                       nazwisko = l.nazwisko
+                                   };
+                foreach (var lekarz in lekarze)
+                    cbSpecjalnosci.Items.Add(lekarz.imie +" "+lekarz.nazwisko);
+            }
+        }
+
         private void DodajSpecjalnosc_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             if (lekarz)
             {
 
             }
-            else {
+            else
+            {
                 this.Height -= panel_lakarz.Height;
-                panel_lakarz.Visible = false;
+                panel_lakarz.Hide();
+                panel1.Location = panel_lakarz.Location;
 
             }
             wypenijDanymiSpecjalnosci();
