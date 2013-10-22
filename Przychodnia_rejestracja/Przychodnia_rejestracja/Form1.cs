@@ -24,8 +24,127 @@ namespace Przychodnia_rejestracja
             wyswietlLekarzy();
             wyswietlSwiadczenia();
             wyswietlChoroby();
+            wyswietlSpecjalnosci();
         }
 
+        #region Wspolne
+        private void ZamienMiejscami(Control first, Control second)
+        {
+            if (first.Visible)
+            {
+                first.Hide();
+                second.Show();
+                second.Location = first.Location;
+            }
+            else
+            {
+                second.Hide();
+                first.Show();
+                first.Location = second.Location;
+            }
+        }
+        private void dgv_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                DataGridView dgv = (DataGridView)sender;
+                dgv.Rows[e.RowIndex].Selected = true;
+                dgv.Focus();
+            }
+            catch { }
+        }
+        // Sprawdzanie poprawności formatu: pieniądze
+        private bool PoprawnyFormat_Pieniadze(string text)
+        {
+            Match match = Regex.Match(text, @"^[0-9]{0,6}(\.[0-9]{1,2})?$");
+            return match.Success;
+        }
+
+        // Sprawdzanie poprawności formatu: pieniądze
+        private bool PoprawnyFormat_Tekst(string text, bool firstCapitalRequired = false)
+        {
+            Match match;
+            if (firstCapitalRequired)
+                match = Regex.Match(text, "^[A-ZŚŻŹŁ][a-zA-Z -ąęćśżźółńćŚŻŹŁ]*$");
+            else
+                match = Regex.Match(text, "^[a-zA-Z -ąęćżźśółńćŚŻŹŁ]+$");
+            return match.Success;
+        }
+
+        // Sprawdzanie poprawności formatu: pieniądze - Zdarzenie
+        private void SprawdzFormat_Pieniadze(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            switch (tb.Name)
+            {
+                case "tbKoszt":
+                    this.bDodajSwiadczenie.Enabled = PoprawnyFormat_Pieniadze(tb.Text);
+                    break;
+            }
+        }
+
+        // Sprawdzanie poprawności formatu: tekst - Zdarzenie
+        private void SprawdzFormat_Tekst(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            switch (tb.Name)
+            {
+                case "tbSwiadczenia":
+                    this.bDodajSwiadczenie.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
+                    break;
+                case "tbChoroba":
+                    this.bChDodaj.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
+                    break;
+                case "tbSpecjalnosc":
+                    this.bChDodaj.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
+                    break;
+            }
+        }
+        private void dgvRow_DoubleClicked(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                DataGridView dgv = (DataGridView)sender;
+                dgv.Rows[e.RowIndex].Selected = true;
+                dgv.Focus();
+
+                switch (dgv.Name)
+                {
+                    case "dgvSwiadczenia":
+                        EdytujSwiadczenie();
+                        break;
+                    case "dgvChoroby":
+                        EdytujChorobe();
+                        break;
+                    case "dgvSpecjalnosci":
+                        EdytujSpecjalnosc();
+                        break;
+                }
+
+            }
+            catch { }
+        }
+
+        private void VisibleChanged(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            switch (button.Name)
+            {
+                case "bEdytujSwiadczenie":
+                    bAnulujSwiadczenie.Visible = button.Visible;
+                    break;
+
+                case "bChZapisz":
+                    bChAnuluj.Visible = button.Visible;
+                    break;
+
+                case "bSpZapisz":
+                    bSpAnuluj.Visible = button.Visible;
+                    break;
+            }
+
+        }
+        #endregion
 
         #region Lekarze
             // Wyswietl lekarzy w data grid view
@@ -167,7 +286,7 @@ namespace Przychodnia_rejestracja
                 {
                     var choroba = dc.Choroby.Single(ch => ch.ID_Choroby == this.index);
                     choroba.opis = tbChOpis.Text;
-                    choroba.nazwa = tbChOpis.Text;
+                    choroba.nazwa = tbChoroba.Text;
                     try
                     {
                         dc.SaveChanges();
@@ -183,6 +302,8 @@ namespace Przychodnia_rejestracja
             private void bChAnuluj_Click(object sender, EventArgs e)
             {
                 WyczyscPolaChoroby();
+                if (bChAnuluj.Visible)
+                    ZamienMiejscami(bChDodaj, bChZapisz);
             }
         #endregion
 
@@ -257,7 +378,6 @@ namespace Przychodnia_rejestracja
                     if (!sprawdzCzySwiadczeniaIstnieje(tbSwiadczenia.Text, koszt))
                     {
                         dodajSwiadczenie(tbSwiadczenia.Text, koszt);
-                        wyswietlSwiadczenia();
                         WyczyscPolaSwiadczenia();
                     }
                     else
@@ -284,7 +404,7 @@ namespace Przychodnia_rejestracja
                     catch
                     {
                         MessageBox.Show("Nie udało się zaktualizować rekordu");
-                    }
+                    }          
                 }
                 ZamienMiejscami(bDodajSwiadczenie, bEdytujSwiadczenie);
                 WyczyscPolaSwiadczenia();
@@ -295,125 +415,127 @@ namespace Przychodnia_rejestracja
                 tbKoszt.Text = "";
                 tbSwiadczenia.Text = "";
                 wyswietlSwiadczenia();
-            }
-            
+            }           
             private void bAnulujSwiadczenie_Click(object sender, EventArgs e)
             {
                 WyczyscPolaSwiadczenia();
+                if (bAnulujSwiadczenie.Visible)
+                    ZamienMiejscami(bDodajSwiadczenie, bEdytujSwiadczenie);
             }
 
         #endregion
 
-        #region Wspolne
-            private void ZamienMiejscami(Control first, Control second)
+        #region Specjalnosci
+            public void wyswietlSpecjalnosci()
             {
-                if (first.Visible)
+                using (var dc = new EntitiesPrzychodnia())
                 {
-                    first.Hide();
-                    second.Show();
-                    second.Location = first.Location;
-                }
-                else
-                {
-                    second.Hide();
-                    first.Show();
-                    first.Location = second.Location;
+                    var specjalnosci = from s in dc.Specjalnosci
+                                    select new
+                                    {
+                                        sp_id = s.ID_Specjalnosci,
+                                        sp_nazwa = s.nazwa,       
+                                    };
+                    dgvSpecjalnosci.DataSource = specjalnosci.ToList();
                 }
             }
-            private void dgv_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            try
+            private bool sprawdzCzySpecjalnoscIstnieje(string nazwa)
             {
-                DataGridView dgv = (DataGridView)sender;
-                dgv.Rows[e.RowIndex].Selected = true;
-                dgv.Focus();
-            }
-            catch { }
-        }
-            // Sprawdzanie poprawności formatu: pieniądze
-            private bool PoprawnyFormat_Pieniadze(string text)
-            {
-                Match match = Regex.Match(text, @"^[0-9]{0,6}(\.[0-9]{1,2})?$");
-                return match.Success;
-            }
-
-            // Sprawdzanie poprawności formatu: pieniądze
-            private bool PoprawnyFormat_Tekst(string text, bool firstCapitalRequired = false)
-            {
-                Match match;
-                if (firstCapitalRequired)
-                    match = Regex.Match(text, "^[A-ZŚŻŹŁ][a-zA-Z -ąęćśżźółńćŚŻŹŁ]*$");
-                else
-                    match = Regex.Match(text, "^[a-zA-Z -ąęćżźśółńćŚŻŹŁ]+$");
-                return match.Success;
-            }
-
-            // Sprawdzanie poprawności formatu: pieniądze - Zdarzenie
-            private void SprawdzFormat_Pieniadze(object sender, EventArgs e)
-            {
-                TextBox tb = (TextBox)sender;
-                switch (tb.Name)
+                using (var dc = new EntitiesPrzychodnia())
                 {
-                    case "tbKoszt":
-                        this.bDodajSwiadczenie.Enabled = PoprawnyFormat_Pieniadze(tb.Text);
-                        break;
+                    var specjalnosc = from s in dc.Specjalnosci
+                                    where
+                                        s.nazwa == nazwa
+                                    select s;
+                    if (specjalnosc.Count() > 0)
+                        return true;
                 }
+                return false;
             }
-
-            // Sprawdzanie poprawności formatu: tekst - Zdarzenie
-            private void SprawdzFormat_Tekst(object sender, EventArgs e)
+            private void dodajSpecjalnosc(string nazwa)
             {
-                TextBox tb = (TextBox)sender;
-                switch (tb.Name)
+                using (var dc = new EntitiesPrzychodnia())
                 {
-                    case "tbSwiadczenia":
-                        this.bDodajSwiadczenie.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
-                        break;
-                    case "tbChoroba":
-                        this.bChDodaj.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
-                        break;
-                }
-            }
-            private void dgvRow_DoubleClicked(object sender, DataGridViewCellEventArgs e)
-            {
-                try
-                {
-                    DataGridView dgv = (DataGridView)sender;
-                    dgv.Rows[e.RowIndex].Selected = true;
-                    dgv.Focus();
-
-                    switch (dgv.Name)
+                    var specjalnosc = new Specjalnosci();
+                    specjalnosc.nazwa = nazwa;
+                    try
                     {
-                        case "dgvSwiadczenia":
-                            EdytujSwiadczenie();
-                            break;
-                        case "dgvChoroby":
-                            EdytujChorobe();
-                            break;
+                        dc.Specjalnosci.Add(specjalnosc);
+                        dc.SaveChanges();
                     }
-
+                    catch { }
                 }
-                catch { }
             }
-
-            private void VisibleChanged(object sender, EventArgs e)
-            {     
-                Button button = (Button)sender;
-                switch (button.Name){
-                    case "bEdytujSwiadczenie":
-                        bAnulujSwiadczenie.Visible = button.Visible;
-                        break;
-
-                    case "bChZapisz":
-                        bChAnuluj.Visible = button.Visible;
-                        break;
-                
+            private void EdytujSpecjalnosc()
+            {
+                int id = dgvSpecjalnosci.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+                if (id >= 0)
+                {
+                    tbSpecjalnosc.Text = dgvSpecjalnosci.Rows[id].Cells["sp_nazwa"].Value.ToString();
+                    //tbSpOpis.Text = dgvSpecjalnosci.Rows[id].Cells["ch_opis"].Value.ToString();
+                    // Zamien przyciski miejscami
+                    if (!bSpZapisz.Visible)
+                    {
+                        ZamienMiejscami(bSpDodaj, bSpZapisz);
+                        gbSpecjalnosci.Text = "Edytuj specjalność";
+                        this.index = Convert.ToInt32(dgvSpecjalnosci.Rows[id].Cells["sp_id"].Value.ToString());
+                    }
                 }
-                
+            }
+            void WyczyscPolaSpecjalnosci()
+            {
+                gbSpecjalnosci.Text = "Dodaj specjalność";
+                //tbSpOpis.Text = "";
+                tbSpecjalnosc.Text = "";
+                wyswietlSpecjalnosci();
+            }
+            private void bSpDodaj_Click(object sender, EventArgs e)
+            {
+                // Sprawdz czy pola nie sa puste
+                if (!String.IsNullOrEmpty(tbSpecjalnosc.Text))
+                {
+
+                    if (!sprawdzCzySpecjalnoscIstnieje(tbSpecjalnosc.Text))
+                    {
+                        dodajSpecjalnosc(tbSpecjalnosc.Text);
+                        wyswietlSpecjalnosci();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Taka specjalnosc już istnieje!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Pole \"nazwa\" nie może być puste!");
+                }
+            }
+            private void bSpZapisz_Click(object sender, EventArgs e)
+            {
+                using (var dc = new EntitiesPrzychodnia())
+                {
+                    var specjalnosc = dc.Specjalnosci.Single(ch => ch.ID_Specjalnosci == this.index);
+               
+                    specjalnosc.nazwa = tbSpecjalnosc.Text;
+                    try
+                    {
+                        dc.SaveChanges();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Nie udało się zaktualizować rekordu");
+                    }
+                }
+                ZamienMiejscami(bSpDodaj, bSpZapisz);
+                WyczyscPolaSpecjalnosci();
+            }
+            private void bSpAnuluj_Click(object sender, EventArgs e)
+            {
+                WyczyscPolaSpecjalnosci();
+                if (bSpAnuluj.Visible)
+                    ZamienMiejscami(bSpDodaj, bSpZapisz);
             }
         #endregion
-
-
 
     }
 }
