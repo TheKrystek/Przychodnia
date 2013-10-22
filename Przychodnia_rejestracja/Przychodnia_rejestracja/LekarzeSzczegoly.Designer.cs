@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpUrodzenia = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.pesel = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -58,17 +59,8 @@
             this.spec_usun = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvWizyty = new System.Windows.Forms.DataGridView();
-            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wimie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wnazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgvPacjenci = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button = new System.Windows.Forms.Button();
-            this.dtpUrodzenia = new System.Windows.Forms.DateTimePicker();
             this.p_imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ppesel = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,6 +69,14 @@
             this.p_ulica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_adres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_kod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button = new System.Windows.Forms.Button();
+            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wimie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wnazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -129,6 +129,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dane Osobowe";
+            // 
+            // dtpUrodzenia
+            // 
+            this.dtpUrodzenia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpUrodzenia.Location = new System.Drawing.Point(132, 109);
+            this.dtpUrodzenia.Name = "dtpUrodzenia";
+            this.dtpUrodzenia.Size = new System.Drawing.Size(147, 20);
+            this.dtpUrodzenia.TabIndex = 16;
             // 
             // label8
             // 
@@ -374,41 +382,6 @@
             this.dgvWizyty.TabIndex = 0;
             this.dgvWizyty.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
             // 
-            // data
-            // 
-            this.data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.data.DataPropertyName = "data";
-            this.data.HeaderText = "Data";
-            this.data.Name = "data";
-            // 
-            // godzina
-            // 
-            this.godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.godzina.HeaderText = "Godzina";
-            this.godzina.Name = "godzina";
-            // 
-            // wimie
-            // 
-            this.wimie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.wimie.DataPropertyName = "wimie";
-            this.wimie.HeaderText = "Imię";
-            this.wimie.Name = "wimie";
-            // 
-            // wnazwisko
-            // 
-            this.wnazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.wnazwisko.DataPropertyName = "wnazwisko";
-            this.wnazwisko.HeaderText = "Nazwisko";
-            this.wnazwisko.Name = "wnazwisko";
-            // 
-            // odbyta
-            // 
-            this.odbyta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.odbyta.DataPropertyName = "odbyta";
-            this.odbyta.HeaderText = "Odbyta";
-            this.odbyta.Name = "odbyta";
-            this.odbyta.Width = 47;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dgvPacjenci);
@@ -441,46 +414,6 @@
             this.dgvPacjenci.Size = new System.Drawing.Size(660, 214);
             this.dgvPacjenci.TabIndex = 0;
             this.dgvPacjenci.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 422);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(674, 31);
-            this.panel2.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.Location = new System.Drawing.Point(506, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 31);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Anuluj";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button
-            // 
-            this.button.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button.Location = new System.Drawing.Point(590, 0);
-            this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(84, 31);
-            this.button.TabIndex = 24;
-            this.button.Text = "Zapisz";
-            this.button.UseVisualStyleBackColor = true;
-            this.button.Click += new System.EventHandler(this.button_Click);
-            // 
-            // dtpUrodzenia
-            // 
-            this.dtpUrodzenia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpUrodzenia.Location = new System.Drawing.Point(132, 109);
-            this.dtpUrodzenia.Name = "dtpUrodzenia";
-            this.dtpUrodzenia.Size = new System.Drawing.Size(147, 20);
-            this.dtpUrodzenia.TabIndex = 16;
             // 
             // p_imie
             // 
@@ -538,6 +471,74 @@
             this.p_kod.HeaderText = "Kod pocztowy";
             this.p_kod.Name = "p_kod";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.button);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 422);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(674, 31);
+            this.panel2.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button1.Location = new System.Drawing.Point(506, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 31);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Anuluj";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button
+            // 
+            this.button.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button.Location = new System.Drawing.Point(590, 0);
+            this.button.Name = "button";
+            this.button.Size = new System.Drawing.Size(84, 31);
+            this.button.TabIndex = 24;
+            this.button.Text = "Zapisz";
+            this.button.UseVisualStyleBackColor = true;
+            this.button.Click += new System.EventHandler(this.button_Click);
+            // 
+            // data
+            // 
+            this.data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.data.DataPropertyName = "data";
+            this.data.HeaderText = "Data";
+            this.data.Name = "data";
+            // 
+            // godzina
+            // 
+            this.godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.godzina.HeaderText = "Godzina";
+            this.godzina.Name = "godzina";
+            // 
+            // wimie
+            // 
+            this.wimie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.wimie.DataPropertyName = "wimie";
+            this.wimie.HeaderText = "Imię";
+            this.wimie.Name = "wimie";
+            // 
+            // wnazwisko
+            // 
+            this.wnazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.wnazwisko.DataPropertyName = "wnazwisko";
+            this.wnazwisko.HeaderText = "Nazwisko";
+            this.wnazwisko.Name = "wnazwisko";
+            // 
+            // odbyta
+            // 
+            this.odbyta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.odbyta.DataPropertyName = "odbyta";
+            this.odbyta.HeaderText = "Odbyta";
+            this.odbyta.Name = "odbyta";
+            this.odbyta.ReadOnly = true;
+            this.odbyta.Width = 47;
+            // 
             // LekarzeSzczegoly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,11 +592,6 @@
         private System.Windows.Forms.DataGridView dgvSpecjalnosci;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dgvWizyty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn data;
-        private System.Windows.Forms.DataGridViewTextBoxColumn godzina;
-        private System.Windows.Forms.DataGridViewTextBoxColumn wimie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn wnazwisko;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn odbyta;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dgvPacjenci;
         private System.Windows.Forms.Panel panel2;
@@ -616,5 +612,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn p_ulica;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_adres;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_kod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn godzina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wimie;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wnazwisko;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn odbyta;
     }
 }

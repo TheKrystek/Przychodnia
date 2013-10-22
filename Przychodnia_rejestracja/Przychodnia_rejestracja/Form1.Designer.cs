@@ -37,6 +37,9 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabLekarze = new System.Windows.Forms.TabPage();
             this.splitLekarze = new System.Windows.Forms.SplitContainer();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbNazwisko = new System.Windows.Forms.ComboBox();
+            this.cbImie = new System.Windows.Forms.ComboBox();
             this.dgvLekarze = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,10 +64,22 @@
             this.splitLekarstwa = new System.Windows.Forms.SplitContainer();
             this.tabSwiadczenia = new System.Windows.Forms.TabPage();
             this.splitSwiadczenia = new System.Windows.Forms.SplitContainer();
+            this.dgvSwiadczenia = new System.Windows.Forms.DataGridView();
+            this.s_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s_nazwa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s_koszt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gbSwiadczenia = new System.Windows.Forms.GroupBox();
+            this.bEdytujSwiadczenie = new System.Windows.Forms.Button();
+            this.bDodajSwiadczenie = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbKoszt = new System.Windows.Forms.TextBox();
+            this.tbSwiadczenia = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabLekarze.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarze)).BeginInit();
+            this.splitLekarze.Panel1.SuspendLayout();
             this.splitLekarze.Panel2.SuspendLayout();
             this.splitLekarze.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLekarze)).BeginInit();
@@ -86,7 +101,11 @@
             this.splitLekarstwa.SuspendLayout();
             this.tabSwiadczenia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitSwiadczenia)).BeginInit();
+            this.splitSwiadczenia.Panel1.SuspendLayout();
+            this.splitSwiadczenia.Panel2.SuspendLayout();
             this.splitSwiadczenia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSwiadczenia)).BeginInit();
+            this.gbSwiadczenia.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -163,12 +182,42 @@
             this.splitLekarze.Name = "splitLekarze";
             this.splitLekarze.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // splitLekarze.Panel1
+            // 
+            this.splitLekarze.Panel1.Controls.Add(this.comboBox1);
+            this.splitLekarze.Panel1.Controls.Add(this.cbNazwisko);
+            this.splitLekarze.Panel1.Controls.Add(this.cbImie);
+            // 
             // splitLekarze.Panel2
             // 
             this.splitLekarze.Panel2.Controls.Add(this.dgvLekarze);
             this.splitLekarze.Size = new System.Drawing.Size(872, 465);
             this.splitLekarze.SplitterDistance = 82;
             this.splitLekarze.TabIndex = 0;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(278, 12);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // cbNazwisko
+            // 
+            this.cbNazwisko.FormattingEnabled = true;
+            this.cbNazwisko.Location = new System.Drawing.Point(78, 39);
+            this.cbNazwisko.Name = "cbNazwisko";
+            this.cbNazwisko.Size = new System.Drawing.Size(121, 21);
+            this.cbNazwisko.TabIndex = 1;
+            // 
+            // cbImie
+            // 
+            this.cbImie.FormattingEnabled = true;
+            this.cbImie.Location = new System.Drawing.Point(78, 12);
+            this.cbImie.Name = "cbImie";
+            this.cbImie.Size = new System.Drawing.Size(121, 21);
+            this.cbImie.TabIndex = 0;
             // 
             // dgvLekarze
             // 
@@ -272,13 +321,13 @@
             // lekarze_szczegoly
             // 
             this.lekarze_szczegoly.Name = "lekarze_szczegoly";
-            this.lekarze_szczegoly.Size = new System.Drawing.Size(152, 22);
+            this.lekarze_szczegoly.Size = new System.Drawing.Size(125, 22);
             this.lekarze_szczegoly.Text = "Szczegóły";
             // 
             // lekarze_dodaj
             // 
             this.lekarze_dodaj.Name = "lekarze_dodaj";
-            this.lekarze_dodaj.Size = new System.Drawing.Size(152, 22);
+            this.lekarze_dodaj.Size = new System.Drawing.Size(125, 22);
             this.lekarze_dodaj.Text = "Dodaj";
             // 
             // tabWizyty
@@ -397,10 +446,125 @@
             this.splitSwiadczenia.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitSwiadczenia.Location = new System.Drawing.Point(3, 3);
             this.splitSwiadczenia.Name = "splitSwiadczenia";
-            this.splitSwiadczenia.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitSwiadczenia.Panel1
+            // 
+            this.splitSwiadczenia.Panel1.Controls.Add(this.dgvSwiadczenia);
+            // 
+            // splitSwiadczenia.Panel2
+            // 
+            this.splitSwiadczenia.Panel2.Controls.Add(this.gbSwiadczenia);
             this.splitSwiadczenia.Size = new System.Drawing.Size(872, 465);
-            this.splitSwiadczenia.SplitterDistance = 269;
+            this.splitSwiadczenia.SplitterDistance = 574;
             this.splitSwiadczenia.TabIndex = 0;
+            // 
+            // dgvSwiadczenia
+            // 
+            this.dgvSwiadczenia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSwiadczenia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.s_id,
+            this.s_nazwa,
+            this.s_koszt});
+            this.dgvSwiadczenia.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSwiadczenia.Location = new System.Drawing.Point(0, 0);
+            this.dgvSwiadczenia.MultiSelect = false;
+            this.dgvSwiadczenia.Name = "dgvSwiadczenia";
+            this.dgvSwiadczenia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSwiadczenia.Size = new System.Drawing.Size(574, 465);
+            this.dgvSwiadczenia.TabIndex = 0;
+            this.dgvSwiadczenia.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRow_DoubleClicked);
+            // 
+            // s_id
+            // 
+            this.s_id.DataPropertyName = "s_id";
+            this.s_id.HeaderText = "id";
+            this.s_id.Name = "s_id";
+            this.s_id.Visible = false;
+            // 
+            // s_nazwa
+            // 
+            this.s_nazwa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.s_nazwa.DataPropertyName = "s_nazwa";
+            this.s_nazwa.HeaderText = "Nazwa świadczenia";
+            this.s_nazwa.Name = "s_nazwa";
+            // 
+            // s_koszt
+            // 
+            this.s_koszt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.s_koszt.DataPropertyName = "s_koszt";
+            this.s_koszt.HeaderText = "Koszt świadczenia";
+            this.s_koszt.Name = "s_koszt";
+            // 
+            // gbSwiadczenia
+            // 
+            this.gbSwiadczenia.Controls.Add(this.bEdytujSwiadczenie);
+            this.gbSwiadczenia.Controls.Add(this.bDodajSwiadczenie);
+            this.gbSwiadczenia.Controls.Add(this.label2);
+            this.gbSwiadczenia.Controls.Add(this.label1);
+            this.gbSwiadczenia.Controls.Add(this.tbKoszt);
+            this.gbSwiadczenia.Controls.Add(this.tbSwiadczenia);
+            this.gbSwiadczenia.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbSwiadczenia.Location = new System.Drawing.Point(0, 0);
+            this.gbSwiadczenia.Name = "gbSwiadczenia";
+            this.gbSwiadczenia.Size = new System.Drawing.Size(294, 181);
+            this.gbSwiadczenia.TabIndex = 0;
+            this.gbSwiadczenia.TabStop = false;
+            this.gbSwiadczenia.Text = "Dodaj świadczenie";
+            // 
+            // bEdytujSwiadczenie
+            // 
+            this.bEdytujSwiadczenie.Location = new System.Drawing.Point(50, 123);
+            this.bEdytujSwiadczenie.Name = "bEdytujSwiadczenie";
+            this.bEdytujSwiadczenie.Size = new System.Drawing.Size(91, 23);
+            this.bEdytujSwiadczenie.TabIndex = 5;
+            this.bEdytujSwiadczenie.Text = "Zapisz";
+            this.bEdytujSwiadczenie.UseVisualStyleBackColor = true;
+            this.bEdytujSwiadczenie.Visible = false;
+            this.bEdytujSwiadczenie.Click += new System.EventHandler(this.bEdytujSwiadczenie_Click);
+            // 
+            // bDodajSwiadczenie
+            // 
+            this.bDodajSwiadczenie.Location = new System.Drawing.Point(147, 123);
+            this.bDodajSwiadczenie.Name = "bDodajSwiadczenie";
+            this.bDodajSwiadczenie.Size = new System.Drawing.Size(91, 23);
+            this.bDodajSwiadczenie.TabIndex = 4;
+            this.bDodajSwiadczenie.Text = "Dodaj";
+            this.bDodajSwiadczenie.UseVisualStyleBackColor = true;
+            this.bDodajSwiadczenie.Click += new System.EventHandler(this.dodaj_swiadczenia_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(40, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Koszt";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Nazwa ";
+            // 
+            // tbKoszt
+            // 
+            this.tbKoszt.Location = new System.Drawing.Point(79, 79);
+            this.tbKoszt.Name = "tbKoszt";
+            this.tbKoszt.Size = new System.Drawing.Size(121, 20);
+            this.tbKoszt.TabIndex = 1;
+            this.tbKoszt.TextChanged += new System.EventHandler(this.SprawdzFormat_Pieniadze);
+            // 
+            // tbSwiadczenia
+            // 
+            this.tbSwiadczenia.Location = new System.Drawing.Point(79, 53);
+            this.tbSwiadczenia.Name = "tbSwiadczenia";
+            this.tbSwiadczenia.Size = new System.Drawing.Size(159, 20);
+            this.tbSwiadczenia.TabIndex = 0;
+            this.tbSwiadczenia.TextChanged += new System.EventHandler(this.SprawdzFormat_Tekst);
             // 
             // MainWindow
             // 
@@ -417,6 +581,7 @@
             this.menuStrip.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabLekarze.ResumeLayout(false);
+            this.splitLekarze.Panel1.ResumeLayout(false);
             this.splitLekarze.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarze)).EndInit();
             this.splitLekarze.ResumeLayout(false);
@@ -438,8 +603,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarstwa)).EndInit();
             this.splitLekarstwa.ResumeLayout(false);
             this.tabSwiadczenia.ResumeLayout(false);
+            this.splitSwiadczenia.Panel1.ResumeLayout(false);
+            this.splitSwiadczenia.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitSwiadczenia)).EndInit();
             this.splitSwiadczenia.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSwiadczenia)).EndInit();
+            this.gbSwiadczenia.ResumeLayout(false);
+            this.gbSwiadczenia.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -479,6 +649,20 @@
         private System.Windows.Forms.ContextMenuStrip cmsLekarze;
         private System.Windows.Forms.ToolStripMenuItem lekarze_szczegoly;
         private System.Windows.Forms.ToolStripMenuItem lekarze_dodaj;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbNazwisko;
+        private System.Windows.Forms.ComboBox cbImie;
+        private System.Windows.Forms.DataGridView dgvSwiadczenia;
+        private System.Windows.Forms.GroupBox gbSwiadczenia;
+        private System.Windows.Forms.TextBox tbSwiadczenia;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbKoszt;
+        private System.Windows.Forms.Button bDodajSwiadczenie;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn s_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn s_nazwa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn s_koszt;
+        private System.Windows.Forms.Button bEdytujSwiadczenie;
     }
 }
 
