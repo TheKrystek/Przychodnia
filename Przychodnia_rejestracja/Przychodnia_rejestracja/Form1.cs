@@ -123,7 +123,7 @@ namespace Przychodnia_rejestracja
                 if (id >= 0)
                 {
                     tbChoroba.Text = dgvChoroby.Rows[id].Cells["ch_nazwa"].Value.ToString();
-                    tbChOpis.Text = dgvSwiadczenia.Rows[id].Cells["ch_opis"].Value.ToString();
+                    tbChOpis.Text = dgvChoroby.Rows[id].Cells["ch_opis"].Value.ToString();
                     // Zamien przyciski miejscami
                     if (!bChZapisz.Visible)
                     {
@@ -165,9 +165,9 @@ namespace Przychodnia_rejestracja
             {
                 using (var dc = new EntitiesPrzychodnia())
                 {
-                    var swiadczenie = dc.Swiadczenia.Single(s => s.ID_Swiadczenia == this.index);
-                    swiadczenie.koszt = Convert.ToDouble(tbKoszt.Text);
-                    swiadczenie.nazwa = tbSwiadczenia.Text;
+                    var choroba = dc.Choroby.Single(ch => ch.ID_Choroby == this.index);
+                    choroba.opis = tbChOpis.Text;
+                    choroba.nazwa = tbChOpis.Text;
                     try
                     {
                         dc.SaveChanges();
@@ -177,7 +177,7 @@ namespace Przychodnia_rejestracja
                         MessageBox.Show("Nie udało się zaktualizować rekordu");
                     }
                 }
-                ZamienMiejscami(bDodajSwiadczenie, bEdytujSwiadczenie);
+                ZamienMiejscami(bChDodaj, bChZapisz);
                 WyczyscPolaChoroby();
             }
             private void bChAnuluj_Click(object sender, EventArgs e)
@@ -296,11 +296,7 @@ namespace Przychodnia_rejestracja
                 tbSwiadczenia.Text = "";
                 wyswietlSwiadczenia();
             }
-            private void bEdytujSwiadczenie_VisibleChanged(object sender, EventArgs e)
-            {
-                Button button = (Button)sender;
-                bAnulujSwiadczenie.Visible = button.Visible;
-            }
+            
             private void bAnulujSwiadczenie_Click(object sender, EventArgs e)
             {
                 WyczyscPolaSwiadczenia();
@@ -399,8 +395,25 @@ namespace Przychodnia_rejestracja
                 }
                 catch { }
             }
+
+            private void VisibleChanged(object sender, EventArgs e)
+            {     
+                Button button = (Button)sender;
+                switch (button.Name){
+                    case "bEdytujSwiadczenie":
+                        bAnulujSwiadczenie.Visible = button.Visible;
+                        break;
+
+                    case "bChZapisz":
+                        bChAnuluj.Visible = button.Visible;
+                        break;
+                
+                }
+                
+            }
         #endregion
-       
+
+
 
     }
 }
