@@ -75,6 +75,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbKoszt = new System.Windows.Forms.TextBox();
             this.tbSwiadczenia = new System.Windows.Forms.TextBox();
+            this.bAnulujSwiadczenie = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabLekarze.SuspendLayout();
@@ -497,6 +498,7 @@
             // 
             // gbSwiadczenia
             // 
+            this.gbSwiadczenia.Controls.Add(this.bAnulujSwiadczenie);
             this.gbSwiadczenia.Controls.Add(this.bEdytujSwiadczenie);
             this.gbSwiadczenia.Controls.Add(this.bDodajSwiadczenie);
             this.gbSwiadczenia.Controls.Add(this.label2);
@@ -506,7 +508,7 @@
             this.gbSwiadczenia.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbSwiadczenia.Location = new System.Drawing.Point(0, 0);
             this.gbSwiadczenia.Name = "gbSwiadczenia";
-            this.gbSwiadczenia.Size = new System.Drawing.Size(294, 181);
+            this.gbSwiadczenia.Size = new System.Drawing.Size(294, 191);
             this.gbSwiadczenia.TabIndex = 0;
             this.gbSwiadczenia.TabStop = false;
             this.gbSwiadczenia.Text = "Dodaj świadczenie";
@@ -520,6 +522,7 @@
             this.bEdytujSwiadczenie.Text = "Zapisz";
             this.bEdytujSwiadczenie.UseVisualStyleBackColor = true;
             this.bEdytujSwiadczenie.Visible = false;
+            this.bEdytujSwiadczenie.VisibleChanged += new System.EventHandler(this.bEdytujSwiadczenie_VisibleChanged);
             this.bEdytujSwiadczenie.Click += new System.EventHandler(this.bEdytujSwiadczenie_Click);
             // 
             // bDodajSwiadczenie
@@ -565,6 +568,17 @@
             this.tbSwiadczenia.Size = new System.Drawing.Size(159, 20);
             this.tbSwiadczenia.TabIndex = 0;
             this.tbSwiadczenia.TextChanged += new System.EventHandler(this.SprawdzFormat_Tekst);
+            // 
+            // bAnulujSwiadczenie
+            // 
+            this.bAnulujSwiadczenie.Location = new System.Drawing.Point(147, 152);
+            this.bAnulujSwiadczenie.Name = "bAnulujSwiadczenie";
+            this.bAnulujSwiadczenie.Size = new System.Drawing.Size(91, 23);
+            this.bAnulujSwiadczenie.TabIndex = 6;
+            this.bAnulujSwiadczenie.Text = "Anuluj";
+            this.bAnulujSwiadczenie.UseVisualStyleBackColor = true;
+            this.bAnulujSwiadczenie.Visible = false;
+            this.bAnulujSwiadczenie.Click += new System.EventHandler(this.bAnulujSwiadczenie_Click);
             // 
             // MainWindow
             // 
@@ -663,6 +677,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn s_nazwa;
         private System.Windows.Forms.DataGridViewTextBoxColumn s_koszt;
         private System.Windows.Forms.Button bEdytujSwiadczenie;
+        private System.Windows.Forms.Button bAnulujSwiadczenie;
     }
 }
 

@@ -209,7 +209,7 @@ namespace Przychodnia_rejestracja
                 if (!bEdytujSwiadczenie.Visible)
                 {
                     ZamienMiejscami(bDodajSwiadczenie, bEdytujSwiadczenie);
-                    gbSwiadczenia.Text = "Dodaj świadczenie";
+                    gbSwiadczenia.Text = "Edytuj świadczenie";
                     this.index = Convert.ToInt32(dgvSwiadczenia.Rows[id].Cells["s_id"].Value.ToString());
                 }
             }
@@ -247,12 +247,26 @@ namespace Przychodnia_rejestracja
                     }
             }
             ZamienMiejscami(bDodajSwiadczenie, bEdytujSwiadczenie);
+            AnulujSwiadczenie();
+        }
+
+        void AnulujSwiadczenie() {
             gbSwiadczenia.Text = "Dodaj świadczenie";
             tbKoszt.Text = "";
             tbSwiadczenia.Text = "";
-
+            wyswietlSwiadczenia();
         }
 
+        private void bEdytujSwiadczenie_VisibleChanged(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            bAnulujSwiadczenie.Visible = button.Visible;
+        }
+
+        private void bAnulujSwiadczenie_Click(object sender, EventArgs e)
+        {
+            AnulujSwiadczenie();
+        }
 
     }
 }
