@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 
 
@@ -25,6 +26,7 @@ namespace Przychodnia_rejestracja
             wyswietlSwiadczenia();
             wyswietlChoroby();
             wyswietlSpecjalnosci();
+            wyswietlLekarstwa();
         }
 
         #region Wspolne
@@ -71,8 +73,8 @@ namespace Przychodnia_rejestracja
             return match.Success;
         }
 
-        // Sprawdzanie poprawności formatu: pieniądze - Zdarzenie
-        private void SprawdzFormat_Pieniadze(object sender, EventArgs e)
+        // Sprawdzanie poprawności formatu - Zdarzenie
+        private void SprawdzFormat_Tekst(object sender, EventArgs e)
         {
             TextBox tb = (TextBox)sender;
             switch (tb.Name)
@@ -80,15 +82,9 @@ namespace Przychodnia_rejestracja
                 case "tbKoszt":
                     this.bDodajSwiadczenie.Enabled = PoprawnyFormat_Pieniadze(tb.Text);
                     break;
-            }
-        }
-
-        // Sprawdzanie poprawności formatu: tekst - Zdarzenie
-        private void SprawdzFormat_Tekst(object sender, EventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-            switch (tb.Name)
-            {
+                case "tbLekCena":
+                    this.bLekDodaj.Enabled = PoprawnyFormat_Pieniadze(tb.Text);
+                    break;
                 case "tbSwiadczenia":
                     this.bDodajSwiadczenie.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
                     break;
@@ -97,6 +93,9 @@ namespace Przychodnia_rejestracja
                     break;
                 case "tbSpecjalnosc":
                     this.bChDodaj.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
+                    break;
+                case "tbLekarstwo":
+                    this.bLekDodaj.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
                     break;
             }
         }
@@ -119,6 +118,9 @@ namespace Przychodnia_rejestracja
                     case "dgvSpecjalnosci":
                         EdytujSpecjalnosc();
                         break;
+                    case "dgvLekarstwa":
+                        EdytujLekarstwo();
+                        break;
                 }
 
             }
@@ -140,6 +142,10 @@ namespace Przychodnia_rejestracja
 
                 case "bSpZapisz":
                     bSpAnuluj.Visible = button.Visible;
+                    break;
+
+                case "bLekZapisz":
+                    bLekAnuluj.Visible = button.Visible;
                     break;
             }
 
@@ -536,6 +542,148 @@ namespace Przychodnia_rejestracja
                     ZamienMiejscami(bSpDodaj, bSpZapisz);
             }
         #endregion
+
+        #region Lekarstwa
+        public void wyswietlLekarstwa()
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var lekarstwo = from s in dc.Lekarstwa
+                                    select new
+                                    {
+                                        lek_id = s.ID_Lekarstwa,
+                                        lek_nazwa = s.nazwa,
+                                        lek_cena = s.cena,
+                                        lek_ulotka = s.ulotka
+                                    };
+                dgvLekarstwa.DataSource = lekarstwo.ToList();
+            }
+        }
+        private bool sprawdzCzyLekarstwoIstnieje(string nazwa)
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var lekarstwo = from s in dc.Lekarstwa
+                                    where
+                                        s.nazwa == nazwa
+                                    select s;
+                if (lekarstwo.Count() > 0)
+                    return true;
+            }
+            return false;
+        }
+        private void dodajLekarstwo(string nazwa,double cena, string xml)
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var lekarstwo = new Lekarstwa();
+                lekarstwo.nazwa = nazwa;
+                lekarstwo.cena = cena;
+                lekarstwo.ulotka = xml;
+                try
+                {
+                    dc.Lekarstwa.Add(lekarstwo);
+                    dc.SaveChanges();
+                }
+                catch { }
+            }
+        }
+        private void EdytujLekarstwo()
+        {
+            int id = dgvLekarstwa.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (id >= 0)
+            {
+                tbLekarstwo.Text = dgvLekarstwa.Rows[id].Cells["lek_nazwa"].Value.ToString();
+                tbLekCena.Text = dgvLekarstwa.Rows[id].Cells["lek_cena"].Value.ToString();
+                string ulotka = dgvLekarstwa.Rows[id].Cells["lek_ulotka"].Value.ToString();
+
+                // obsluga xmla 
+                if (!String.IsNullOrEmpty(ulotka))
+                {
+                    
+                    XElement xml = XElement.Load(ulotka);            
+                    var ulotka_xml = from u in xml.Elements("ulotka") 
+                                     select u;
+
+                    foreach (XElement xEle in ulotka_xml)
+                        Console.WriteLine(xEle);
+                }
+
+
+
+                if (!bLekZapisz.Visible)
+                {
+                    ZamienMiejscami(bLekDodaj, bLekZapisz);
+                    gbLekarstwa.Text = "Edytuj lekarstwo";
+                    this.index = Convert.ToInt32(dgvLekarstwa.Rows[id].Cells["lek_id"].Value.ToString());
+                }
+            }
+        }
+        void WyczyscPolaLekarstwa()
+        {
+            gbLekarstwa.Text = "Dodaj lekarstwo";
+            tbLekCena.Text = "";
+            tbLekDawkowanie.Text = "";
+            tbLekNiepozadane.Text = "";
+            tbLekOpakowania.Text = "";
+            tbLekPodmiot.Text = "";
+            tbLekPrzeciwwskazania.Text = "";
+            tbLekSklad.Text = "";
+            tbLekZalecenia.Text = "";
+            tbLekarstwo.Text = "";
+            wyswietlLekarstwa();
+        }
+        private void bLekDodaj_Click(object sender, EventArgs e)
+        {
+            // Sprawdz czy pola nie sa puste
+            if (!String.IsNullOrEmpty(tbLekarstwo.Text) &&
+                !String.IsNullOrEmpty(tbLekCena.Text))
+            {
+                if (!sprawdzCzyLekarstwoIstnieje(tbLekarstwo.Text))
+                {
+                    // Formatowanie ulotki
+                    string ulotka = "";
+
+                    dodajLekarstwo(tbLekarstwo.Text,Convert.ToDouble(tbLekCena.Text),ulotka);
+                    wyswietlLekarstwa();
+                }
+                else
+                {
+                    MessageBox.Show("Taka lekarstwo już istnieje!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Pole \"nazwa\" nie może być puste!");
+            }
+        }
+        private void bLekZapisz_Click(object sender, EventArgs e)
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var lekarstwo = dc.Lekarstwa.Single(ch => ch.ID_Lekarstwa == this.index);
+
+                lekarstwo.nazwa = tbLekarstwo.Text;
+                try
+                {
+                    dc.SaveChanges();
+                }
+                catch
+                {
+                    MessageBox.Show("Nie udało się zaktualizować rekordu");
+                }
+            }
+            ZamienMiejscami(bSpDodaj, bSpZapisz);
+            WyczyscPolaLekarstwa();
+        }
+        private void bLekAnuluj_Click(object sender, EventArgs e)
+        {
+            WyczyscPolaLekarstwa();
+            if (bSpAnuluj.Visible)
+                ZamienMiejscami(bLekDodaj, bLekZapisz);
+        }
+        #endregion
+
 
     }
 }
