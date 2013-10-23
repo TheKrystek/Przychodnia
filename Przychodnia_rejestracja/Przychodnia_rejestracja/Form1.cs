@@ -124,7 +124,7 @@ namespace Przychodnia_rejestracja
                 }
 
             }
-            catch { }
+            catch { Console.WriteLine("Wyjatek w dgvRow_DoubleClicked"); }
         }
 
         private void VisibleChanged(object sender, EventArgs e)
@@ -596,17 +596,20 @@ namespace Przychodnia_rejestracja
                 tbLekarstwo.Text = dgvLekarstwa.Rows[id].Cells["lek_nazwa"].Value.ToString();
                 tbLekCena.Text = dgvLekarstwa.Rows[id].Cells["lek_cena"].Value.ToString();
                 string ulotka = dgvLekarstwa.Rows[id].Cells["lek_ulotka"].Value.ToString();
-
+                Console.WriteLine(ulotka);
                 // obsluga xmla 
                 if (!String.IsNullOrEmpty(ulotka))
                 {
-                    
-                    XElement xml = XElement.Load(ulotka);            
-                    var ulotka_xml = from u in xml.Elements("ulotka") 
+
+                    XElement xml = XElement.Load(ulotka);
+                    var ulotka_xml = from u in xml.Elements("ulotka")
                                      select u;
 
                     foreach (XElement xEle in ulotka_xml)
                         Console.WriteLine(xEle);
+                }
+                else {
+                    Console.WriteLine("Pusty string");
                 }
 
 
