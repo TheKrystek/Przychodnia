@@ -601,6 +601,7 @@ namespace Przychodnia_rejestracja
                 if (!String.IsNullOrEmpty(ulotka))
                 {                  
                     XElement ulotka_xml = XElement.Parse(ulotka);
+                    Console.WriteLine(ulotka_xml.Element("dawkowanie").Value);
                     tbLekDawkowanie.Text = ulotka_xml.Element("dawkowanie").Value;          
                     tbLekPodmiot.Text = ulotka_xml.Element("podmiot").Value;
                     tbLekPrzeciwwskazania.Text = ulotka_xml.Element("przeciwwskazania").Value;
@@ -616,8 +617,6 @@ namespace Przychodnia_rejestracja
                 else {
                     Console.WriteLine("Pusty string");
                 }
-
-
 
                 if (!bLekZapisz.Visible)
                 {
@@ -681,27 +680,42 @@ namespace Przychodnia_rejestracja
                                     new XElement("podmiot",tbLekPodmiot.Text),
                                     new XElement("przeciwwskazania",tbLekPrzeciwwskazania.Text));
 
-                XElement sklad = new XElement("sklad");
-                foreach (string s in tbLekSklad.Text.Substring(0, tbLekSklad.Text.Length - 2).Split(','))
-                    sklad.Add(new XElement("substancja"),s.Trim());
-                ulotka.Add(sklad);
+                if (!String.IsNullOrEmpty(tbLekSklad.Text))
+                {
+                    XElement sklad = new XElement("sklad");
+                    string tmp_sklad = tbLekSklad.Text.Replace(", ",";");
+                    tmp_sklad = (tmp_sklad[tmp_sklad.Length-1] == ';' ? tmp_sklad.Remove(tmp_sklad.Length-1) : tmp_sklad);
+                    foreach (string s in tmp_sklad.Split(';'))
+                        sklad.Add(new XElement("substancja",s.Trim()));
+                    ulotka.Add(sklad);
+                }
 
-                XElement opakowania = new XElement("opakowania");
-                foreach (string o in tbLekOpakowania.Text.Substring(0, tbLekOpakowania.Text.Length - 2).Split(','))
-                    opakowania.Add(new XElement("opakowanie"), o.Trim());
-                ulotka.Add(opakowania);
+                if (!String.IsNullOrEmpty(tbLekOpakowania.Text))
+                {
+                    XElement opakowania = new XElement("opakowania");
+                    foreach (string o in tbLekOpakowania.Text.Substring(0, tbLekOpakowania.Text.Length - 2).Split(','))
+                        opakowania.Add(new XElement("opakowanie", o.Trim()));
+                    ulotka.Add(opakowania);
+                }
 
-                XElement zalecenia = new XElement("zalecenia");
-                foreach (string z in tbLekZalecenia.Text.Substring(0, tbLekZalecenia.Text.Length - 2).Split(','))
-                    zalecenia.Add(new XElement("zalecenie"), z.Trim());
-                ulotka.Add(zalecenia);
+                if (!String.IsNullOrEmpty(tbLekZalecenia.Text)){
+                    XElement zalecenia = new XElement("zalecenia");
+                    foreach (string z in tbLekZalecenia.Text.Substring(0, tbLekZalecenia.Text.Length - 2).Split(','))
+                        zalecenia.Add(new XElement("zalecenie", z.Trim()));
+                    ulotka.Add(zalecenia);
+                }
 
-                XElement niepozadane = new XElement("niepozadane");
-                foreach (string s in tbLekNiepozadane.Text.Substring(0, tbLekNiepozadane.Text.Length - 2).Split(','))
-                    sklad.Add(new XElement("dzialanie"), s.Trim());
-                ulotka.Add(niepozadane);
+                if (!String.IsNullOrEmpty(tbLekNiepozadane.Text)){
+                    XElement niepozadane = new XElement("niepozadane");
+                    foreach (string s in tbLekNiepozadane.Text.Substring(0, tbLekNiepozadane.Text.Length - 2).Split(','))
+                        niepozadane.Add(new XElement("dzialanie", s.Trim()));
+                    ulotka.Add(niepozadane);
+                }
 
-                Console.WriteLine(ulotka.ToString());
+                lekarstwo.ulotka = ulotka.ToString();
+
+                string xs = ulotka.ToString();
+                Console.WriteLine(xs);
                 try
                 {
                     dc.SaveChanges();
