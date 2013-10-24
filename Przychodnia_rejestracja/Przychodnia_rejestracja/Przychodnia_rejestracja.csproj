@@ -138,6 +138,7 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Ulotka.cs" />
     <Compile Include="Wizyty.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>

@@ -593,20 +593,25 @@ namespace Przychodnia_rejestracja
             int id = dgvLekarstwa.Rows.GetFirstRow(DataGridViewElementStates.Selected);
             if (id >= 0)
             {
+                WyczyscPolaLekarstwa(true);
                 tbLekarstwo.Text = dgvLekarstwa.Rows[id].Cells["lek_nazwa"].Value.ToString();
                 tbLekCena.Text = dgvLekarstwa.Rows[id].Cells["lek_cena"].Value.ToString();
                 string ulotka = dgvLekarstwa.Rows[id].Cells["lek_ulotka"].Value.ToString();
-                Console.WriteLine(ulotka);
                 // obsluga xmla 
                 if (!String.IsNullOrEmpty(ulotka))
-                {
-
-                    XElement xml = XElement.Load(ulotka);
-                    var ulotka_xml = from u in xml.Elements("ulotka")
-                                     select u;
-
-                    foreach (XElement xEle in ulotka_xml)
-                        Console.WriteLine(xEle);
+                {                  
+                    XElement ulotka_xml = XElement.Parse(ulotka);
+                    tbLekDawkowanie.Text = ulotka_xml.Element("dawkowanie").Value;          
+                    tbLekPodmiot.Text = ulotka_xml.Element("podmiot").Value;
+                    tbLekPrzeciwwskazania.Text = ulotka_xml.Element("przeciwwskazania").Value;
+                    foreach (var element in ulotka_xml.Element("sklad").Elements())
+                        tbLekSklad.Text += (element.Value.ToString() + ", ");
+                    foreach (var element in ulotka_xml.Element("zalecenia").Elements())
+                         tbLekZalecenia.Text += (element.Value.ToString() + ", ");
+                    foreach (var element in ulotka_xml.Element("niepozadane").Elements())
+                        tbLekNiepozadane.Text += (element.Value.ToString() + ", ");
+                    foreach (var element in ulotka_xml.Element("opakowania").Elements())
+                        tbLekOpakowania.Text += (element.Value.ToString() + ", ");
                 }
                 else {
                     Console.WriteLine("Pusty string");
@@ -622,9 +627,8 @@ namespace Przychodnia_rejestracja
                 }
             }
         }
-        void WyczyscPolaLekarstwa()
-        {
-            gbLekarstwa.Text = "Dodaj lekarstwo";
+        void WyczyscPolaLekarstwa(bool tylkoWyczysc = false)
+        {        
             tbLekCena.Text = "";
             tbLekDawkowanie.Text = "";
             tbLekNiepozadane.Text = "";
@@ -634,7 +638,11 @@ namespace Przychodnia_rejestracja
             tbLekSklad.Text = "";
             tbLekZalecenia.Text = "";
             tbLekarstwo.Text = "";
-            wyswietlLekarstwa();
+            if (!tylkoWyczysc)
+            {
+                gbLekarstwa.Text = "Dodaj lekarstwo";
+                wyswietlLekarstwa();
+            }
         }
         private void bLekDodaj_Click(object sender, EventArgs e)
         {
@@ -667,6 +675,33 @@ namespace Przychodnia_rejestracja
                 var lekarstwo = dc.Lekarstwa.Single(ch => ch.ID_Lekarstwa == this.index);
 
                 lekarstwo.nazwa = tbLekarstwo.Text;
+                lekarstwo.cena = Convert.ToDouble(tbLekCena.Text);
+                XElement ulotka = new XElement("ulotka",
+                                    new XElement("nazwa",tbLekarstwo.Text),
+                                    new XElement("podmiot",tbLekPodmiot.Text),
+                                    new XElement("przeciwwskazania",tbLekPrzeciwwskazania.Text));
+
+                XElement sklad = new XElement("sklad");
+                foreach (string s in tbLekSklad.Text.Substring(0, tbLekSklad.Text.Length - 2).Split(','))
+                    sklad.Add(new XElement("substancja"),s.Trim());
+                ulotka.Add(sklad);
+
+                XElement opakowania = new XElement("opakowania");
+                foreach (string o in tbLekOpakowania.Text.Substring(0, tbLekOpakowania.Text.Length - 2).Split(','))
+                    opakowania.Add(new XElement("opakowanie"), o.Trim());
+                ulotka.Add(opakowania);
+
+                XElement zalecenia = new XElement("zalecenia");
+                foreach (string z in tbLekZalecenia.Text.Substring(0, tbLekZalecenia.Text.Length - 2).Split(','))
+                    zalecenia.Add(new XElement("zalecenie"), z.Trim());
+                ulotka.Add(zalecenia);
+
+                XElement niepozadane = new XElement("niepozadane");
+                foreach (string s in tbLekNiepozadane.Text.Substring(0, tbLekNiepozadane.Text.Length - 2).Split(','))
+                    sklad.Add(new XElement("dzialanie"), s.Trim());
+                ulotka.Add(niepozadane);
+
+                Console.WriteLine(ulotka.ToString());
                 try
                 {
                     dc.SaveChanges();
@@ -682,7 +717,7 @@ namespace Przychodnia_rejestracja
         private void bLekAnuluj_Click(object sender, EventArgs e)
         {
             WyczyscPolaLekarstwa();
-            if (bSpAnuluj.Visible)
+            if (bLekAnuluj.Visible)
                 ZamienMiejscami(bLekDodaj, bLekZapisz);
         }
         #endregion

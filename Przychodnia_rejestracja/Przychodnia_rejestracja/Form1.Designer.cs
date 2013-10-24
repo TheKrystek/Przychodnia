@@ -79,6 +79,10 @@
             this.tabLekarstwa = new System.Windows.Forms.TabPage();
             this.splitLekarstwa = new System.Windows.Forms.SplitContainer();
             this.dgvLekarstwa = new System.Windows.Forms.DataGridView();
+            this.lek_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lek_ulotka = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lek_nazwa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lek_cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbLekarstwa = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -122,10 +126,6 @@
             this.splitWizyty = new System.Windows.Forms.SplitContainer();
             this.dgbWizyty = new System.Windows.Forms.DataGridView();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.lek_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lek_ulotka = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lek_nazwa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lek_cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -697,6 +697,34 @@
             this.dgvLekarstwa.TabIndex = 0;
             this.dgvLekarstwa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRow_DoubleClicked);
             // 
+            // lek_id
+            // 
+            this.lek_id.DataPropertyName = "lek_id";
+            this.lek_id.HeaderText = "id";
+            this.lek_id.Name = "lek_id";
+            this.lek_id.Visible = false;
+            // 
+            // lek_ulotka
+            // 
+            this.lek_ulotka.DataPropertyName = "lek_ulotka";
+            this.lek_ulotka.HeaderText = "ulotka";
+            this.lek_ulotka.Name = "lek_ulotka";
+            this.lek_ulotka.Visible = false;
+            // 
+            // lek_nazwa
+            // 
+            this.lek_nazwa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.lek_nazwa.DataPropertyName = "lek_nazwa";
+            this.lek_nazwa.HeaderText = "Nazwa leku";
+            this.lek_nazwa.Name = "lek_nazwa";
+            // 
+            // lek_cena
+            // 
+            this.lek_cena.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.lek_cena.DataPropertyName = "lek_cena";
+            this.lek_cena.HeaderText = "Cena";
+            this.lek_cena.Name = "lek_cena";
+            // 
             // gbLekarstwa
             // 
             this.gbLekarstwa.Controls.Add(this.label13);
@@ -767,7 +795,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(95, 158);
+            this.label9.Location = new System.Drawing.Point(95, 120);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 17;
@@ -776,7 +804,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 120);
+            this.label8.Location = new System.Drawing.Point(27, 155);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 13);
             this.label8.TabIndex = 16;
@@ -855,7 +883,7 @@
             this.bLekAnuluj.Text = "Anuluj";
             this.bLekAnuluj.UseVisualStyleBackColor = true;
             this.bLekAnuluj.Visible = false;
-            this.bLekAnuluj.Click += new System.EventHandler(this.bSpAnuluj_Click);
+            this.bLekAnuluj.Click += new System.EventHandler(this.bLekAnuluj_Click);
             // 
             // bLekZapisz
             // 
@@ -1143,34 +1171,6 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(886, 497);
             this.tabControl.TabIndex = 2;
-            // 
-            // lek_id
-            // 
-            this.lek_id.DataPropertyName = "lek_id";
-            this.lek_id.HeaderText = "id";
-            this.lek_id.Name = "lek_id";
-            this.lek_id.Visible = false;
-            // 
-            // lek_ulotka
-            // 
-            this.lek_ulotka.DataPropertyName = "lek_ulotka";
-            this.lek_ulotka.HeaderText = "ulotka";
-            this.lek_ulotka.Name = "lek_ulotka";
-            this.lek_ulotka.Visible = false;
-            // 
-            // lek_nazwa
-            // 
-            this.lek_nazwa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.lek_nazwa.DataPropertyName = "lek_nazwa";
-            this.lek_nazwa.HeaderText = "Nazwa leku";
-            this.lek_nazwa.Name = "lek_nazwa";
-            // 
-            // lek_cena
-            // 
-            this.lek_cena.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.lek_cena.DataPropertyName = "lek_cena";
-            this.lek_cena.HeaderText = "Cena";
-            this.lek_cena.Name = "lek_cena";
             // 
             // MainWindow
             // 
