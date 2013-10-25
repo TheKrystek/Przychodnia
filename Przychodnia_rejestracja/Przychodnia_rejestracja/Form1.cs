@@ -18,7 +18,12 @@ namespace Przychodnia_rejestracja
 {
     public partial class MainWindow : Form
     {
-        int index;
+        int lekarz_id;
+        int lekarstwo_id;
+        int choroba_id;
+        int swiadczenie_id;
+        int specjalnosc_id;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -99,6 +104,7 @@ namespace Przychodnia_rejestracja
                     break;
             }
         }
+        // Dwuklik na polu oznacza przejscie do trybu edycji
         private void dgvRow_DoubleClicked(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -122,6 +128,7 @@ namespace Przychodnia_rejestracja
                         EdytujLekarstwo();
                         break;
                 }
+                dgv.Enabled = false;
 
             }
             catch { Console.WriteLine("Wyjatek w dgvRow_DoubleClicked"); }
@@ -254,7 +261,7 @@ namespace Przychodnia_rejestracja
                     {
                         ZamienMiejscami(bChDodaj, bChZapisz);
                         gbChoroby.Text = "Edytuj chorobę";
-                        this.index = Convert.ToInt32(dgvChoroby.Rows[id].Cells["ch_id"].Value.ToString());
+                        this.choroba_id = Convert.ToInt32(dgvChoroby.Rows[id].Cells["ch_id"].Value.ToString());
                     }
                 }
             }
@@ -264,6 +271,7 @@ namespace Przychodnia_rejestracja
                 tbChOpis.Text = "";
                 tbChoroba.Text = "";
                 wyswietlChoroby();
+                dgvChoroby.Enabled = true;
             }
             private void bChDodaj_Click(object sender, EventArgs e)
             {
@@ -290,7 +298,7 @@ namespace Przychodnia_rejestracja
             {
                 using (var dc = new EntitiesPrzychodnia())
                 {
-                    var choroba = dc.Choroby.Single(ch => ch.ID_Choroby == this.index);
+                    var choroba = dc.Choroby.Single(ch => ch.ID_Choroby == this.choroba_id);
                     choroba.opis = tbChOpis.Text;
                     choroba.nazwa = tbChoroba.Text;
                     try
@@ -308,8 +316,7 @@ namespace Przychodnia_rejestracja
             private void bChAnuluj_Click(object sender, EventArgs e)
             {
                 WyczyscPolaChoroby();
-                if (bChAnuluj.Visible)
-                    ZamienMiejscami(bChDodaj, bChZapisz);
+                ZamienMiejscami(bChDodaj, bChZapisz);
             }
         #endregion
 
@@ -370,7 +377,7 @@ namespace Przychodnia_rejestracja
                     {
                         ZamienMiejscami(bDodajSwiadczenie, bEdytujSwiadczenie);
                         gbSwiadczenia.Text = "Edytuj świadczenie";
-                        this.index = Convert.ToInt32(dgvSwiadczenia.Rows[id].Cells["s_id"].Value.ToString());
+                        this.swiadczenie_id = Convert.ToInt32(dgvSwiadczenia.Rows[id].Cells["s_id"].Value.ToString());
                     }
                 }
             }
@@ -400,7 +407,7 @@ namespace Przychodnia_rejestracja
             {
                 using (var dc = new EntitiesPrzychodnia())
                 {
-                    var swiadczenie = dc.Swiadczenia.Single(s => s.ID_Swiadczenia == this.index);
+                    var swiadczenie = dc.Swiadczenia.Single(s => s.ID_Swiadczenia == this.swiadczenie_id);
                     swiadczenie.koszt = Convert.ToDouble(tbKoszt.Text);
                     swiadczenie.nazwa = tbSwiadczenia.Text;
                     try
@@ -420,13 +427,13 @@ namespace Przychodnia_rejestracja
                 gbSwiadczenia.Text = "Dodaj świadczenie";
                 tbKoszt.Text = "";
                 tbSwiadczenia.Text = "";
+                dgvSwiadczenia.Enabled = true;
                 wyswietlSwiadczenia();
             }           
             private void bAnulujSwiadczenie_Click(object sender, EventArgs e)
             {
                 WyczyscPolaSwiadczenia();
-                if (bAnulujSwiadczenie.Visible)
-                    ZamienMiejscami(bDodajSwiadczenie, bEdytujSwiadczenie);
+                ZamienMiejscami(bDodajSwiadczenie, bEdytujSwiadczenie);
             }
 
         #endregion
@@ -484,16 +491,16 @@ namespace Przychodnia_rejestracja
                     {
                         ZamienMiejscami(bSpDodaj, bSpZapisz);
                         gbSpecjalnosci.Text = "Edytuj specjalność";
-                        this.index = Convert.ToInt32(dgvSpecjalnosci.Rows[id].Cells["sp_id"].Value.ToString());
+                        this.specjalnosc_id = Convert.ToInt32(dgvSpecjalnosci.Rows[id].Cells["sp_id"].Value.ToString());
                     }
                 }
             }
             void WyczyscPolaSpecjalnosci()
             {
                 gbSpecjalnosci.Text = "Dodaj specjalność";
-                //tbSpOpis.Text = "";
                 tbSpecjalnosc.Text = "";
                 wyswietlSpecjalnosci();
+                dgvSpecjalnosci.Enabled = true;
             }
             private void bSpDodaj_Click(object sender, EventArgs e)
             {
@@ -520,7 +527,7 @@ namespace Przychodnia_rejestracja
             {
                 using (var dc = new EntitiesPrzychodnia())
                 {
-                    var specjalnosc = dc.Specjalnosci.Single(ch => ch.ID_Specjalnosci == this.index);
+                    var specjalnosc = dc.Specjalnosci.Single(ch => ch.ID_Specjalnosci == this.specjalnosc_id);
                
                     specjalnosc.nazwa = tbSpecjalnosc.Text;
                     try
@@ -538,8 +545,7 @@ namespace Przychodnia_rejestracja
             private void bSpAnuluj_Click(object sender, EventArgs e)
             {
                 WyczyscPolaSpecjalnosci();
-                if (bSpAnuluj.Visible)
-                    ZamienMiejscami(bSpDodaj, bSpZapisz);
+                ZamienMiejscami(bSpDodaj, bSpZapisz);
             }
         #endregion
 
@@ -594,6 +600,7 @@ namespace Przychodnia_rejestracja
             if (id >= 0)
             {
                 WyczyscPolaLekarstwa(true);
+                this.lekarstwo_id = Convert.ToInt32(dgvLekarstwa.Rows[id].Cells["lek_id"].Value.ToString());
                 tbLekarstwo.Text = dgvLekarstwa.Rows[id].Cells["lek_nazwa"].Value.ToString();
                 tbLekCena.Text = dgvLekarstwa.Rows[id].Cells["lek_cena"].Value.ToString();
                 string ulotka = dgvLekarstwa.Rows[id].Cells["lek_ulotka"].Value.ToString();
@@ -601,31 +608,39 @@ namespace Przychodnia_rejestracja
                 if (!String.IsNullOrEmpty(ulotka))
                 {                  
                     XElement ulotka_xml = XElement.Parse(ulotka);
-                    /*if (ulotka_xml.Element("dawkowanie").Value != null)
-                        tbLekDawkowanie.Text = ulotka_xml.Element("dawkowanie").Value;
-       
-                    if (ulotka_xml.Element("podmiot").HasElements)
-                        tbLekPodmiot.Text = ulotka_xml.Element("podmiot").Value;
-                    */
-                    if (ulotka_xml.Element("przeciwwskazania").Value != null)
-                        tbLekPrzeciwwskazania.Text = ulotka_xml.Element("przeciwwskazania").Value;
-                    /*
-                    if (ulotka_xml.Element("sklad").Value != null)
-                        foreach (var element in ulotka_xml.Element("sklad").Elements())
-                            tbLekSklad.Text += (element.Value.ToString() + ", ");
+                    try
+                    {
+                        if (ulotka_xml.Element("dawkowanie").Value != null)
+                            tbLekDawkowanie.Text = ulotka_xml.Element("dawkowanie").Value;
 
-                    if (ulotka_xml.Element("zalecenia").Value != null)
-                        foreach (var element in ulotka_xml.Element("zalecenia").Elements())
-                            tbLekZalecenia.Text += (element.Value.ToString() + ", ");
+                        if (ulotka_xml.HasElements)
+                        if (ulotka_xml.Element("podmiot").Value != null)
+                            tbLekPodmiot.Text = ulotka_xml.Element("podmiot").Value;
 
-                    if (ulotka_xml.Element("niepozadane").Value != null)
-                        foreach (var element in ulotka_xml.Element("niepozadane").Elements())
-                            tbLekNiepozadane.Text += (element.Value.ToString() + ", ");
+                        if (ulotka_xml.HasElements)
+                        if (ulotka_xml.Element("przeciwwskazania").Value != null)
+                            tbLekPrzeciwwskazania.Text = ulotka_xml.Element("przeciwwskazania").Value;
+                        
+                        if (ulotka_xml.Element("sklad").Value != null)
+                            foreach (var element in ulotka_xml.Element("sklad").Elements())
+                                tbLekSklad.Text += (element.Value.ToString() + ", ");
 
-                    if (ulotka_xml.Element("opakowania").Value != null)
-                        foreach (var element in ulotka_xml.Element("opakowania").Elements())
-                            tbLekOpakowania.Text += (element.Value.ToString() + ", ");
-                     */
+                        if (ulotka_xml.Element("zalecenia").Value != null)
+                            foreach (var element in ulotka_xml.Element("zalecenia").Elements())
+                                tbLekZalecenia.Text += (element.Value.ToString() + ", ");
+
+                        if (ulotka_xml.Element("niepozadane").Value != null)
+                            foreach (var element in ulotka_xml.Element("niepozadane").Elements())
+                                tbLekNiepozadane.Text += (element.Value.ToString() + ", ");
+
+                        if (ulotka_xml.Element("opakowania").Value != null)
+                            foreach (var element in ulotka_xml.Element("opakowania").Elements())
+                                tbLekOpakowania.Text += (element.Value.ToString() + ", ");
+                         
+                    }
+                    catch (Exception e) {
+                        Console.WriteLine(e);
+                    }
                 }
                 else {
                     Console.WriteLine("Pusty string");
@@ -635,7 +650,7 @@ namespace Przychodnia_rejestracja
                 {
                     ZamienMiejscami(bLekDodaj, bLekZapisz);
                     gbLekarstwa.Text = "Edytuj lekarstwo";
-                    this.index = Convert.ToInt32(dgvLekarstwa.Rows[id].Cells["lek_id"].Value.ToString());
+                    
                 }
             }
         }
@@ -650,6 +665,7 @@ namespace Przychodnia_rejestracja
             tbLekSklad.Text = "";
             tbLekZalecenia.Text = "";
             tbLekarstwo.Text = "";
+            dgvLekarstwa.Enabled = true;
             if (!tylkoWyczysc)
             {
                 gbLekarstwa.Text = "Dodaj lekarstwo";
@@ -683,7 +699,7 @@ namespace Przychodnia_rejestracja
         {
             using (var dc = new EntitiesPrzychodnia())
             {
-                var lekarstwo = dc.Lekarstwa.Single(ch => ch.ID_Lekarstwa == this.index);
+                var lekarstwo = dc.Lekarstwa.Single(ch => ch.ID_Lekarstwa == this.lekarstwo_id);
 
                 lekarstwo.nazwa = tbLekarstwo.Text;
                 lekarstwo.cena = Convert.ToDouble(tbLekCena.Text);
@@ -704,8 +720,7 @@ namespace Przychodnia_rejestracja
         private void bLekAnuluj_Click(object sender, EventArgs e)
         {
             WyczyscPolaLekarstwa();
-            if (bLekAnuluj.Visible)
-                ZamienMiejscami(bLekDodaj, bLekZapisz);
+            ZamienMiejscami(bLekDodaj, bLekZapisz);
         }
         private XElement formatujFragmentUlotki(string parent, string child, string dataSource) {
             
@@ -718,7 +733,7 @@ namespace Przychodnia_rejestracja
                     element.Add(new XElement(child, s.Trim()));
                 return element;
             }
-            return null;
+            return new XElement(parent,"");
         }
         private void dodajDoUlotki(string parent, string child, string dataSource,ref XElement dest)
         { 
@@ -728,13 +743,13 @@ namespace Przychodnia_rejestracja
         }
         private XElement formatujUlotke() {
             XElement ulotka = new XElement("ulotka");
-            if (!String.IsNullOrEmpty(tbLekarstwo.Text))
+            //if (!String.IsNullOrEmpty(tbLekarstwo.Text))
                 ulotka.Add(new XElement("nazwa", tbLekarstwo.Text));
-            if (!String.IsNullOrEmpty(tbLekPodmiot.Text))
+            //if (!String.IsNullOrEmpty(tbLekPodmiot.Text))
                 ulotka.Add(new XElement("podmiot", tbLekPodmiot.Text));
-            if (!String.IsNullOrEmpty(tbLekPrzeciwwskazania.Text))
+            //if (!String.IsNullOrEmpty(tbLekPrzeciwwskazania.Text))
                 ulotka.Add(new XElement("przeciwwskazania", tbLekPrzeciwwskazania.Text));
-            if (!String.IsNullOrEmpty(tbLekDawkowanie.Text))
+            //if (!String.IsNullOrEmpty(tbLekDawkowanie.Text))
                 ulotka.Add(new XElement("dawkowanie",tbLekDawkowanie.Text));
 
 
