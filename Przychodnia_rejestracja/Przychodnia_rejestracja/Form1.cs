@@ -613,13 +613,13 @@ namespace Przychodnia_rejestracja
                         if (ulotka_xml.Element("dawkowanie").Value != null)
                             tbLekDawkowanie.Text = ulotka_xml.Element("dawkowanie").Value;
 
-                        if (ulotka_xml.HasElements)
                         if (ulotka_xml.Element("podmiot").Value != null)
                             tbLekPodmiot.Text = ulotka_xml.Element("podmiot").Value;
 
-                        if (ulotka_xml.HasElements)
+
                         if (ulotka_xml.Element("przeciwwskazania").Value != null)
-                            tbLekPrzeciwwskazania.Text = ulotka_xml.Element("przeciwwskazania").Value;
+                            foreach (var element in ulotka_xml.Element("przeciwwskazania").Elements())
+                                tbLekPrzeciwwskazania.Text += (element.Value.ToString() + ", ");
                         
                         if (ulotka_xml.Element("sklad").Value != null)
                             foreach (var element in ulotka_xml.Element("sklad").Elements())
@@ -639,7 +639,7 @@ namespace Przychodnia_rejestracja
                          
                     }
                     catch (Exception e) {
-                        Console.WriteLine(e);
+                        MessageBox.Show("Ulotka zawiera niepoprawny XML (np. brakuje któregoś z pól)");
                     }
                 }
                 else {
@@ -743,25 +743,35 @@ namespace Przychodnia_rejestracja
         }
         private XElement formatujUlotke() {
             XElement ulotka = new XElement("ulotka");
-            //if (!String.IsNullOrEmpty(tbLekarstwo.Text))
-                ulotka.Add(new XElement("nazwa", tbLekarstwo.Text));
-            //if (!String.IsNullOrEmpty(tbLekPodmiot.Text))
-                ulotka.Add(new XElement("podmiot", tbLekPodmiot.Text));
-            //if (!String.IsNullOrEmpty(tbLekPrzeciwwskazania.Text))
-                ulotka.Add(new XElement("przeciwwskazania", tbLekPrzeciwwskazania.Text));
-            //if (!String.IsNullOrEmpty(tbLekDawkowanie.Text))
-                ulotka.Add(new XElement("dawkowanie",tbLekDawkowanie.Text));
+            ulotka.Add(new XElement("nazwa", tbLekarstwo.Text));
+            ulotka.Add(new XElement("podmiot", tbLekPodmiot.Text));
+            ulotka.Add(new XElement("dawkowanie",tbLekDawkowanie.Text));
 
-
+            dodajDoUlotki("przeciwwskazania", "przeciwwskazanie", tbLekPrzeciwwskazania.Text, ref ulotka);
             dodajDoUlotki("sklad", "substancja", tbLekSklad.Text,ref ulotka);
             dodajDoUlotki("opakowania", "opakowanie", tbLekOpakowania.Text, ref ulotka);
             dodajDoUlotki("zalecenia", "zalecenie", tbLekZalecenia.Text, ref ulotka);
             dodajDoUlotki("niepozadane", "dzialanie", tbLekNiepozadane.Text, ref ulotka);
             return ulotka;
         }
-
-
+        private void cmsLekarstwa_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            ToolStripItem item = e.ClickedItem;
+            int index = dgvLekarstwa.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (index > -1)
+            {
+                int id = (int)dgvLekarstwa.Rows[index].Cells["lek_id"].Value;
+                if (item.Name == "lekarstwa_ulotka")
+                {
+                    Ulotka ulotka = new Ulotka(id);
+                    ulotka.Show();
+                }
+            }
+        }
         #endregion
+
+
+
 
     }
 }

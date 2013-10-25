@@ -126,6 +126,8 @@
             this.splitWizyty = new System.Windows.Forms.SplitContainer();
             this.dgbWizyty = new System.Windows.Forms.DataGridView();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.cmsLekarstwa = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lekarstwa_ulotka = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -173,6 +175,7 @@
             this.splitWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgbWizyty)).BeginInit();
             this.tabControl.SuspendLayout();
+            this.cmsLekarstwa.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -688,6 +691,7 @@
             this.lek_ulotka,
             this.lek_nazwa,
             this.lek_cena});
+            this.dgvLekarstwa.ContextMenuStrip = this.cmsLekarstwa;
             this.dgvLekarstwa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLekarstwa.Location = new System.Drawing.Point(0, 0);
             this.dgvLekarstwa.MultiSelect = false;
@@ -696,6 +700,7 @@
             this.dgvLekarstwa.Size = new System.Drawing.Size(499, 465);
             this.dgvLekarstwa.TabIndex = 0;
             this.dgvLekarstwa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRow_DoubleClicked);
+            this.dgvLekarstwa.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
             // 
             // lek_id
             // 
@@ -1172,6 +1177,20 @@
             this.tabControl.Size = new System.Drawing.Size(886, 497);
             this.tabControl.TabIndex = 2;
             // 
+            // cmsLekarstwa
+            // 
+            this.cmsLekarstwa.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lekarstwa_ulotka});
+            this.cmsLekarstwa.Name = "cmsLekarstwa";
+            this.cmsLekarstwa.Size = new System.Drawing.Size(158, 48);
+            this.cmsLekarstwa.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsLekarstwa_ItemClicked);
+            // 
+            // lekarstwa_ulotka
+            // 
+            this.lekarstwa_ulotka.Name = "lekarstwa_ulotka";
+            this.lekarstwa_ulotka.Size = new System.Drawing.Size(157, 22);
+            this.lekarstwa_ulotka.Text = "Wyświetl ulotkę";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1235,6 +1254,7 @@
             this.splitWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgbWizyty)).EndInit();
             this.tabControl.ResumeLayout(false);
+            this.cmsLekarstwa.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1339,6 +1359,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lek_ulotka;
         private System.Windows.Forms.DataGridViewTextBoxColumn lek_nazwa;
         private System.Windows.Forms.DataGridViewTextBoxColumn lek_cena;
+        private System.Windows.Forms.ContextMenuStrip cmsLekarstwa;
+        private System.Windows.Forms.ToolStripMenuItem lekarstwa_ulotka;
     }
 }
 
