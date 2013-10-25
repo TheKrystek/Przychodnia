@@ -28,13 +28,8 @@ namespace Przychodnia_rejestracja
         {
             InitializeComponent();
 
-            cbLekarzeImie.SelectedIndex = 0;
-            cbLekarzeNazwisko.SelectedIndex = 0;
-            cbLekarzeWiek.SelectedIndex = 0;
-            cbLekarzeMiasto.SelectedIndex = 0;
-            cbLekarzeSpecjalnosc.SelectedIndex = 0;
 
-
+            wczytajDaneDoFiltrowLekarzy();
 
             wyswietlLekarzy();
             wyswietlSwiadczenia();
@@ -42,6 +37,7 @@ namespace Przychodnia_rejestracja
             wyswietlSpecjalnosci();
             wyswietlLekarstwa();
         }
+
 
 
 
@@ -191,6 +187,9 @@ namespace Przychodnia_rejestracja
                                   };
                     dgvLekarze.DataSource = lekarze.ToList();
                 }
+
+               
+
             }
             private void cmsLekarze_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
             {
@@ -215,7 +214,122 @@ namespace Przychodnia_rejestracja
                 }
 
             }
+            private void ustawWartoscDomyslnaFiltrowLekarzy() {
+                cbLekarzeImie.SelectedIndex = 0;
+                cbLekarzeNazwisko.SelectedIndex = 0;
+                cbLekarzeWiek.SelectedIndex = 0;
+                cbLekarzeMiasto.SelectedIndex = 0;
+                cbLekarzeSpecjalnosc.SelectedIndex = 0;
+            }
+            private void wczytajDaneDoFiltrowLekarzy() {
+                ustawWartoscDomyslnaFiltrowLekarzy();
+                wczytajDaneLekarzy();
+                wczytajSpecjalnosciLekarzy();
+            }
+            private void wczytajSpecjalnosciLekarzy() {
+                using (var dc = new EntitiesPrzychodnia())
+                {
+                    var specjalnosci = from s in dc.Specjalnosci orderby s.nazwa ascending
+                                       select new
+                                       {
+                                           nazwa = s.nazwa
+                                       };
+                    foreach (var specjalnosc in specjalnosci)
+                        cbLekarzeSpecjalnosc.Items.Add(specjalnosc.nazwa);
+                }     
 
+            }
+            private void wczytajDaneLekarzy() {
+                using (var dc = new EntitiesPrzychodnia())
+                {
+                    var lekarze = from c in dc.Lekarze
+                                  select new
+                                  {
+                                      imie = c.imie,
+                                      nazwisko = c.nazwisko,
+                                      miasto = c.miejsce_zamieszkania
+                                  };
+
+                    List<String> imiona = new List<String>();
+                    List<String> nazwiska = new List<String>();
+                    List<String> miasta = new List<String>();
+                    foreach (var lekarz in lekarze){              
+                        if (!imiona.Contains(lekarz.imie))
+                            imiona.Add(lekarz.imie);
+
+                        if (!nazwiska.Contains(lekarz.nazwisko))
+                            nazwiska.Add(lekarz.nazwisko);
+
+                        if (!miasta.Contains(lekarz.miasto))
+                            miasta.Add(lekarz.miasto);
+                    }
+
+                    imiona.Sort();
+                    nazwiska.Sort();
+                    miasta.Sort();
+
+                    cbLekarzeImie.Items.AddRange(imiona.ToArray());
+                    cbLekarzeNazwisko.Items.AddRange(nazwiska.ToArray());
+                    cbLekarzeMiasto.Items.AddRange(miasta.ToArray());
+
+                    int krok = 10; // co 10 lat
+                    for (int i = 21; i < 100; i += krok) { 
+                        string item = String.Format("{0} - {1}",i.ToString(), (i+krok-1).ToString());
+                        cbLekarzeWiek.Items.Add(item);                  
+                    }
+                    cbLekarzeWiek.Items.Add("Powyżej");                  
+                    
+
+                }     
+            }
+
+            private void konstuujFiltr() {
+                using (var dc = new EntitiesPrzychodnia())
+                {
+               
+                    
+                    
+                    var query = from l in dc.Lekarze
+                                join ls in dc.LekarzSpecjalnosc on l.ID_Lekarza equals ls.ID_Lekarza into a
+                                from ls in a.DefaultIfEmpty()
+                                join s in dc.Specjalnosci on ls.ID_Specjalnosci equals s.ID_Specjalnosci into b
+                                from s in b.DefaultIfEmpty()
+                                        select new
+                                        {
+                                            specjalnosc = s.nazwa,
+                                            imie = l.imie,
+                                            nazwisko = l.nazwisko,
+                                            miejsce_ur = l.miejsce_urodzenia,
+                                            data_ur = l.data_urodzenia,
+                                            id = l.ID_Lekarza,
+                                            miescje_zam = l.miejsce_zamieszkania,
+                                            adres = l.ulica,
+                                            kod_pocztowy = l.kod_pocztowy
+                                        };
+
+                    if ((string)cbLekarzeImie.SelectedItem != "Dowolne")
+                        query = query.Where(l => (string)l.imie == (string)cbLekarzeImie.SelectedItem);
+
+                    if ((string)cbLekarzeNazwisko.SelectedItem != "Dowolne")
+                        query = query.Where(l => (string)l.nazwisko == (string)cbLekarzeNazwisko.SelectedItem);
+
+                    if ((string)cbLekarzeMiasto.SelectedItem != "Dowolne")
+                        query = query.Where(l => (string)l.miescje_zam == (string)cbLekarzeMiasto.SelectedItem);
+
+                    if ((string)cbLekarzeSpecjalnosc.SelectedItem != "Dowolna")
+                        query = query.Where(s => (string)s.specjalnosc == (string)cbLekarzeSpecjalnosc.SelectedItem);
+
+                    
+
+                    dgvLekarze.DataSource = query.ToList();
+
+                }
+                
+            }
+            private void bLekarzeSzukaj_Click(object sender, EventArgs e)
+            {
+                konstuujFiltr();
+            }
         #endregion
 
         #region Choroby
@@ -781,6 +895,8 @@ namespace Przychodnia_rejestracja
             }
         }
         #endregion
+
+        
 
 
 

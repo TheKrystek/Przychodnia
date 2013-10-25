@@ -109,6 +109,16 @@
             this.tbLekarstwo = new System.Windows.Forms.TextBox();
             this.tabLekarze = new System.Windows.Forms.TabPage();
             this.splitLekarze = new System.Windows.Forms.SplitContainer();
+            this.bLekarzeSzukaj = new System.Windows.Forms.Button();
+            this.cbLekarzeSpecjalnosc = new System.Windows.Forms.ComboBox();
+            this.cbLekarzeNazwisko = new System.Windows.Forms.ComboBox();
+            this.cbLekarzeImie = new System.Windows.Forms.ComboBox();
+            this.cbLekarzeWiek = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
             this.cbLekarzeMiasto = new System.Windows.Forms.ComboBox();
             this.dgvLekarze = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,16 +136,6 @@
             this.splitWizyty = new System.Windows.Forms.SplitContainer();
             this.dgbWizyty = new System.Windows.Forms.DataGridView();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.label = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cbLekarzeWiek = new System.Windows.Forms.ComboBox();
-            this.cbLekarzeImie = new System.Windows.Forms.ComboBox();
-            this.cbLekarzeNazwisko = new System.Windows.Forms.ComboBox();
-            this.cbLekarzeSpecjalnosc = new System.Windows.Forms.ComboBox();
-            this.bLekarzeSzukaj = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -1007,6 +1007,106 @@
             this.splitLekarze.SplitterDistance = 82;
             this.splitLekarze.TabIndex = 0;
             // 
+            // bLekarzeSzukaj
+            // 
+            this.bLekarzeSzukaj.Location = new System.Drawing.Point(783, 15);
+            this.bLekarzeSzukaj.Name = "bLekarzeSzukaj";
+            this.bLekarzeSzukaj.Size = new System.Drawing.Size(75, 53);
+            this.bLekarzeSzukaj.TabIndex = 12;
+            this.bLekarzeSzukaj.Text = "Szukaj";
+            this.bLekarzeSzukaj.UseVisualStyleBackColor = true;
+            this.bLekarzeSzukaj.Click += new System.EventHandler(this.bLekarzeSzukaj_Click);
+            // 
+            // cbLekarzeSpecjalnosc
+            // 
+            this.cbLekarzeSpecjalnosc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeSpecjalnosc.FormattingEnabled = true;
+            this.cbLekarzeSpecjalnosc.Items.AddRange(new object[] {
+            "Dowolna"});
+            this.cbLekarzeSpecjalnosc.Location = new System.Drawing.Point(536, 15);
+            this.cbLekarzeSpecjalnosc.Name = "cbLekarzeSpecjalnosc";
+            this.cbLekarzeSpecjalnosc.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeSpecjalnosc.TabIndex = 11;
+            // 
+            // cbLekarzeNazwisko
+            // 
+            this.cbLekarzeNazwisko.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeNazwisko.FormattingEnabled = true;
+            this.cbLekarzeNazwisko.Items.AddRange(new object[] {
+            "Dowolne"});
+            this.cbLekarzeNazwisko.Location = new System.Drawing.Point(97, 44);
+            this.cbLekarzeNazwisko.Name = "cbLekarzeNazwisko";
+            this.cbLekarzeNazwisko.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeNazwisko.TabIndex = 10;
+            // 
+            // cbLekarzeImie
+            // 
+            this.cbLekarzeImie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeImie.FormattingEnabled = true;
+            this.cbLekarzeImie.Items.AddRange(new object[] {
+            "Dowolne"});
+            this.cbLekarzeImie.Location = new System.Drawing.Point(97, 15);
+            this.cbLekarzeImie.Name = "cbLekarzeImie";
+            this.cbLekarzeImie.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeImie.TabIndex = 9;
+            // 
+            // cbLekarzeWiek
+            // 
+            this.cbLekarzeWiek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeWiek.FormattingEnabled = true;
+            this.cbLekarzeWiek.Items.AddRange(new object[] {
+            "Dowolny"});
+            this.cbLekarzeWiek.Location = new System.Drawing.Point(305, 44);
+            this.cbLekarzeWiek.Name = "cbLekarzeWiek";
+            this.cbLekarzeWiek.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeWiek.TabIndex = 8;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(465, 18);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 13);
+            this.label18.TabIndex = 7;
+            this.label18.Text = "Specjalność";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(267, 47);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 13);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "Wiek";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(261, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(38, 13);
+            this.label16.TabIndex = 5;
+            this.label16.Text = "Miasto";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.label30.Location = new System.Drawing.Point(38, 47);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(53, 13);
+            this.label30.TabIndex = 4;
+            this.label30.Text = "Nazwisko";
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(65, 18);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(26, 13);
+            this.label.TabIndex = 3;
+            this.label.Text = "Imię";
+            // 
             // cbLekarzeMiasto
             // 
             this.cbLekarzeMiasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1193,105 +1293,6 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(886, 497);
             this.tabControl.TabIndex = 2;
-            // 
-            // label
-            // 
-            this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(65, 18);
-            this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(26, 13);
-            this.label.TabIndex = 3;
-            this.label.Text = "Imię";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.label30.Location = new System.Drawing.Point(38, 47);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(53, 13);
-            this.label30.TabIndex = 4;
-            this.label30.Text = "Nazwisko";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(261, 18);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(38, 13);
-            this.label16.TabIndex = 5;
-            this.label16.Text = "Miasto";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(267, 47);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(32, 13);
-            this.label17.TabIndex = 6;
-            this.label17.Text = "Wiek";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(465, 18);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(65, 13);
-            this.label18.TabIndex = 7;
-            this.label18.Text = "Specjalność";
-            // 
-            // cbLekarzeWiek
-            // 
-            this.cbLekarzeWiek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLekarzeWiek.FormattingEnabled = true;
-            this.cbLekarzeWiek.Items.AddRange(new object[] {
-            "Dowolny"});
-            this.cbLekarzeWiek.Location = new System.Drawing.Point(305, 44);
-            this.cbLekarzeWiek.Name = "cbLekarzeWiek";
-            this.cbLekarzeWiek.Size = new System.Drawing.Size(121, 21);
-            this.cbLekarzeWiek.TabIndex = 8;
-            // 
-            // cbLekarzeImie
-            // 
-            this.cbLekarzeImie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLekarzeImie.FormattingEnabled = true;
-            this.cbLekarzeImie.Items.AddRange(new object[] {
-            "Dowolne"});
-            this.cbLekarzeImie.Location = new System.Drawing.Point(97, 15);
-            this.cbLekarzeImie.Name = "cbLekarzeImie";
-            this.cbLekarzeImie.Size = new System.Drawing.Size(121, 21);
-            this.cbLekarzeImie.TabIndex = 9;
-            // 
-            // cbLekarzeNazwisko
-            // 
-            this.cbLekarzeNazwisko.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLekarzeNazwisko.FormattingEnabled = true;
-            this.cbLekarzeNazwisko.Items.AddRange(new object[] {
-            "Dowolne"});
-            this.cbLekarzeNazwisko.Location = new System.Drawing.Point(97, 44);
-            this.cbLekarzeNazwisko.Name = "cbLekarzeNazwisko";
-            this.cbLekarzeNazwisko.Size = new System.Drawing.Size(121, 21);
-            this.cbLekarzeNazwisko.TabIndex = 10;
-            // 
-            // cbLekarzeSpecjalnosc
-            // 
-            this.cbLekarzeSpecjalnosc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLekarzeSpecjalnosc.FormattingEnabled = true;
-            this.cbLekarzeSpecjalnosc.Items.AddRange(new object[] {
-            "Dowolna"});
-            this.cbLekarzeSpecjalnosc.Location = new System.Drawing.Point(536, 15);
-            this.cbLekarzeSpecjalnosc.Name = "cbLekarzeSpecjalnosc";
-            this.cbLekarzeSpecjalnosc.Size = new System.Drawing.Size(121, 21);
-            this.cbLekarzeSpecjalnosc.TabIndex = 11;
-            // 
-            // bLekarzeSzukaj
-            // 
-            this.bLekarzeSzukaj.Location = new System.Drawing.Point(783, 15);
-            this.bLekarzeSzukaj.Name = "bLekarzeSzukaj";
-            this.bLekarzeSzukaj.Size = new System.Drawing.Size(75, 53);
-            this.bLekarzeSzukaj.TabIndex = 12;
-            this.bLekarzeSzukaj.Text = "Szukaj";
-            this.bLekarzeSzukaj.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
