@@ -72,8 +72,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button = new System.Windows.Forms.Button();
-            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wimie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wnazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -367,8 +367,8 @@
             // 
             this.dgvWizyty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvWizyty.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.data,
             this.godzina,
+            this.data,
             this.wimie,
             this.wnazwisko,
             this.odbyta});
@@ -503,18 +503,18 @@
             this.button.UseVisualStyleBackColor = true;
             this.button.Click += new System.EventHandler(this.button_Click);
             // 
+            // godzina
+            // 
+            this.godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.godzina.HeaderText = "Godzina";
+            this.godzina.Name = "godzina";
+            // 
             // data
             // 
             this.data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.data.DataPropertyName = "data";
             this.data.HeaderText = "Data";
             this.data.Name = "data";
-            // 
-            // godzina
-            // 
-            this.godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.godzina.HeaderText = "Godzina";
-            this.godzina.Name = "godzina";
             // 
             // wimie
             // 
@@ -612,8 +612,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn p_ulica;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_adres;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_kod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn data;
         private System.Windows.Forms.DataGridViewTextBoxColumn godzina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data;
         private System.Windows.Forms.DataGridViewTextBoxColumn wimie;
         private System.Windows.Forms.DataGridViewTextBoxColumn wnazwisko;
         private System.Windows.Forms.DataGridViewCheckBoxColumn odbyta;
