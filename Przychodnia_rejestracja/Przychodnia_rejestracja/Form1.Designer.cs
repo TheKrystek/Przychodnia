@@ -109,6 +109,7 @@
             this.tbLekarstwo = new System.Windows.Forms.TextBox();
             this.tabLekarze = new System.Windows.Forms.TabPage();
             this.splitLekarze = new System.Windows.Forms.SplitContainer();
+            this.bLekarzeWyczysc = new System.Windows.Forms.Button();
             this.bLekarzeSzukaj = new System.Windows.Forms.Button();
             this.cbLekarzeSpecjalnosc = new System.Windows.Forms.ComboBox();
             this.cbLekarzeNazwisko = new System.Windows.Forms.ComboBox();
@@ -121,13 +122,6 @@
             this.label = new System.Windows.Forms.Label();
             this.cbLekarzeMiasto = new System.Windows.Forms.ComboBox();
             this.dgvLekarze = new System.Windows.Forms.DataGridView();
-            this.tabPacjenci = new System.Windows.Forms.TabPage();
-            this.splitPacjenci = new System.Windows.Forms.SplitContainer();
-            this.dgvPacjenci = new System.Windows.Forms.DataGridView();
-            this.tabWizyty = new System.Windows.Forms.TabPage();
-            this.splitWizyty = new System.Windows.Forms.SplitContainer();
-            this.dgbWizyty = new System.Windows.Forms.DataGridView();
-            this.tabControl = new System.Windows.Forms.TabControl();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -137,7 +131,34 @@
             this.adres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.miescje_zam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kod_pocztowy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bLekarzeWyczysc = new System.Windows.Forms.Button();
+            this.tabPacjenci = new System.Windows.Forms.TabPage();
+            this.splitPacjenci = new System.Windows.Forms.SplitContainer();
+            this.bPacjenciWyczysc = new System.Windows.Forms.Button();
+            this.bPacjenciSzukaj = new System.Windows.Forms.Button();
+            this.cbPacjenciLekarz = new System.Windows.Forms.ComboBox();
+            this.cbPacjenciNazwisko = new System.Windows.Forms.ComboBox();
+            this.cbPacjenciImie = new System.Windows.Forms.ComboBox();
+            this.cbPacjenciWiek = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.cbPacjenciMiasto = new System.Windows.Forms.ComboBox();
+            this.dgvPacjenci = new System.Windows.Forms.DataGridView();
+            this.tabWizyty = new System.Windows.Forms.TabPage();
+            this.splitWizyty = new System.Windows.Forms.SplitContainer();
+            this.dgbWizyty = new System.Windows.Forms.DataGridView();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.p_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_miejsce_urodzenia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_adres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_miasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_kod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -177,6 +198,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLekarze)).BeginInit();
             this.tabPacjenci.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPacjenci)).BeginInit();
+            this.splitPacjenci.Panel1.SuspendLayout();
             this.splitPacjenci.Panel2.SuspendLayout();
             this.splitPacjenci.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPacjenci)).BeginInit();
@@ -1010,6 +1032,16 @@
             this.splitLekarze.SplitterDistance = 82;
             this.splitLekarze.TabIndex = 0;
             // 
+            // bLekarzeWyczysc
+            // 
+            this.bLekarzeWyczysc.Location = new System.Drawing.Point(782, 44);
+            this.bLekarzeWyczysc.Name = "bLekarzeWyczysc";
+            this.bLekarzeWyczysc.Size = new System.Drawing.Size(75, 29);
+            this.bLekarzeWyczysc.TabIndex = 8;
+            this.bLekarzeWyczysc.Text = "Wyczyść";
+            this.bLekarzeWyczysc.UseVisualStyleBackColor = true;
+            this.bLekarzeWyczysc.Click += new System.EventHandler(this.bLekarzeWyczysc_Click);
+            // 
             // bLekarzeSzukaj
             // 
             this.bLekarzeSzukaj.Location = new System.Drawing.Point(782, 9);
@@ -1151,6 +1183,76 @@
             this.dgvLekarze.TabIndex = 0;
             this.dgvLekarze.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "Lp.";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 47;
+            // 
+            // imie
+            // 
+            this.imie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.imie.DataPropertyName = "imie";
+            this.imie.HeaderText = "Imię";
+            this.imie.Name = "imie";
+            this.imie.ReadOnly = true;
+            // 
+            // nazwisko
+            // 
+            this.nazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazwisko.DataPropertyName = "nazwisko";
+            this.nazwisko.HeaderText = "Nazwisko";
+            this.nazwisko.Name = "nazwisko";
+            this.nazwisko.ReadOnly = true;
+            // 
+            // specjalnosc
+            // 
+            this.specjalnosc.DataPropertyName = "specjalnosc";
+            this.specjalnosc.HeaderText = "Specjalność";
+            this.specjalnosc.Name = "specjalnosc";
+            this.specjalnosc.ReadOnly = true;
+            this.specjalnosc.Visible = false;
+            // 
+            // miejsce_ur
+            // 
+            this.miejsce_ur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.miejsce_ur.DataPropertyName = "miejsce_ur";
+            this.miejsce_ur.HeaderText = "Miejsce urodzenia";
+            this.miejsce_ur.Name = "miejsce_ur";
+            this.miejsce_ur.ReadOnly = true;
+            // 
+            // data_ur
+            // 
+            this.data_ur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.data_ur.DataPropertyName = "data_ur";
+            this.data_ur.HeaderText = "Data urodzenia";
+            this.data_ur.Name = "data_ur";
+            this.data_ur.ReadOnly = true;
+            // 
+            // adres
+            // 
+            this.adres.DataPropertyName = "adres";
+            this.adres.HeaderText = "Adres";
+            this.adres.Name = "adres";
+            this.adres.ReadOnly = true;
+            // 
+            // miescje_zam
+            // 
+            this.miescje_zam.DataPropertyName = "miescje_zam";
+            this.miescje_zam.HeaderText = "Miasto";
+            this.miescje_zam.Name = "miescje_zam";
+            this.miescje_zam.ReadOnly = true;
+            // 
+            // kod_pocztowy
+            // 
+            this.kod_pocztowy.DataPropertyName = "kod_pocztowy";
+            this.kod_pocztowy.HeaderText = "Kod Pocztowy";
+            this.kod_pocztowy.Name = "kod_pocztowy";
+            this.kod_pocztowy.ReadOnly = true;
+            // 
             // tabPacjenci
             // 
             this.tabPacjenci.Controls.Add(this.splitPacjenci);
@@ -1169,6 +1271,21 @@
             this.splitPacjenci.Name = "splitPacjenci";
             this.splitPacjenci.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // splitPacjenci.Panel1
+            // 
+            this.splitPacjenci.Panel1.Controls.Add(this.bPacjenciWyczysc);
+            this.splitPacjenci.Panel1.Controls.Add(this.bPacjenciSzukaj);
+            this.splitPacjenci.Panel1.Controls.Add(this.cbPacjenciLekarz);
+            this.splitPacjenci.Panel1.Controls.Add(this.cbPacjenciNazwisko);
+            this.splitPacjenci.Panel1.Controls.Add(this.cbPacjenciImie);
+            this.splitPacjenci.Panel1.Controls.Add(this.cbPacjenciWiek);
+            this.splitPacjenci.Panel1.Controls.Add(this.label14);
+            this.splitPacjenci.Panel1.Controls.Add(this.label15);
+            this.splitPacjenci.Panel1.Controls.Add(this.label19);
+            this.splitPacjenci.Panel1.Controls.Add(this.label20);
+            this.splitPacjenci.Panel1.Controls.Add(this.label21);
+            this.splitPacjenci.Panel1.Controls.Add(this.cbPacjenciMiasto);
+            // 
             // splitPacjenci.Panel2
             // 
             this.splitPacjenci.Panel2.Controls.Add(this.dgvPacjenci);
@@ -1176,9 +1293,141 @@
             this.splitPacjenci.SplitterDistance = 102;
             this.splitPacjenci.TabIndex = 0;
             // 
+            // bPacjenciWyczysc
+            // 
+            this.bPacjenciWyczysc.Location = new System.Drawing.Point(771, 54);
+            this.bPacjenciWyczysc.Name = "bPacjenciWyczysc";
+            this.bPacjenciWyczysc.Size = new System.Drawing.Size(75, 29);
+            this.bPacjenciWyczysc.TabIndex = 20;
+            this.bPacjenciWyczysc.Text = "Wyczyść";
+            this.bPacjenciWyczysc.UseVisualStyleBackColor = true;
+            this.bPacjenciWyczysc.Click += new System.EventHandler(this.bPacjenciWyczysc_Click);
+            // 
+            // bPacjenciSzukaj
+            // 
+            this.bPacjenciSzukaj.Location = new System.Drawing.Point(771, 19);
+            this.bPacjenciSzukaj.Name = "bPacjenciSzukaj";
+            this.bPacjenciSzukaj.Size = new System.Drawing.Size(75, 29);
+            this.bPacjenciSzukaj.TabIndex = 17;
+            this.bPacjenciSzukaj.Text = "Szukaj";
+            this.bPacjenciSzukaj.UseVisualStyleBackColor = true;
+            this.bPacjenciSzukaj.Click += new System.EventHandler(this.bPacjenciSzukaj_Click);
+            // 
+            // cbPacjenciLekarz
+            // 
+            this.cbPacjenciLekarz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPacjenciLekarz.FormattingEnabled = true;
+            this.cbPacjenciLekarz.Items.AddRange(new object[] {
+            "Dowolny"});
+            this.cbPacjenciLekarz.Location = new System.Drawing.Point(499, 24);
+            this.cbPacjenciLekarz.Name = "cbPacjenciLekarz";
+            this.cbPacjenciLekarz.Size = new System.Drawing.Size(180, 21);
+            this.cbPacjenciLekarz.TabIndex = 15;
+            // 
+            // cbPacjenciNazwisko
+            // 
+            this.cbPacjenciNazwisko.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPacjenciNazwisko.FormattingEnabled = true;
+            this.cbPacjenciNazwisko.Items.AddRange(new object[] {
+            "Dowolne"});
+            this.cbPacjenciNazwisko.Location = new System.Drawing.Point(86, 54);
+            this.cbPacjenciNazwisko.Name = "cbPacjenciNazwisko";
+            this.cbPacjenciNazwisko.Size = new System.Drawing.Size(121, 21);
+            this.cbPacjenciNazwisko.TabIndex = 10;
+            // 
+            // cbPacjenciImie
+            // 
+            this.cbPacjenciImie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPacjenciImie.FormattingEnabled = true;
+            this.cbPacjenciImie.Items.AddRange(new object[] {
+            "Dowolne"});
+            this.cbPacjenciImie.Location = new System.Drawing.Point(86, 25);
+            this.cbPacjenciImie.Name = "cbPacjenciImie";
+            this.cbPacjenciImie.Size = new System.Drawing.Size(121, 21);
+            this.cbPacjenciImie.TabIndex = 9;
+            // 
+            // cbPacjenciWiek
+            // 
+            this.cbPacjenciWiek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPacjenciWiek.FormattingEnabled = true;
+            this.cbPacjenciWiek.Items.AddRange(new object[] {
+            "Dowolny"});
+            this.cbPacjenciWiek.Location = new System.Drawing.Point(294, 54);
+            this.cbPacjenciWiek.Name = "cbPacjenciWiek";
+            this.cbPacjenciWiek.Size = new System.Drawing.Size(121, 21);
+            this.cbPacjenciWiek.TabIndex = 13;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(454, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(39, 13);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Lekarz";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(256, 57);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(32, 13);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "Wiek";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(250, 28);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(38, 13);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "Miasto";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.White;
+            this.label20.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.label20.Location = new System.Drawing.Point(27, 57);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 13);
+            this.label20.TabIndex = 14;
+            this.label20.Text = "Nazwisko";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(54, 28);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(26, 13);
+            this.label21.TabIndex = 11;
+            this.label21.Text = "Imię";
+            // 
+            // cbPacjenciMiasto
+            // 
+            this.cbPacjenciMiasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPacjenciMiasto.FormattingEnabled = true;
+            this.cbPacjenciMiasto.Items.AddRange(new object[] {
+            "Dowolne"});
+            this.cbPacjenciMiasto.Location = new System.Drawing.Point(294, 25);
+            this.cbPacjenciMiasto.Name = "cbPacjenciMiasto";
+            this.cbPacjenciMiasto.Size = new System.Drawing.Size(121, 21);
+            this.cbPacjenciMiasto.TabIndex = 12;
+            // 
             // dgvPacjenci
             // 
             this.dgvPacjenci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPacjenci.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.p_id,
+            this.p_imie,
+            this.p_nazwisko,
+            this.p_miejsce_urodzenia,
+            this.p_data,
+            this.p_adres,
+            this.p_miasto,
+            this.p_kod,
+            this.p_lekarz});
             this.dgvPacjenci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPacjenci.Location = new System.Drawing.Point(0, 0);
             this.dgvPacjenci.Name = "dgvPacjenci";
@@ -1237,85 +1486,68 @@
             this.tabControl.Size = new System.Drawing.Size(886, 497);
             this.tabControl.TabIndex = 2;
             // 
-            // id
+            // p_id
             // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "Lp.";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Width = 47;
+            this.p_id.DataPropertyName = "p_id";
+            this.p_id.HeaderText = "id";
+            this.p_id.Name = "p_id";
+            this.p_id.Visible = false;
             // 
-            // imie
+            // p_imie
             // 
-            this.imie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.imie.DataPropertyName = "imie";
-            this.imie.HeaderText = "Imię";
-            this.imie.Name = "imie";
-            this.imie.ReadOnly = true;
+            this.p_imie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_imie.DataPropertyName = "p_imie";
+            this.p_imie.HeaderText = "Imię";
+            this.p_imie.Name = "p_imie";
             // 
-            // nazwisko
+            // p_nazwisko
             // 
-            this.nazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nazwisko.DataPropertyName = "nazwisko";
-            this.nazwisko.HeaderText = "Nazwisko";
-            this.nazwisko.Name = "nazwisko";
-            this.nazwisko.ReadOnly = true;
+            this.p_nazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_nazwisko.DataPropertyName = "p_nazwisko";
+            this.p_nazwisko.HeaderText = "Nazwisko";
+            this.p_nazwisko.Name = "p_nazwisko";
             // 
-            // specjalnosc
+            // p_miejsce_urodzenia
             // 
-            this.specjalnosc.DataPropertyName = "specjalnosc";
-            this.specjalnosc.HeaderText = "Specjalność";
-            this.specjalnosc.Name = "specjalnosc";
-            this.specjalnosc.ReadOnly = true;
-            this.specjalnosc.Visible = false;
+            this.p_miejsce_urodzenia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_miejsce_urodzenia.DataPropertyName = "p_miejsce_urodzenia";
+            this.p_miejsce_urodzenia.HeaderText = "Miejsce urodzenia";
+            this.p_miejsce_urodzenia.Name = "p_miejsce_urodzenia";
             // 
-            // miejsce_ur
+            // p_data
             // 
-            this.miejsce_ur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.miejsce_ur.DataPropertyName = "miejsce_ur";
-            this.miejsce_ur.HeaderText = "Miejsce Urodzenia";
-            this.miejsce_ur.Name = "miejsce_ur";
-            this.miejsce_ur.ReadOnly = true;
+            this.p_data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_data.DataPropertyName = "p_data";
+            this.p_data.HeaderText = "Data urodzenia";
+            this.p_data.Name = "p_data";
             // 
-            // data_ur
+            // p_adres
             // 
-            this.data_ur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.data_ur.DataPropertyName = "data_ur";
-            this.data_ur.HeaderText = "Data urodzenia";
-            this.data_ur.Name = "data_ur";
-            this.data_ur.ReadOnly = true;
+            this.p_adres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_adres.DataPropertyName = "p_adres";
+            this.p_adres.HeaderText = "Adres";
+            this.p_adres.Name = "p_adres";
             // 
-            // adres
+            // p_miasto
             // 
-            this.adres.DataPropertyName = "adres";
-            this.adres.HeaderText = "Adres";
-            this.adres.Name = "adres";
-            this.adres.ReadOnly = true;
+            this.p_miasto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_miasto.DataPropertyName = "p_miasto";
+            this.p_miasto.HeaderText = "Miasto";
+            this.p_miasto.Name = "p_miasto";
             // 
-            // miescje_zam
+            // p_kod
             // 
-            this.miescje_zam.DataPropertyName = "miescje_zam";
-            this.miescje_zam.HeaderText = "Miasto";
-            this.miescje_zam.Name = "miescje_zam";
-            this.miescje_zam.ReadOnly = true;
+            this.p_kod.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.p_kod.DataPropertyName = "p_kod";
+            this.p_kod.HeaderText = "Kod pocztowy";
+            this.p_kod.Name = "p_kod";
             // 
-            // kod_pocztowy
+            // p_lekarz
             // 
-            this.kod_pocztowy.DataPropertyName = "kod_pocztowy";
-            this.kod_pocztowy.HeaderText = "Kod Pocztowy";
-            this.kod_pocztowy.Name = "kod_pocztowy";
-            this.kod_pocztowy.ReadOnly = true;
-            // 
-            // bLekarzeWyczysc
-            // 
-            this.bLekarzeWyczysc.Location = new System.Drawing.Point(782, 44);
-            this.bLekarzeWyczysc.Name = "bLekarzeWyczysc";
-            this.bLekarzeWyczysc.Size = new System.Drawing.Size(75, 29);
-            this.bLekarzeWyczysc.TabIndex = 8;
-            this.bLekarzeWyczysc.Text = "Wyczyść";
-            this.bLekarzeWyczysc.UseVisualStyleBackColor = true;
-            this.bLekarzeWyczysc.Click += new System.EventHandler(this.bLekarzeWyczysc_Click);
+            this.p_lekarz.DataPropertyName = "p_lekarz";
+            this.p_lekarz.HeaderText = "Lekarz";
+            this.p_lekarz.Name = "p_lekarz";
+            this.p_lekarz.Visible = false;
             // 
             // MainWindow
             // 
@@ -1372,6 +1604,8 @@
             this.splitLekarze.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLekarze)).EndInit();
             this.tabPacjenci.ResumeLayout(false);
+            this.splitPacjenci.Panel1.ResumeLayout(false);
+            this.splitPacjenci.Panel1.PerformLayout();
             this.splitPacjenci.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPacjenci)).EndInit();
             this.splitPacjenci.ResumeLayout(false);
@@ -1488,6 +1722,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Button bLekarzeWyczysc;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn imie;
         private System.Windows.Forms.DataGridViewTextBoxColumn nazwisko;
@@ -1497,7 +1732,27 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn adres;
         private System.Windows.Forms.DataGridViewTextBoxColumn miescje_zam;
         private System.Windows.Forms.DataGridViewTextBoxColumn kod_pocztowy;
-        private System.Windows.Forms.Button bLekarzeWyczysc;
+        private System.Windows.Forms.Button bPacjenciWyczysc;
+        private System.Windows.Forms.Button bPacjenciSzukaj;
+        private System.Windows.Forms.ComboBox cbPacjenciLekarz;
+        private System.Windows.Forms.ComboBox cbPacjenciNazwisko;
+        private System.Windows.Forms.ComboBox cbPacjenciImie;
+        private System.Windows.Forms.ComboBox cbPacjenciWiek;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox cbPacjenciMiasto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_imie;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_nazwisko;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_miejsce_urodzenia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_adres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_miasto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_kod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn p_lekarz;
     }
 }
 
