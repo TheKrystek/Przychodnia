@@ -25,7 +25,6 @@ namespace Przychodnia_rejestracja
             InitializeComponent();
         }
 
-
         private void ustawWysokoscOkna() {
 
             int suma = 0;
@@ -41,8 +40,6 @@ namespace Przychodnia_rejestracja
             }
 
         }
-
-
 
         private void podmiot_TextChanged(object sender, EventArgs e)
         {

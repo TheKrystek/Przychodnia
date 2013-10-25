@@ -83,6 +83,8 @@
             this.lek_ulotka = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lek_nazwa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lek_cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsLekarstwa = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lekarstwa_ulotka = new System.Windows.Forms.ToolStripMenuItem();
             this.gbLekarstwa = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -107,9 +109,7 @@
             this.tbLekarstwo = new System.Windows.Forms.TextBox();
             this.tabLekarze = new System.Windows.Forms.TabPage();
             this.splitLekarze = new System.Windows.Forms.SplitContainer();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.cbNazwisko = new System.Windows.Forms.ComboBox();
-            this.cbImie = new System.Windows.Forms.ComboBox();
+            this.cbLekarzeMiasto = new System.Windows.Forms.ComboBox();
             this.dgvLekarze = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,8 +126,16 @@
             this.splitWizyty = new System.Windows.Forms.SplitContainer();
             this.dgbWizyty = new System.Windows.Forms.DataGridView();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.cmsLekarstwa = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.lekarstwa_ulotka = new System.Windows.Forms.ToolStripMenuItem();
+            this.label = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cbLekarzeWiek = new System.Windows.Forms.ComboBox();
+            this.cbLekarzeImie = new System.Windows.Forms.ComboBox();
+            this.cbLekarzeNazwisko = new System.Windows.Forms.ComboBox();
+            this.cbLekarzeSpecjalnosc = new System.Windows.Forms.ComboBox();
+            this.bLekarzeSzukaj = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -157,6 +165,7 @@
             this.splitLekarstwa.Panel2.SuspendLayout();
             this.splitLekarstwa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLekarstwa)).BeginInit();
+            this.cmsLekarstwa.SuspendLayout();
             this.gbLekarstwa.SuspendLayout();
             this.tabLekarze.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarze)).BeginInit();
@@ -175,7 +184,6 @@
             this.splitWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgbWizyty)).BeginInit();
             this.tabControl.SuspendLayout();
-            this.cmsLekarstwa.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -730,6 +738,20 @@
             this.lek_cena.HeaderText = "Cena";
             this.lek_cena.Name = "lek_cena";
             // 
+            // cmsLekarstwa
+            // 
+            this.cmsLekarstwa.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lekarstwa_ulotka});
+            this.cmsLekarstwa.Name = "cmsLekarstwa";
+            this.cmsLekarstwa.Size = new System.Drawing.Size(158, 26);
+            this.cmsLekarstwa.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsLekarstwa_ItemClicked);
+            // 
+            // lekarstwa_ulotka
+            // 
+            this.lekarstwa_ulotka.Name = "lekarstwa_ulotka";
+            this.lekarstwa_ulotka.Size = new System.Drawing.Size(157, 22);
+            this.lekarstwa_ulotka.Text = "Wyświetl ulotkę";
+            // 
             // gbLekarstwa
             // 
             this.gbLekarstwa.Controls.Add(this.label13);
@@ -966,9 +988,17 @@
             // 
             // splitLekarze.Panel1
             // 
-            this.splitLekarze.Panel1.Controls.Add(this.comboBox1);
-            this.splitLekarze.Panel1.Controls.Add(this.cbNazwisko);
-            this.splitLekarze.Panel1.Controls.Add(this.cbImie);
+            this.splitLekarze.Panel1.Controls.Add(this.bLekarzeSzukaj);
+            this.splitLekarze.Panel1.Controls.Add(this.cbLekarzeSpecjalnosc);
+            this.splitLekarze.Panel1.Controls.Add(this.cbLekarzeNazwisko);
+            this.splitLekarze.Panel1.Controls.Add(this.cbLekarzeImie);
+            this.splitLekarze.Panel1.Controls.Add(this.cbLekarzeWiek);
+            this.splitLekarze.Panel1.Controls.Add(this.label18);
+            this.splitLekarze.Panel1.Controls.Add(this.label17);
+            this.splitLekarze.Panel1.Controls.Add(this.label16);
+            this.splitLekarze.Panel1.Controls.Add(this.label30);
+            this.splitLekarze.Panel1.Controls.Add(this.label);
+            this.splitLekarze.Panel1.Controls.Add(this.cbLekarzeMiasto);
             // 
             // splitLekarze.Panel2
             // 
@@ -977,29 +1007,16 @@
             this.splitLekarze.SplitterDistance = 82;
             this.splitLekarze.TabIndex = 0;
             // 
-            // comboBox1
+            // cbLekarzeMiasto
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(278, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // cbNazwisko
-            // 
-            this.cbNazwisko.FormattingEnabled = true;
-            this.cbNazwisko.Location = new System.Drawing.Point(78, 39);
-            this.cbNazwisko.Name = "cbNazwisko";
-            this.cbNazwisko.Size = new System.Drawing.Size(121, 21);
-            this.cbNazwisko.TabIndex = 1;
-            // 
-            // cbImie
-            // 
-            this.cbImie.FormattingEnabled = true;
-            this.cbImie.Location = new System.Drawing.Point(78, 12);
-            this.cbImie.Name = "cbImie";
-            this.cbImie.Size = new System.Drawing.Size(121, 21);
-            this.cbImie.TabIndex = 0;
+            this.cbLekarzeMiasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeMiasto.FormattingEnabled = true;
+            this.cbLekarzeMiasto.Items.AddRange(new object[] {
+            "Dowolne"});
+            this.cbLekarzeMiasto.Location = new System.Drawing.Point(305, 15);
+            this.cbLekarzeMiasto.Name = "cbLekarzeMiasto";
+            this.cbLekarzeMiasto.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeMiasto.TabIndex = 2;
             // 
             // dgvLekarze
             // 
@@ -1177,19 +1194,104 @@
             this.tabControl.Size = new System.Drawing.Size(886, 497);
             this.tabControl.TabIndex = 2;
             // 
-            // cmsLekarstwa
+            // label
             // 
-            this.cmsLekarstwa.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lekarstwa_ulotka});
-            this.cmsLekarstwa.Name = "cmsLekarstwa";
-            this.cmsLekarstwa.Size = new System.Drawing.Size(158, 48);
-            this.cmsLekarstwa.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsLekarstwa_ItemClicked);
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(65, 18);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(26, 13);
+            this.label.TabIndex = 3;
+            this.label.Text = "Imię";
             // 
-            // lekarstwa_ulotka
+            // label30
             // 
-            this.lekarstwa_ulotka.Name = "lekarstwa_ulotka";
-            this.lekarstwa_ulotka.Size = new System.Drawing.Size(157, 22);
-            this.lekarstwa_ulotka.Text = "Wyświetl ulotkę";
+            this.label30.AutoSize = true;
+            this.label30.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.label30.Location = new System.Drawing.Point(38, 47);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(53, 13);
+            this.label30.TabIndex = 4;
+            this.label30.Text = "Nazwisko";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(261, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(38, 13);
+            this.label16.TabIndex = 5;
+            this.label16.Text = "Miasto";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(267, 47);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 13);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "Wiek";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(465, 18);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 13);
+            this.label18.TabIndex = 7;
+            this.label18.Text = "Specjalność";
+            // 
+            // cbLekarzeWiek
+            // 
+            this.cbLekarzeWiek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeWiek.FormattingEnabled = true;
+            this.cbLekarzeWiek.Items.AddRange(new object[] {
+            "Dowolny"});
+            this.cbLekarzeWiek.Location = new System.Drawing.Point(305, 44);
+            this.cbLekarzeWiek.Name = "cbLekarzeWiek";
+            this.cbLekarzeWiek.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeWiek.TabIndex = 8;
+            // 
+            // cbLekarzeImie
+            // 
+            this.cbLekarzeImie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeImie.FormattingEnabled = true;
+            this.cbLekarzeImie.Items.AddRange(new object[] {
+            "Dowolne"});
+            this.cbLekarzeImie.Location = new System.Drawing.Point(97, 15);
+            this.cbLekarzeImie.Name = "cbLekarzeImie";
+            this.cbLekarzeImie.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeImie.TabIndex = 9;
+            // 
+            // cbLekarzeNazwisko
+            // 
+            this.cbLekarzeNazwisko.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeNazwisko.FormattingEnabled = true;
+            this.cbLekarzeNazwisko.Items.AddRange(new object[] {
+            "Dowolne"});
+            this.cbLekarzeNazwisko.Location = new System.Drawing.Point(97, 44);
+            this.cbLekarzeNazwisko.Name = "cbLekarzeNazwisko";
+            this.cbLekarzeNazwisko.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeNazwisko.TabIndex = 10;
+            // 
+            // cbLekarzeSpecjalnosc
+            // 
+            this.cbLekarzeSpecjalnosc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarzeSpecjalnosc.FormattingEnabled = true;
+            this.cbLekarzeSpecjalnosc.Items.AddRange(new object[] {
+            "Dowolna"});
+            this.cbLekarzeSpecjalnosc.Location = new System.Drawing.Point(536, 15);
+            this.cbLekarzeSpecjalnosc.Name = "cbLekarzeSpecjalnosc";
+            this.cbLekarzeSpecjalnosc.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarzeSpecjalnosc.TabIndex = 11;
+            // 
+            // bLekarzeSzukaj
+            // 
+            this.bLekarzeSzukaj.Location = new System.Drawing.Point(783, 15);
+            this.bLekarzeSzukaj.Name = "bLekarzeSzukaj";
+            this.bLekarzeSzukaj.Size = new System.Drawing.Size(75, 53);
+            this.bLekarzeSzukaj.TabIndex = 12;
+            this.bLekarzeSzukaj.Text = "Szukaj";
+            this.bLekarzeSzukaj.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -1235,10 +1337,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarstwa)).EndInit();
             this.splitLekarstwa.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLekarstwa)).EndInit();
+            this.cmsLekarstwa.ResumeLayout(false);
             this.gbLekarstwa.ResumeLayout(false);
             this.gbLekarstwa.PerformLayout();
             this.tabLekarze.ResumeLayout(false);
             this.splitLekarze.Panel1.ResumeLayout(false);
+            this.splitLekarze.Panel1.PerformLayout();
             this.splitLekarze.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitLekarze)).EndInit();
             this.splitLekarze.ResumeLayout(false);
@@ -1254,7 +1358,6 @@
             this.splitWizyty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgbWizyty)).EndInit();
             this.tabControl.ResumeLayout(false);
-            this.cmsLekarstwa.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1314,9 +1417,7 @@
         private System.Windows.Forms.DataGridView dgvLekarstwa;
         private System.Windows.Forms.TabPage tabLekarze;
         private System.Windows.Forms.SplitContainer splitLekarze;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox cbNazwisko;
-        private System.Windows.Forms.ComboBox cbImie;
+        private System.Windows.Forms.ComboBox cbLekarzeMiasto;
         private System.Windows.Forms.DataGridView dgvLekarze;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn imie;
@@ -1361,6 +1462,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lek_cena;
         private System.Windows.Forms.ContextMenuStrip cmsLekarstwa;
         private System.Windows.Forms.ToolStripMenuItem lekarstwa_ulotka;
+        private System.Windows.Forms.Button bLekarzeSzukaj;
+        private System.Windows.Forms.ComboBox cbLekarzeSpecjalnosc;
+        private System.Windows.Forms.ComboBox cbLekarzeNazwisko;
+        private System.Windows.Forms.ComboBox cbLekarzeImie;
+        private System.Windows.Forms.ComboBox cbLekarzeWiek;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label;
     }
 }
 

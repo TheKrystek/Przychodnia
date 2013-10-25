@@ -27,12 +27,24 @@ namespace Przychodnia_rejestracja
         public MainWindow()
         {
             InitializeComponent();
+
+            cbLekarzeImie.SelectedIndex = 0;
+            cbLekarzeNazwisko.SelectedIndex = 0;
+            cbLekarzeWiek.SelectedIndex = 0;
+            cbLekarzeMiasto.SelectedIndex = 0;
+            cbLekarzeSpecjalnosc.SelectedIndex = 0;
+
+
+
             wyswietlLekarzy();
             wyswietlSwiadczenia();
             wyswietlChoroby();
             wyswietlSpecjalnosci();
             wyswietlLekarstwa();
         }
+
+
+
 
         #region Wspolne
         private void ZamienMiejscami(Control first, Control second)
