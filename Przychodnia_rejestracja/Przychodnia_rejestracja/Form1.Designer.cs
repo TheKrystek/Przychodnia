@@ -146,10 +146,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.cbPacjenciMiasto = new System.Windows.Forms.ComboBox();
             this.dgvPacjenci = new System.Windows.Forms.DataGridView();
-            this.tabWizyty = new System.Windows.Forms.TabPage();
-            this.splitWizyty = new System.Windows.Forms.SplitContainer();
-            this.dgbWizyty = new System.Windows.Forms.DataGridView();
-            this.tabControl = new System.Windows.Forms.TabControl();
             this.p_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -159,24 +155,31 @@
             this.p_miasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_kod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbWizytyData = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbWizytyNieodbyte = new System.Windows.Forms.RadioButton();
-            this.rbWizytyOdbyte = new System.Windows.Forms.RadioButton();
-            this.rbWizytyWszystkie = new System.Windows.Forms.RadioButton();
-            this.label22 = new System.Windows.Forms.Label();
+            this.tabWizyty = new System.Windows.Forms.TabPage();
+            this.splitWizyty = new System.Windows.Forms.SplitContainer();
+            this.bWizytyWyczysc = new System.Windows.Forms.Button();
+            this.bWizytySzukaj = new System.Windows.Forms.Button();
+            this.bWizytyPrzeloz = new System.Windows.Forms.Button();
+            this.bWizytyAnuluj = new System.Windows.Forms.Button();
+            this.bWizytyDodaj = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.cbWizytyLekarz = new System.Windows.Forms.ComboBox();
-            this.bWizytyDodaj = new System.Windows.Forms.Button();
-            this.bWizytyAnuluj = new System.Windows.Forms.Button();
-            this.bWizytyPrzeloz = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbWizytyWszystkie = new System.Windows.Forms.RadioButton();
+            this.rbWizytyOdbyte = new System.Windows.Forms.RadioButton();
+            this.rbWizytyNieodbyte = new System.Windows.Forms.RadioButton();
+            this.cbWizytyData = new System.Windows.Forms.ComboBox();
+            this.dgvWizyty = new System.Windows.Forms.DataGridView();
             this.w_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.w_czas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.w_godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.cbLekarzeSpecjalnosci = new System.Windows.Forms.CheckBox();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -225,9 +228,9 @@
             this.splitWizyty.Panel1.SuspendLayout();
             this.splitWizyty.Panel2.SuspendLayout();
             this.splitWizyty.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgbWizyty)).BeginInit();
-            this.tabControl.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvWizyty)).BeginInit();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -1032,6 +1035,7 @@
             // 
             // splitLekarze.Panel1
             // 
+            this.splitLekarze.Panel1.Controls.Add(this.cbLekarzeSpecjalnosci);
             this.splitLekarze.Panel1.Controls.Add(this.bLekarzeWyczysc);
             this.splitLekarze.Panel1.Controls.Add(this.bLekarzeSzukaj);
             this.splitLekarze.Panel1.Controls.Add(this.cbLekarzeSpecjalnosc);
@@ -1454,77 +1458,6 @@
             this.dgvPacjenci.Size = new System.Drawing.Size(872, 359);
             this.dgvPacjenci.TabIndex = 0;
             // 
-            // tabWizyty
-            // 
-            this.tabWizyty.Controls.Add(this.splitWizyty);
-            this.tabWizyty.Location = new System.Drawing.Point(4, 4);
-            this.tabWizyty.Name = "tabWizyty";
-            this.tabWizyty.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWizyty.Size = new System.Drawing.Size(878, 471);
-            this.tabWizyty.TabIndex = 1;
-            this.tabWizyty.Text = "Wizyty";
-            this.tabWizyty.UseVisualStyleBackColor = true;
-            // 
-            // splitWizyty
-            // 
-            this.splitWizyty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitWizyty.Location = new System.Drawing.Point(3, 3);
-            this.splitWizyty.Name = "splitWizyty";
-            this.splitWizyty.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitWizyty.Panel1
-            // 
-            this.splitWizyty.Panel1.Controls.Add(this.bWizytyPrzeloz);
-            this.splitWizyty.Panel1.Controls.Add(this.bWizytyAnuluj);
-            this.splitWizyty.Panel1.Controls.Add(this.bWizytyDodaj);
-            this.splitWizyty.Panel1.Controls.Add(this.label23);
-            this.splitWizyty.Panel1.Controls.Add(this.cbWizytyLekarz);
-            this.splitWizyty.Panel1.Controls.Add(this.label22);
-            this.splitWizyty.Panel1.Controls.Add(this.groupBox1);
-            this.splitWizyty.Panel1.Controls.Add(this.cbWizytyData);
-            // 
-            // splitWizyty.Panel2
-            // 
-            this.splitWizyty.Panel2.Controls.Add(this.dgbWizyty);
-            this.splitWizyty.Size = new System.Drawing.Size(872, 465);
-            this.splitWizyty.SplitterDistance = 147;
-            this.splitWizyty.TabIndex = 0;
-            // 
-            // dgbWizyty
-            // 
-            this.dgbWizyty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgbWizyty.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.w_id,
-            this.w_czas,
-            this.w_data,
-            this.w_imie,
-            this.w_nazwisko,
-            this.w_lekarz,
-            this.w_odbyta});
-            this.dgbWizyty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgbWizyty.Location = new System.Drawing.Point(0, 0);
-            this.dgbWizyty.Name = "dgbWizyty";
-            this.dgbWizyty.Size = new System.Drawing.Size(872, 314);
-            this.dgbWizyty.TabIndex = 0;
-            // 
-            // tabControl
-            // 
-            this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.tabControl.Controls.Add(this.tabWizyty);
-            this.tabControl.Controls.Add(this.tabPacjenci);
-            this.tabControl.Controls.Add(this.tabLekarze);
-            this.tabControl.Controls.Add(this.tabLekarstwa);
-            this.tabControl.Controls.Add(this.tabSwiadczenia);
-            this.tabControl.Controls.Add(this.tabChoroby);
-            this.tabControl.Controls.Add(this.tabSpecjalnosci);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 24);
-            this.tabControl.Multiline = true;
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(886, 497);
-            this.tabControl.TabIndex = 2;
-            // 
             // p_id
             // 
             this.p_id.DataPropertyName = "p_id";
@@ -1588,24 +1521,117 @@
             this.p_lekarz.Name = "p_lekarz";
             this.p_lekarz.Visible = false;
             // 
-            // cbWizytyData
+            // tabWizyty
             // 
-            this.cbWizytyData.FormattingEnabled = true;
-            this.cbWizytyData.Items.AddRange(new object[] {
-            "Dowolna",
-            "Dzisiaj ",
-            "Wczoraj",
-            "Ten tydzień",
-            "Poprzedni tydzień",
-            "Ten miesiąc",
-            "Poprzedni miesiąc",
-            "Pół roku",
-            "Rok",
-            "Więcej niż rok"});
-            this.cbWizytyData.Location = new System.Drawing.Point(64, 23);
-            this.cbWizytyData.Name = "cbWizytyData";
-            this.cbWizytyData.Size = new System.Drawing.Size(121, 21);
-            this.cbWizytyData.TabIndex = 0;
+            this.tabWizyty.Controls.Add(this.splitWizyty);
+            this.tabWizyty.Location = new System.Drawing.Point(4, 4);
+            this.tabWizyty.Name = "tabWizyty";
+            this.tabWizyty.Padding = new System.Windows.Forms.Padding(3);
+            this.tabWizyty.Size = new System.Drawing.Size(878, 471);
+            this.tabWizyty.TabIndex = 1;
+            this.tabWizyty.Text = "Wizyty";
+            this.tabWizyty.UseVisualStyleBackColor = true;
+            // 
+            // splitWizyty
+            // 
+            this.splitWizyty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitWizyty.Location = new System.Drawing.Point(3, 3);
+            this.splitWizyty.Name = "splitWizyty";
+            this.splitWizyty.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitWizyty.Panel1
+            // 
+            this.splitWizyty.Panel1.Controls.Add(this.bWizytyWyczysc);
+            this.splitWizyty.Panel1.Controls.Add(this.bWizytySzukaj);
+            this.splitWizyty.Panel1.Controls.Add(this.bWizytyPrzeloz);
+            this.splitWizyty.Panel1.Controls.Add(this.bWizytyAnuluj);
+            this.splitWizyty.Panel1.Controls.Add(this.bWizytyDodaj);
+            this.splitWizyty.Panel1.Controls.Add(this.label23);
+            this.splitWizyty.Panel1.Controls.Add(this.cbWizytyLekarz);
+            this.splitWizyty.Panel1.Controls.Add(this.label22);
+            this.splitWizyty.Panel1.Controls.Add(this.groupBox1);
+            this.splitWizyty.Panel1.Controls.Add(this.cbWizytyData);
+            // 
+            // splitWizyty.Panel2
+            // 
+            this.splitWizyty.Panel2.Controls.Add(this.dgvWizyty);
+            this.splitWizyty.Size = new System.Drawing.Size(872, 465);
+            this.splitWizyty.SplitterDistance = 147;
+            this.splitWizyty.TabIndex = 0;
+            // 
+            // bWizytyWyczysc
+            // 
+            this.bWizytyWyczysc.Location = new System.Drawing.Point(466, 78);
+            this.bWizytyWyczysc.Name = "bWizytyWyczysc";
+            this.bWizytyWyczysc.Size = new System.Drawing.Size(75, 23);
+            this.bWizytyWyczysc.TabIndex = 9;
+            this.bWizytyWyczysc.Text = "Wyczyść";
+            this.bWizytyWyczysc.UseVisualStyleBackColor = true;
+            this.bWizytyWyczysc.Click += new System.EventHandler(this.bWizytyWyczysc_Click);
+            // 
+            // bWizytySzukaj
+            // 
+            this.bWizytySzukaj.Location = new System.Drawing.Point(466, 48);
+            this.bWizytySzukaj.Name = "bWizytySzukaj";
+            this.bWizytySzukaj.Size = new System.Drawing.Size(75, 23);
+            this.bWizytySzukaj.TabIndex = 8;
+            this.bWizytySzukaj.Text = "Szukaj";
+            this.bWizytySzukaj.UseVisualStyleBackColor = true;
+            this.bWizytySzukaj.Click += new System.EventHandler(this.bWizytySzukaj_Click);
+            // 
+            // bWizytyPrzeloz
+            // 
+            this.bWizytyPrzeloz.Location = new System.Drawing.Point(731, 48);
+            this.bWizytyPrzeloz.Name = "bWizytyPrzeloz";
+            this.bWizytyPrzeloz.Size = new System.Drawing.Size(75, 41);
+            this.bWizytyPrzeloz.TabIndex = 7;
+            this.bWizytyPrzeloz.Text = "Przełóż";
+            this.bWizytyPrzeloz.UseVisualStyleBackColor = true;
+            // 
+            // bWizytyAnuluj
+            // 
+            this.bWizytyAnuluj.Location = new System.Drawing.Point(731, 94);
+            this.bWizytyAnuluj.Name = "bWizytyAnuluj";
+            this.bWizytyAnuluj.Size = new System.Drawing.Size(75, 41);
+            this.bWizytyAnuluj.TabIndex = 6;
+            this.bWizytyAnuluj.Text = "Anuluj";
+            this.bWizytyAnuluj.UseVisualStyleBackColor = true;
+            // 
+            // bWizytyDodaj
+            // 
+            this.bWizytyDodaj.Location = new System.Drawing.Point(731, 0);
+            this.bWizytyDodaj.Name = "bWizytyDodaj";
+            this.bWizytyDodaj.Size = new System.Drawing.Size(75, 41);
+            this.bWizytyDodaj.TabIndex = 5;
+            this.bWizytyDodaj.Text = "Dodaj";
+            this.bWizytyDodaj.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(28, 69);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(39, 13);
+            this.label23.TabIndex = 4;
+            this.label23.Text = "Lekarz";
+            // 
+            // cbWizytyLekarz
+            // 
+            this.cbWizytyLekarz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWizytyLekarz.FormattingEnabled = true;
+            this.cbWizytyLekarz.Location = new System.Drawing.Point(73, 66);
+            this.cbWizytyLekarz.Name = "cbWizytyLekarz";
+            this.cbWizytyLekarz.Size = new System.Drawing.Size(121, 21);
+            this.cbWizytyLekarz.TabIndex = 3;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(28, 23);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(30, 13);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "Data";
             // 
             // groupBox1
             // 
@@ -1619,28 +1645,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wizyty";
             // 
-            // rbWizytyNieodbyte
-            // 
-            this.rbWizytyNieodbyte.AutoSize = true;
-            this.rbWizytyNieodbyte.Location = new System.Drawing.Point(31, 20);
-            this.rbWizytyNieodbyte.Name = "rbWizytyNieodbyte";
-            this.rbWizytyNieodbyte.Size = new System.Drawing.Size(100, 17);
-            this.rbWizytyNieodbyte.TabIndex = 0;
-            this.rbWizytyNieodbyte.TabStop = true;
-            this.rbWizytyNieodbyte.Text = "Tylko nieodbyte";
-            this.rbWizytyNieodbyte.UseVisualStyleBackColor = true;
-            // 
-            // rbWizytyOdbyte
-            // 
-            this.rbWizytyOdbyte.AutoSize = true;
-            this.rbWizytyOdbyte.Location = new System.Drawing.Point(31, 44);
-            this.rbWizytyOdbyte.Name = "rbWizytyOdbyte";
-            this.rbWizytyOdbyte.Size = new System.Drawing.Size(86, 17);
-            this.rbWizytyOdbyte.TabIndex = 1;
-            this.rbWizytyOdbyte.TabStop = true;
-            this.rbWizytyOdbyte.Text = "Tylko odbyte";
-            this.rbWizytyOdbyte.UseVisualStyleBackColor = true;
-            // 
             // rbWizytyWszystkie
             // 
             this.rbWizytyWszystkie.AutoSize = true;
@@ -1653,58 +1657,64 @@
             this.rbWizytyWszystkie.Text = "Wszystkie";
             this.rbWizytyWszystkie.UseVisualStyleBackColor = true;
             // 
-            // label22
+            // rbWizytyOdbyte
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(28, 23);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(30, 13);
-            this.label22.TabIndex = 2;
-            this.label22.Text = "Data";
+            this.rbWizytyOdbyte.AutoSize = true;
+            this.rbWizytyOdbyte.Location = new System.Drawing.Point(31, 44);
+            this.rbWizytyOdbyte.Name = "rbWizytyOdbyte";
+            this.rbWizytyOdbyte.Size = new System.Drawing.Size(86, 17);
+            this.rbWizytyOdbyte.TabIndex = 1;
+            this.rbWizytyOdbyte.TabStop = true;
+            this.rbWizytyOdbyte.Text = "Tylko odbyte";
+            this.rbWizytyOdbyte.UseVisualStyleBackColor = true;
             // 
-            // label23
+            // rbWizytyNieodbyte
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(28, 69);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(39, 13);
-            this.label23.TabIndex = 4;
-            this.label23.Text = "Lekarz";
+            this.rbWizytyNieodbyte.AutoSize = true;
+            this.rbWizytyNieodbyte.Location = new System.Drawing.Point(31, 20);
+            this.rbWizytyNieodbyte.Name = "rbWizytyNieodbyte";
+            this.rbWizytyNieodbyte.Size = new System.Drawing.Size(100, 17);
+            this.rbWizytyNieodbyte.TabIndex = 0;
+            this.rbWizytyNieodbyte.TabStop = true;
+            this.rbWizytyNieodbyte.Text = "Tylko nieodbyte";
+            this.rbWizytyNieodbyte.UseVisualStyleBackColor = true;
             // 
-            // cbWizytyLekarz
+            // cbWizytyData
             // 
-            this.cbWizytyLekarz.FormattingEnabled = true;
-            this.cbWizytyLekarz.Location = new System.Drawing.Point(64, 69);
-            this.cbWizytyLekarz.Name = "cbWizytyLekarz";
-            this.cbWizytyLekarz.Size = new System.Drawing.Size(121, 21);
-            this.cbWizytyLekarz.TabIndex = 3;
+            this.cbWizytyData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWizytyData.FormattingEnabled = true;
+            this.cbWizytyData.Items.AddRange(new object[] {
+            "Dowolna",
+            "Dzisiaj ",
+            "Wczoraj",
+            "Ten tydzień",
+            "Poprzedni tydzień",
+            "Ten miesiąc",
+            "Poprzedni miesiąc",
+            "Pół roku",
+            "Rok",
+            "Więcej niż rok"});
+            this.cbWizytyData.Location = new System.Drawing.Point(64, 20);
+            this.cbWizytyData.Name = "cbWizytyData";
+            this.cbWizytyData.Size = new System.Drawing.Size(121, 21);
+            this.cbWizytyData.TabIndex = 0;
             // 
-            // bWizytyDodaj
+            // dgvWizyty
             // 
-            this.bWizytyDodaj.Location = new System.Drawing.Point(486, 9);
-            this.bWizytyDodaj.Name = "bWizytyDodaj";
-            this.bWizytyDodaj.Size = new System.Drawing.Size(75, 41);
-            this.bWizytyDodaj.TabIndex = 5;
-            this.bWizytyDodaj.Text = "Dodaj";
-            this.bWizytyDodaj.UseVisualStyleBackColor = true;
-            // 
-            // bWizytyAnuluj
-            // 
-            this.bWizytyAnuluj.Location = new System.Drawing.Point(577, 11);
-            this.bWizytyAnuluj.Name = "bWizytyAnuluj";
-            this.bWizytyAnuluj.Size = new System.Drawing.Size(75, 41);
-            this.bWizytyAnuluj.TabIndex = 6;
-            this.bWizytyAnuluj.Text = "Anuluj";
-            this.bWizytyAnuluj.UseVisualStyleBackColor = true;
-            // 
-            // bWizytyPrzeloz
-            // 
-            this.bWizytyPrzeloz.Location = new System.Drawing.Point(672, 12);
-            this.bWizytyPrzeloz.Name = "bWizytyPrzeloz";
-            this.bWizytyPrzeloz.Size = new System.Drawing.Size(75, 41);
-            this.bWizytyPrzeloz.TabIndex = 7;
-            this.bWizytyPrzeloz.Text = "Przełóż";
-            this.bWizytyPrzeloz.UseVisualStyleBackColor = true;
+            this.dgvWizyty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvWizyty.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.w_id,
+            this.w_godzina,
+            this.w_data,
+            this.w_imie,
+            this.w_nazwisko,
+            this.w_lekarz,
+            this.w_odbyta});
+            this.dgvWizyty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvWizyty.Location = new System.Drawing.Point(0, 0);
+            this.dgvWizyty.Name = "dgvWizyty";
+            this.dgvWizyty.Size = new System.Drawing.Size(872, 314);
+            this.dgvWizyty.TabIndex = 0;
             // 
             // w_id
             // 
@@ -1713,12 +1723,12 @@
             this.w_id.Name = "w_id";
             this.w_id.Visible = false;
             // 
-            // w_czas
+            // w_godzina
             // 
-            this.w_czas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.w_czas.DataPropertyName = "w_czas";
-            this.w_czas.HeaderText = "Godzina";
-            this.w_czas.Name = "w_czas";
+            this.w_godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.w_godzina.DataPropertyName = "w_godzina";
+            this.w_godzina.HeaderText = "Godzina";
+            this.w_godzina.Name = "w_godzina";
             // 
             // w_data
             // 
@@ -1743,17 +1753,48 @@
             // 
             // w_lekarz
             // 
-            this.w_lekarz.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.w_lekarz.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.w_lekarz.DataPropertyName = "w_lekarz";
             this.w_lekarz.HeaderText = "Lekarz";
             this.w_lekarz.Name = "w_lekarz";
+            this.w_lekarz.Width = 64;
             // 
             // w_odbyta
             // 
+            this.w_odbyta.DataPropertyName = "w_odbyta";
             this.w_odbyta.HeaderText = "Odbyta";
             this.w_odbyta.Name = "w_odbyta";
             this.w_odbyta.ReadOnly = true;
             this.w_odbyta.TrueValue = "w_odbyta";
+            // 
+            // tabControl
+            // 
+            this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabControl.Controls.Add(this.tabWizyty);
+            this.tabControl.Controls.Add(this.tabPacjenci);
+            this.tabControl.Controls.Add(this.tabLekarze);
+            this.tabControl.Controls.Add(this.tabLekarstwa);
+            this.tabControl.Controls.Add(this.tabSwiadczenia);
+            this.tabControl.Controls.Add(this.tabChoroby);
+            this.tabControl.Controls.Add(this.tabSpecjalnosci);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 24);
+            this.tabControl.Multiline = true;
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(886, 497);
+            this.tabControl.TabIndex = 2;
+            // 
+            // cbLekarzeSpecjalnosci
+            // 
+            this.cbLekarzeSpecjalnosci.AutoSize = true;
+            this.cbLekarzeSpecjalnosci.Location = new System.Drawing.Point(532, 48);
+            this.cbLekarzeSpecjalnosci.Name = "cbLekarzeSpecjalnosci";
+            this.cbLekarzeSpecjalnosci.Size = new System.Drawing.Size(125, 17);
+            this.cbLekarzeSpecjalnosci.TabIndex = 22;
+            this.cbLekarzeSpecjalnosci.Text = "Pokazuj specjalności";
+            this.cbLekarzeSpecjalnosci.UseVisualStyleBackColor = true;
+            this.cbLekarzeSpecjalnosci.CheckedChanged += new System.EventHandler(this.cbLekarzeSpecjalnosci_CheckedChanged);
             // 
             // MainWindow
             // 
@@ -1822,10 +1863,10 @@
             this.splitWizyty.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitWizyty)).EndInit();
             this.splitWizyty.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgbWizyty)).EndInit();
-            this.tabControl.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvWizyty)).EndInit();
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1892,7 +1933,7 @@
         private System.Windows.Forms.DataGridView dgvPacjenci;
         private System.Windows.Forms.TabPage tabWizyty;
         private System.Windows.Forms.SplitContainer splitWizyty;
-        private System.Windows.Forms.DataGridView dgbWizyty;
+        private System.Windows.Forms.DataGridView dgvWizyty;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.GroupBox gbLekarstwa;
         private System.Windows.Forms.TextBox tbLekZalecenia;
@@ -1975,12 +2016,15 @@
         private System.Windows.Forms.Button bWizytyAnuluj;
         private System.Windows.Forms.Button bWizytyDodaj;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn w_czas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn w_godzina;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_data;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_imie;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_nazwisko;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_lekarz;
         private System.Windows.Forms.DataGridViewCheckBoxColumn w_odbyta;
+        private System.Windows.Forms.Button bWizytyWyczysc;
+        private System.Windows.Forms.Button bWizytySzukaj;
+        private System.Windows.Forms.CheckBox cbLekarzeSpecjalnosci;
     }
 }
 

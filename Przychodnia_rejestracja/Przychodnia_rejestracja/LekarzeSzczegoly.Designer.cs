@@ -72,7 +72,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button = new System.Windows.Forms.Button();
-            this.godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wgodzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wimie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wnazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -367,7 +367,7 @@
             // 
             this.dgvWizyty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvWizyty.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.godzina,
+            this.wgodzina,
             this.data,
             this.wimie,
             this.wnazwisko,
@@ -503,12 +503,12 @@
             this.button.UseVisualStyleBackColor = true;
             this.button.Click += new System.EventHandler(this.button_Click);
             // 
-            // godzina
+            // wgodzina
             // 
-            this.godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.godzina.DataPropertyName = "wgodzina";
-            this.godzina.HeaderText = "Godzina";
-            this.godzina.Name = "godzina";
+            this.wgodzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.wgodzina.DataPropertyName = "wgodzina";
+            this.wgodzina.HeaderText = "Godzina";
+            this.wgodzina.Name = "wgodzina";
             // 
             // data
             // 
@@ -613,7 +613,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn p_ulica;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_adres;
         private System.Windows.Forms.DataGridViewTextBoxColumn p_kod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn godzina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wgodzina;
         private System.Windows.Forms.DataGridViewTextBoxColumn data;
         private System.Windows.Forms.DataGridViewTextBoxColumn wimie;
         private System.Windows.Forms.DataGridViewTextBoxColumn wnazwisko;

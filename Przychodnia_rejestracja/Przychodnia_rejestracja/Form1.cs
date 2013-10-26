@@ -31,7 +31,10 @@ namespace Przychodnia_rejestracja
 
             wczytajDaneDoFiltrowLekarzy();
             wczytajDaneDoFiltrowPacjentow();
+            wczytajDaneDoFiltrowWizyt();
 
+
+            wyswietlWizyty();
             wyswietlLekarzy();
             wyswietlSwiadczenia();
             wyswietlChoroby();
@@ -39,10 +42,6 @@ namespace Przychodnia_rejestracja
             wyswietlLekarstwa();
             wyswietlPacjentow();
         }
-
-
-
-
 
         #region Wspolne
         private void ZamienMiejscami(Control first, Control second)
@@ -306,6 +305,9 @@ namespace Przychodnia_rejestracja
                                             kod_pocztowy = l.kod_pocztowy
                                         };
 
+
+
+
                     if ((string)cbLekarzeImie.SelectedItem != "Dowolne")
                         query = query.Where(l => (string)l.imie == (string)cbLekarzeImie.SelectedItem);
 
@@ -317,10 +319,8 @@ namespace Przychodnia_rejestracja
 
                     if ((string)cbLekarzeSpecjalnosc.SelectedItem != "Dowolna"){
                         query = query.Where(s => (string)s.specjalnosc == (string)cbLekarzeSpecjalnosc.SelectedItem);
-                        dgvLekarze.Columns["specjalnosc"].Visible = true;
                     }
-                    else
-                        dgvLekarze.Columns["specjalnosc"].Visible = false;
+                       
 
                         if ((string)cbLekarzeWiek.SelectedItem != "Dowolny")
                         {
@@ -345,7 +345,9 @@ namespace Przychodnia_rejestracja
                                 }
                             }
                         }
-                    dgvLekarze.DataSource = query.ToList();
+                        var lista = query.ToList();
+                        lista.Distinct();
+                    dgvLekarze.DataSource = lista;
 
                 }
                 
@@ -358,6 +360,11 @@ namespace Przychodnia_rejestracja
             {
                 ustawWartoscDomyslnaFiltrowLekarzy();
                 konstuujFiltrLekarzy();
+            }
+            private void cbLekarzeSpecjalnosci_CheckedChanged(object sender, EventArgs e)
+            {
+                CheckBox item = (CheckBox)sender;
+                dgvLekarze.Columns["specjalnosc"].Visible = item.Checked;
             }
         #endregion
 
@@ -1097,6 +1104,105 @@ namespace Przychodnia_rejestracja
         }
 
         #endregion
+
+        #region Wizyty
+        public void wyswietlWizyty()
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var wizyty = from w in dc.Wizyty
+                             join p in dc.Pacjenci on w.ID_Pacjenta equals p.ID_Pacjenta
+                             join l in dc.Lekarze on w.ID_Lekarza equals l.ID_Lekarza
+                             orderby w.data descending, w.czas descending
+                             select new
+                             {
+                                 w_data = w.data,
+                                 w_godzina = w.czas,
+                                 w_imie = p.imie,
+                                 w_nazwisko = p.nazwisko,
+                                 w_odbyta = w.czy_odbyta,
+                                 w_lekarz = l.nazwisko + " " + l.imie
+                             };
+                dgvWizyty.DataSource = wizyty.ToList();
+            }
+        }
+        private void ustawWartoscDomyslnaFiltrowWizyt()
+        {
+            cbWizytyData.SelectedIndex = 0;
+            cbWizytyLekarz.SelectedIndex = 0;
+            rbWizytyWszystkie.Checked = true;
+        }
+        private void wczytajDaneDoFiltrowWizyt()
+        {
+            wczytajLekarzyWizyt(); 
+            ustawWartoscDomyslnaFiltrowWizyt();
+        }
+        private void wczytajLekarzyWizyt()
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var lekarze = from s in dc.Lekarze
+                              orderby s.nazwisko ascending
+                              select new
+                              {
+                                  imie = s.imie,
+                                  nazwisko = s.nazwisko
+                              };
+                foreach (var lekarz in lekarze)
+                    cbWizytyLekarz.Items.Add(String.Format("{0} {1}", lekarz.nazwisko, lekarz.imie));
+            }
+        }
+        private void konstuujFiltrWizyt()
+        {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+
+                var query = from p in dc.Pacjenci
+                            join w in dc.Wizyty on p.ID_Pacjenta equals w.ID_Pacjenta into a
+                            from w in a.DefaultIfEmpty()
+                            join l in dc.Lekarze on w.ID_Lekarza equals l.ID_Lekarza into b
+                            from l in b.DefaultIfEmpty()
+                            select new
+                            {
+                                w_lekarz = l.nazwisko + " " + l.imie,
+                                w_imie = p.imie,
+                                w_nazwisko = p.nazwisko,
+                                w_godzina = w.czas,
+                                w_data = w.data,
+                                w_odbyta = w.czy_odbyta
+                            };
+
+                if ((string)cbWizytyLekarz.SelectedItem != "Dowolny")
+                    query = query.Where(l => (string)l.w_lekarz == (string)cbWizytyLekarz.SelectedItem);
+
+                if (rbWizytyOdbyte.Checked) {
+                    query = query.Where(l => l.w_odbyta == true);
+                }
+                else if (rbWizytyNieodbyte.Checked)
+                {
+                    query = query.Where(l => l.w_odbyta == false);
+                }
+
+                dgvWizyty.DataSource = query.ToList();
+
+            }
+
+        }
+        private void bWizytySzukaj_Click(object sender, EventArgs e)
+        {
+            konstuujFiltrWizyt();
+        }
+
+        private void bWizytyWyczysc_Click(object sender, EventArgs e)
+        {
+            ustawWartoscDomyslnaFiltrowWizyt();
+        }
+
+
+        #endregion
+
+
+
 
 
 

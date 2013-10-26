@@ -77,7 +77,7 @@ namespace Przychodnia_rejestracja
                                    select new
                                    {
                                        data = w.data,
-                                       godzina = w.czas,
+                                       wgodzina = w.czas,
                                        wimie = p.imie,
                                        wnazwisko = p.nazwisko, 
                                        odbyta = w.czy_odbyta
