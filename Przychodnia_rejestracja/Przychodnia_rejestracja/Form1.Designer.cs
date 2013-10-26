@@ -47,7 +47,6 @@
             this.bSpZapisz = new System.Windows.Forms.Button();
             this.bSpDodaj = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbSpecjalnosc = new System.Windows.Forms.TextBox();
             this.tabChoroby = new System.Windows.Forms.TabPage();
             this.splitChoroby = new System.Windows.Forms.SplitContainer();
@@ -109,6 +108,7 @@
             this.tbLekarstwo = new System.Windows.Forms.TextBox();
             this.tabLekarze = new System.Windows.Forms.TabPage();
             this.splitLekarze = new System.Windows.Forms.SplitContainer();
+            this.cbLekarzeSpecjalnosci = new System.Windows.Forms.CheckBox();
             this.bLekarzeWyczysc = new System.Windows.Forms.Button();
             this.bLekarzeSzukaj = new System.Windows.Forms.Button();
             this.cbLekarzeSpecjalnosc = new System.Windows.Forms.ComboBox();
@@ -129,8 +129,8 @@
             this.miejsce_ur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data_ur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.miescje_zam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kod_pocztowy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.miescje_zam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPacjenci = new System.Windows.Forms.TabPage();
             this.splitPacjenci = new System.Windows.Forms.SplitContainer();
             this.bPacjenciWyczysc = new System.Windows.Forms.Button();
@@ -179,7 +179,6 @@
             this.w_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.cbLekarzeSpecjalnosci = new System.Windows.Forms.CheckBox();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -353,19 +352,18 @@
             this.gbSpecjalnosci.Controls.Add(this.bSpZapisz);
             this.gbSpecjalnosci.Controls.Add(this.bSpDodaj);
             this.gbSpecjalnosci.Controls.Add(this.label4);
-            this.gbSpecjalnosci.Controls.Add(this.textBox1);
             this.gbSpecjalnosci.Controls.Add(this.tbSpecjalnosc);
             this.gbSpecjalnosci.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbSpecjalnosci.Location = new System.Drawing.Point(0, 0);
             this.gbSpecjalnosci.Name = "gbSpecjalnosci";
-            this.gbSpecjalnosci.Size = new System.Drawing.Size(274, 238);
+            this.gbSpecjalnosci.Size = new System.Drawing.Size(274, 149);
             this.gbSpecjalnosci.TabIndex = 0;
             this.gbSpecjalnosci.TabStop = false;
             this.gbSpecjalnosci.Text = "Dodaj specjalność";
             // 
             // bSpAnuluj
             // 
-            this.bSpAnuluj.Location = new System.Drawing.Point(160, 197);
+            this.bSpAnuluj.Location = new System.Drawing.Point(160, 102);
             this.bSpAnuluj.Name = "bSpAnuluj";
             this.bSpAnuluj.Size = new System.Drawing.Size(89, 23);
             this.bSpAnuluj.TabIndex = 11;
@@ -376,7 +374,7 @@
             // 
             // bSpZapisz
             // 
-            this.bSpZapisz.Location = new System.Drawing.Point(65, 168);
+            this.bSpZapisz.Location = new System.Drawing.Point(65, 73);
             this.bSpZapisz.Name = "bSpZapisz";
             this.bSpZapisz.Size = new System.Drawing.Size(89, 23);
             this.bSpZapisz.TabIndex = 10;
@@ -388,7 +386,7 @@
             // 
             // bSpDodaj
             // 
-            this.bSpDodaj.Location = new System.Drawing.Point(160, 168);
+            this.bSpDodaj.Location = new System.Drawing.Point(160, 73);
             this.bSpDodaj.Name = "bSpDodaj";
             this.bSpDodaj.Size = new System.Drawing.Size(89, 23);
             this.bSpDodaj.TabIndex = 9;
@@ -404,15 +402,6 @@
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Nazwa";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(27, 65);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(222, 97);
-            this.textBox1.TabIndex = 7;
             // 
             // tbSpecjalnosc
             // 
@@ -1056,6 +1045,17 @@
             this.splitLekarze.SplitterDistance = 82;
             this.splitLekarze.TabIndex = 0;
             // 
+            // cbLekarzeSpecjalnosci
+            // 
+            this.cbLekarzeSpecjalnosci.AutoSize = true;
+            this.cbLekarzeSpecjalnosci.Location = new System.Drawing.Point(532, 48);
+            this.cbLekarzeSpecjalnosci.Name = "cbLekarzeSpecjalnosci";
+            this.cbLekarzeSpecjalnosci.Size = new System.Drawing.Size(125, 17);
+            this.cbLekarzeSpecjalnosci.TabIndex = 22;
+            this.cbLekarzeSpecjalnosci.Text = "Pokazuj specjalności";
+            this.cbLekarzeSpecjalnosci.UseVisualStyleBackColor = true;
+            this.cbLekarzeSpecjalnosci.CheckedChanged += new System.EventHandler(this.cbLekarzeSpecjalnosci_CheckedChanged);
+            // 
             // bLekarzeWyczysc
             // 
             this.bLekarzeWyczysc.Location = new System.Drawing.Point(782, 44);
@@ -1078,6 +1078,8 @@
             // 
             // cbLekarzeSpecjalnosc
             // 
+            this.cbLekarzeSpecjalnosc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbLekarzeSpecjalnosc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbLekarzeSpecjalnosc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLekarzeSpecjalnosc.FormattingEnabled = true;
             this.cbLekarzeSpecjalnosc.Items.AddRange(new object[] {
@@ -1089,6 +1091,8 @@
             // 
             // cbLekarzeNazwisko
             // 
+            this.cbLekarzeNazwisko.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbLekarzeNazwisko.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbLekarzeNazwisko.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLekarzeNazwisko.FormattingEnabled = true;
             this.cbLekarzeNazwisko.Items.AddRange(new object[] {
@@ -1100,6 +1104,8 @@
             // 
             // cbLekarzeImie
             // 
+            this.cbLekarzeImie.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbLekarzeImie.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbLekarzeImie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLekarzeImie.FormattingEnabled = true;
             this.cbLekarzeImie.Items.AddRange(new object[] {
@@ -1111,6 +1117,8 @@
             // 
             // cbLekarzeWiek
             // 
+            this.cbLekarzeWiek.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbLekarzeWiek.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbLekarzeWiek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLekarzeWiek.FormattingEnabled = true;
             this.cbLekarzeWiek.Items.AddRange(new object[] {
@@ -1169,6 +1177,8 @@
             // 
             // cbLekarzeMiasto
             // 
+            this.cbLekarzeMiasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbLekarzeMiasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbLekarzeMiasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLekarzeMiasto.FormattingEnabled = true;
             this.cbLekarzeMiasto.Items.AddRange(new object[] {
@@ -1191,8 +1201,8 @@
             this.miejsce_ur,
             this.data_ur,
             this.adres,
-            this.miescje_zam,
-            this.kod_pocztowy});
+            this.kod_pocztowy,
+            this.miescje_zam});
             this.dgvLekarze.ContextMenuStrip = this.cmsLekarze;
             this.dgvLekarze.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLekarze.Location = new System.Drawing.Point(0, 0);
@@ -1263,19 +1273,19 @@
             this.adres.Name = "adres";
             this.adres.ReadOnly = true;
             // 
-            // miescje_zam
-            // 
-            this.miescje_zam.DataPropertyName = "miescje_zam";
-            this.miescje_zam.HeaderText = "Miasto";
-            this.miescje_zam.Name = "miescje_zam";
-            this.miescje_zam.ReadOnly = true;
-            // 
             // kod_pocztowy
             // 
             this.kod_pocztowy.DataPropertyName = "kod_pocztowy";
             this.kod_pocztowy.HeaderText = "Kod Pocztowy";
             this.kod_pocztowy.Name = "kod_pocztowy";
             this.kod_pocztowy.ReadOnly = true;
+            // 
+            // miescje_zam
+            // 
+            this.miescje_zam.DataPropertyName = "miescje_zam";
+            this.miescje_zam.HeaderText = "Miasto";
+            this.miescje_zam.Name = "miescje_zam";
+            this.miescje_zam.ReadOnly = true;
             // 
             // tabPacjenci
             // 
@@ -1339,6 +1349,8 @@
             // 
             // cbPacjenciLekarz
             // 
+            this.cbPacjenciLekarz.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbPacjenciLekarz.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbPacjenciLekarz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPacjenciLekarz.FormattingEnabled = true;
             this.cbPacjenciLekarz.Items.AddRange(new object[] {
@@ -1350,6 +1362,8 @@
             // 
             // cbPacjenciNazwisko
             // 
+            this.cbPacjenciNazwisko.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbPacjenciNazwisko.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbPacjenciNazwisko.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPacjenciNazwisko.FormattingEnabled = true;
             this.cbPacjenciNazwisko.Items.AddRange(new object[] {
@@ -1361,6 +1375,8 @@
             // 
             // cbPacjenciImie
             // 
+            this.cbPacjenciImie.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbPacjenciImie.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbPacjenciImie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPacjenciImie.FormattingEnabled = true;
             this.cbPacjenciImie.Items.AddRange(new object[] {
@@ -1430,6 +1446,8 @@
             // 
             // cbPacjenciMiasto
             // 
+            this.cbPacjenciMiasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbPacjenciMiasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbPacjenciMiasto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPacjenciMiasto.FormattingEnabled = true;
             this.cbPacjenciMiasto.Items.AddRange(new object[] {
@@ -1617,8 +1635,12 @@
             // 
             // cbWizytyLekarz
             // 
+            this.cbWizytyLekarz.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbWizytyLekarz.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbWizytyLekarz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbWizytyLekarz.FormattingEnabled = true;
+            this.cbWizytyLekarz.Items.AddRange(new object[] {
+            "Dowolny"});
             this.cbWizytyLekarz.Location = new System.Drawing.Point(73, 66);
             this.cbWizytyLekarz.Name = "cbWizytyLekarz";
             this.cbWizytyLekarz.Size = new System.Drawing.Size(121, 21);
@@ -1681,11 +1703,13 @@
             // 
             // cbWizytyData
             // 
+            this.cbWizytyData.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbWizytyData.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbWizytyData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbWizytyData.FormattingEnabled = true;
             this.cbWizytyData.Items.AddRange(new object[] {
             "Dowolna",
-            "Dzisiaj ",
+            "Dzisiaj",
             "Wczoraj",
             "Ten tydzień",
             "Poprzedni tydzień",
@@ -1693,7 +1717,8 @@
             "Poprzedni miesiąc",
             "Pół roku",
             "Rok",
-            "Więcej niż rok"});
+            "Więcej niż rok",
+            "Zaplanowane"});
             this.cbWizytyData.Location = new System.Drawing.Point(64, 20);
             this.cbWizytyData.Name = "cbWizytyData";
             this.cbWizytyData.Size = new System.Drawing.Size(121, 21);
@@ -1725,17 +1750,19 @@
             // 
             // w_godzina
             // 
-            this.w_godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.w_godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.w_godzina.DataPropertyName = "w_godzina";
             this.w_godzina.HeaderText = "Godzina";
             this.w_godzina.Name = "w_godzina";
+            this.w_godzina.Width = 71;
             // 
             // w_data
             // 
-            this.w_data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.w_data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.w_data.DataPropertyName = "w_data";
             this.w_data.HeaderText = "Dzień";
             this.w_data.Name = "w_data";
+            this.w_data.Width = 59;
             // 
             // w_imie
             // 
@@ -1753,11 +1780,10 @@
             // 
             // w_lekarz
             // 
-            this.w_lekarz.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.w_lekarz.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.w_lekarz.DataPropertyName = "w_lekarz";
             this.w_lekarz.HeaderText = "Lekarz";
             this.w_lekarz.Name = "w_lekarz";
-            this.w_lekarz.Width = 64;
             // 
             // w_odbyta
             // 
@@ -1766,6 +1792,7 @@
             this.w_odbyta.Name = "w_odbyta";
             this.w_odbyta.ReadOnly = true;
             this.w_odbyta.TrueValue = "w_odbyta";
+            this.w_odbyta.Width = 60;
             // 
             // tabControl
             // 
@@ -1784,17 +1811,6 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(886, 497);
             this.tabControl.TabIndex = 2;
-            // 
-            // cbLekarzeSpecjalnosci
-            // 
-            this.cbLekarzeSpecjalnosci.AutoSize = true;
-            this.cbLekarzeSpecjalnosci.Location = new System.Drawing.Point(532, 48);
-            this.cbLekarzeSpecjalnosci.Name = "cbLekarzeSpecjalnosci";
-            this.cbLekarzeSpecjalnosci.Size = new System.Drawing.Size(125, 17);
-            this.cbLekarzeSpecjalnosci.TabIndex = 22;
-            this.cbLekarzeSpecjalnosci.Text = "Pokazuj specjalności";
-            this.cbLekarzeSpecjalnosci.UseVisualStyleBackColor = true;
-            this.cbLekarzeSpecjalnosci.CheckedChanged += new System.EventHandler(this.cbLekarzeSpecjalnosci_CheckedChanged);
             // 
             // MainWindow
             // 
@@ -1892,7 +1908,6 @@
         private System.Windows.Forms.Button bSpZapisz;
         private System.Windows.Forms.Button bSpDodaj;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox tbSpecjalnosc;
         private System.Windows.Forms.TabPage tabChoroby;
         private System.Windows.Forms.SplitContainer splitChoroby;
@@ -1974,15 +1989,6 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Button bLekarzeWyczysc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn imie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nazwisko;
-        private System.Windows.Forms.DataGridViewTextBoxColumn specjalnosc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn miejsce_ur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn data_ur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn adres;
-        private System.Windows.Forms.DataGridViewTextBoxColumn miescje_zam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kod_pocztowy;
         private System.Windows.Forms.Button bPacjenciWyczysc;
         private System.Windows.Forms.Button bPacjenciSzukaj;
         private System.Windows.Forms.ComboBox cbPacjenciLekarz;
@@ -2015,6 +2021,18 @@
         private System.Windows.Forms.Button bWizytyPrzeloz;
         private System.Windows.Forms.Button bWizytyAnuluj;
         private System.Windows.Forms.Button bWizytyDodaj;
+        private System.Windows.Forms.Button bWizytyWyczysc;
+        private System.Windows.Forms.Button bWizytySzukaj;
+        private System.Windows.Forms.CheckBox cbLekarzeSpecjalnosci;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imie;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazwisko;
+        private System.Windows.Forms.DataGridViewTextBoxColumn specjalnosc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn miejsce_ur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data_ur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kod_pocztowy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn miescje_zam;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_godzina;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_data;
@@ -2022,9 +2040,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn w_nazwisko;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_lekarz;
         private System.Windows.Forms.DataGridViewCheckBoxColumn w_odbyta;
-        private System.Windows.Forms.Button bWizytyWyczysc;
-        private System.Windows.Forms.Button bWizytySzukaj;
-        private System.Windows.Forms.CheckBox cbLekarzeSpecjalnosci;
     }
 }
 

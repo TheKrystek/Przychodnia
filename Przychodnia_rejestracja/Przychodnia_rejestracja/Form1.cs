@@ -415,16 +415,17 @@ namespace Przychodnia_rejestracja
             {
                 int id = dgvChoroby.Rows.GetFirstRow(DataGridViewElementStates.Selected);
                 if (id >= 0)
-                {
-                    tbChoroba.Text = dgvChoroby.Rows[id].Cells["ch_nazwa"].Value.ToString();
-                    tbChOpis.Text = dgvChoroby.Rows[id].Cells["ch_opis"].Value.ToString();
-                    // Zamien przyciski miejscami
-                    if (!bChZapisz.Visible)
+                {       
+                    if (bChDodaj.Visible)
                     {
                         ZamienMiejscami(bChDodaj, bChZapisz);
                         gbChoroby.Text = "Edytuj chorobę";
                         this.choroba_id = Convert.ToInt32(dgvChoroby.Rows[id].Cells["ch_id"].Value.ToString());
                     }
+                    tbChoroba.Text = dgvChoroby.Rows[id].Cells["ch_nazwa"].Value.ToString();
+                    tbChOpis.Text = dgvChoroby.Rows[id].Cells["ch_opis"].Value.ToString();
+                    // Zamien przyciski miejscami
+            
                 }
             }
             void WyczyscPolaChoroby()
@@ -1162,6 +1163,7 @@ namespace Przychodnia_rejestracja
                             from w in a.DefaultIfEmpty()
                             join l in dc.Lekarze on w.ID_Lekarza equals l.ID_Lekarza into b
                             from l in b.DefaultIfEmpty()
+                            orderby w.data descending, w.czas ascending
                             select new
                             {
                                 w_lekarz = l.nazwisko + " " + l.imie,
@@ -1182,6 +1184,61 @@ namespace Przychodnia_rejestracja
                 {
                     query = query.Where(l => l.w_odbyta == false);
                 }
+
+
+                if ((string)cbWizytyData.SelectedItem != "Dowolna") {
+                    string value = (string)cbWizytyData.SelectedItem;
+                    DateTime tydzienTemu = DateTime.Today.AddDays(-7);
+                    DateTime wczoraj = DateTime.Today.AddDays(-1);
+                    DateTime dwaTygodnieTemu = DateTime.Today.AddDays(-14);
+                    DateTime miesiacTemu = DateTime.Today.AddDays(-30);
+                    DateTime dwaMiesiaceTemu = DateTime.Today.AddDays(-60);
+                    DateTime polRokuTemu = DateTime.Today.AddDays(-364 / 2);
+                    DateTime rokTemu = DateTime.Today.AddDays(-365);
+                    switch (value)
+                    {
+                        case "Dzisiaj":
+                            query = query.Where(l => DateTime.Today == l.w_data.Value);
+                            break;
+                        case "Wczoraj":
+                           
+                            query = query.Where(l => l.w_data.Value == wczoraj);
+                            break;
+                        case "Ten tydzień":
+                            
+                            query = query.Where(l => l.w_data.Value > tydzienTemu);
+                            query = query.Where(l => l.w_data.Value < DateTime.Now);
+                            break;
+                        case "Poprzedni tydzień":
+                            query = query.Where(l => l.w_data.Value > dwaTygodnieTemu);
+                            query = query.Where(l => l.w_data.Value < tydzienTemu);
+                            break;
+                       case "Ten miesiąc":
+                            query = query.Where(l => l.w_data.Value > miesiacTemu);
+                            query = query.Where(l => l.w_data.Value < DateTime.Now);
+                            break;
+                        case "Poprzedni miesiąc":                     
+                            query = query.Where(l => l.w_data.Value > dwaMiesiaceTemu);
+                            query = query.Where(l => l.w_data.Value < miesiacTemu);
+                            break;
+                        case "Pół roku":                         
+                            query = query.Where(l => l.w_data.Value > polRokuTemu);
+                            query = query.Where(l => l.w_data.Value < DateTime.Now);
+                            break;
+                        case "Rok":                     
+                            query = query.Where(l => l.w_data.Value > rokTemu);
+                            query = query.Where(l => l.w_data.Value < DateTime.Now);
+                            break;
+                        case "Więcej niż rok":
+                            query = query.Where(l => l.w_data.Value < rokTemu);
+                            break;
+                        case "Zaplanowane":
+                            query = query.Where(l => l.w_data.Value > DateTime.Now);
+                            break;
+                    }
+                
+                }
+
 
                 dgvWizyty.DataSource = query.ToList();
 

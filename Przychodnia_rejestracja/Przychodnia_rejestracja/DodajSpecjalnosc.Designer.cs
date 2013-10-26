@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel_lakarz = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbLekarze = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dodaj_button = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -36,8 +38,6 @@
             this.cbSpecjalnosci = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataPicker = new System.Windows.Forms.DateTimePicker();
-            this.cbLekarze = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel_lakarz.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +51,26 @@
             this.panel_lakarz.Name = "panel_lakarz";
             this.panel_lakarz.Size = new System.Drawing.Size(242, 42);
             this.panel_lakarz.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(58, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Lekarz";
+            // 
+            // cbLekarze
+            // 
+            this.cbLekarze.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbLekarze.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbLekarze.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLekarze.FormattingEnabled = true;
+            this.cbLekarze.Location = new System.Drawing.Point(103, 8);
+            this.cbLekarze.Name = "cbLekarze";
+            this.cbLekarze.Size = new System.Drawing.Size(121, 21);
+            this.cbLekarze.TabIndex = 0;
             // 
             // panel1
             // 
@@ -97,6 +117,9 @@
             // 
             // cbSpecjalnosci
             // 
+            this.cbSpecjalnosci.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbSpecjalnosci.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbSpecjalnosci.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSpecjalnosci.FormattingEnabled = true;
             this.cbSpecjalnosci.Location = new System.Drawing.Point(103, 13);
             this.cbSpecjalnosci.Name = "cbSpecjalnosci";
@@ -119,23 +142,6 @@
             this.dataPicker.Name = "dataPicker";
             this.dataPicker.Size = new System.Drawing.Size(121, 20);
             this.dataPicker.TabIndex = 0;
-            // 
-            // cbLekarze
-            // 
-            this.cbLekarze.FormattingEnabled = true;
-            this.cbLekarze.Location = new System.Drawing.Point(103, 8);
-            this.cbLekarze.Name = "cbLekarze";
-            this.cbLekarze.Size = new System.Drawing.Size(121, 21);
-            this.cbLekarze.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(58, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Lekarz";
             // 
             // DodajSpecjalnosc
             // 
