@@ -506,6 +506,7 @@
             // godzina
             // 
             this.godzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.godzina.DataPropertyName = "wgodzina";
             this.godzina.HeaderText = "Godzina";
             this.godzina.Name = "godzina";
             // 
