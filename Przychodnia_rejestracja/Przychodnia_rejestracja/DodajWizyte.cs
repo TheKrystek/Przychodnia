@@ -23,8 +23,42 @@ namespace Przychodnia_rejestracja
         {
 
         }
+        private void dodajWizyte() {
+            using (var dc = new EntitiesPrzychodnia())
+            {
+                var pacjent = from p in dc.Pacjenci
+                              where p.PESEL == this.pacjenciPESEL.Text
+                              select new
+                              {
+                                  id = p.ID_Pacjenta
+                              };
+
+                var lekarz = from l in dc.Lekarze
+                             where l.PESEL == this.lekarzePESEL.Text
+                             select new
+                             {
+                                 id = l.ID_Lekarza
+                             };
+
+
+                var wizyta = new Wizyty();
+                DateTime x = new DateTime(0);
+                wizyta.czas = czas.Value.ToLocalTime() - x;
+                wizyta.data = data.Value;
+                wizyta.ID_Lekarza = lekarz.First().id;
+                wizyta.ID_Pacjenta = pacjent.First().id;
+
+                try
+                {
+                    dc.Wizyty.Add(wizyta);
+                    dc.SaveChanges();
+                }
+                catch { }
+            }
+        }
         private void dodaj_Click(object sender, EventArgs e)
         {
+            dodajWizyte();
             this.Close();
         }
         private void anuluj_Click(object sender, EventArgs e)
@@ -53,12 +87,12 @@ namespace Przychodnia_rejestracja
         }
         private void aktywujDodaj() { 
             dodaj.Enabled = (
-                !String.IsNullOrEmpty(lekarzImie.SelectedText) &&
-                !String.IsNullOrEmpty(lekarzNazwisko.SelectedText) &&
-                !String.IsNullOrEmpty(lekarzePESEL.SelectedText) &&
-                !String.IsNullOrEmpty(pacjentImie.SelectedText) &&
-                !String.IsNullOrEmpty(pacjentNazwisko.SelectedText) &&
-                !String.IsNullOrEmpty(pacjenciPESEL.SelectedText)
+                lekarzImie.SelectedIndex >= 0 &&
+                lekarzNazwisko.SelectedIndex >= 0 &&
+                lekarzePESEL.SelectedIndex >= 0 &&
+                pacjentImie.SelectedIndex >= 0 &&
+                pacjentNazwisko.SelectedIndex >= 0 &&
+                pacjenciPESEL.SelectedIndex >= 0
                 );
         }
         private void wczytajDaneLekarzy(string nazwisko = "", string imie = "")

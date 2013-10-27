@@ -160,7 +160,6 @@
             this.bWizytyWyczysc = new System.Windows.Forms.Button();
             this.bWizytySzukaj = new System.Windows.Forms.Button();
             this.bWizytyPrzeloz = new System.Windows.Forms.Button();
-            this.bWizytyAnuluj = new System.Windows.Forms.Button();
             this.bWizytyDodaj = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.cbWizytyLekarz = new System.Windows.Forms.ComboBox();
@@ -1562,7 +1561,6 @@
             this.splitWizyty.Panel1.Controls.Add(this.bWizytyWyczysc);
             this.splitWizyty.Panel1.Controls.Add(this.bWizytySzukaj);
             this.splitWizyty.Panel1.Controls.Add(this.bWizytyPrzeloz);
-            this.splitWizyty.Panel1.Controls.Add(this.bWizytyAnuluj);
             this.splitWizyty.Panel1.Controls.Add(this.bWizytyDodaj);
             this.splitWizyty.Panel1.Controls.Add(this.label23);
             this.splitWizyty.Panel1.Controls.Add(this.cbWizytyLekarz);
@@ -1574,12 +1572,12 @@
             // 
             this.splitWizyty.Panel2.Controls.Add(this.dgvWizyty);
             this.splitWizyty.Size = new System.Drawing.Size(872, 465);
-            this.splitWizyty.SplitterDistance = 147;
+            this.splitWizyty.SplitterDistance = 101;
             this.splitWizyty.TabIndex = 0;
             // 
             // bWizytyWyczysc
             // 
-            this.bWizytyWyczysc.Location = new System.Drawing.Point(466, 78);
+            this.bWizytyWyczysc.Location = new System.Drawing.Point(440, 45);
             this.bWizytyWyczysc.Name = "bWizytyWyczysc";
             this.bWizytyWyczysc.Size = new System.Drawing.Size(75, 23);
             this.bWizytyWyczysc.TabIndex = 9;
@@ -1589,7 +1587,7 @@
             // 
             // bWizytySzukaj
             // 
-            this.bWizytySzukaj.Location = new System.Drawing.Point(466, 48);
+            this.bWizytySzukaj.Location = new System.Drawing.Point(440, 15);
             this.bWizytySzukaj.Name = "bWizytySzukaj";
             this.bWizytySzukaj.Size = new System.Drawing.Size(75, 23);
             this.bWizytySzukaj.TabIndex = 8;
@@ -1599,25 +1597,16 @@
             // 
             // bWizytyPrzeloz
             // 
-            this.bWizytyPrzeloz.Location = new System.Drawing.Point(731, 48);
+            this.bWizytyPrzeloz.Location = new System.Drawing.Point(771, 12);
             this.bWizytyPrzeloz.Name = "bWizytyPrzeloz";
             this.bWizytyPrzeloz.Size = new System.Drawing.Size(75, 41);
             this.bWizytyPrzeloz.TabIndex = 7;
             this.bWizytyPrzeloz.Text = "Przełóż";
             this.bWizytyPrzeloz.UseVisualStyleBackColor = true;
             // 
-            // bWizytyAnuluj
-            // 
-            this.bWizytyAnuluj.Location = new System.Drawing.Point(731, 94);
-            this.bWizytyAnuluj.Name = "bWizytyAnuluj";
-            this.bWizytyAnuluj.Size = new System.Drawing.Size(75, 41);
-            this.bWizytyAnuluj.TabIndex = 6;
-            this.bWizytyAnuluj.Text = "Anuluj";
-            this.bWizytyAnuluj.UseVisualStyleBackColor = true;
-            // 
             // bWizytyDodaj
             // 
-            this.bWizytyDodaj.Location = new System.Drawing.Point(731, 0);
+            this.bWizytyDodaj.Location = new System.Drawing.Point(690, 12);
             this.bWizytyDodaj.Name = "bWizytyDodaj";
             this.bWizytyDodaj.Size = new System.Drawing.Size(75, 41);
             this.bWizytyDodaj.TabIndex = 5;
@@ -1628,7 +1617,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(28, 69);
+            this.label23.Location = new System.Drawing.Point(19, 55);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(39, 13);
             this.label23.TabIndex = 4;
@@ -1642,15 +1631,15 @@
             this.cbWizytyLekarz.FormattingEnabled = true;
             this.cbWizytyLekarz.Items.AddRange(new object[] {
             "Dowolny"});
-            this.cbWizytyLekarz.Location = new System.Drawing.Point(73, 66);
+            this.cbWizytyLekarz.Location = new System.Drawing.Point(64, 55);
             this.cbWizytyLekarz.Name = "cbWizytyLekarz";
-            this.cbWizytyLekarz.Size = new System.Drawing.Size(121, 21);
+            this.cbWizytyLekarz.Size = new System.Drawing.Size(179, 21);
             this.cbWizytyLekarz.TabIndex = 3;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(28, 23);
+            this.label22.Location = new System.Drawing.Point(86, 24);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(30, 13);
             this.label22.TabIndex = 2;
@@ -1661,9 +1650,9 @@
             this.groupBox1.Controls.Add(this.rbWizytyWszystkie);
             this.groupBox1.Controls.Add(this.rbWizytyOdbyte);
             this.groupBox1.Controls.Add(this.rbWizytyNieodbyte);
-            this.groupBox1.Location = new System.Drawing.Point(233, 12);
+            this.groupBox1.Location = new System.Drawing.Point(271, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(151, 115);
+            this.groupBox1.Size = new System.Drawing.Size(139, 95);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wizyty";
@@ -1672,7 +1661,7 @@
             // 
             this.rbWizytyWszystkie.AutoSize = true;
             this.rbWizytyWszystkie.Checked = true;
-            this.rbWizytyWszystkie.Location = new System.Drawing.Point(31, 82);
+            this.rbWizytyWszystkie.Location = new System.Drawing.Point(31, 65);
             this.rbWizytyWszystkie.Name = "rbWizytyWszystkie";
             this.rbWizytyWszystkie.Size = new System.Drawing.Size(73, 17);
             this.rbWizytyWszystkie.TabIndex = 2;
@@ -1683,7 +1672,7 @@
             // rbWizytyOdbyte
             // 
             this.rbWizytyOdbyte.AutoSize = true;
-            this.rbWizytyOdbyte.Location = new System.Drawing.Point(31, 44);
+            this.rbWizytyOdbyte.Location = new System.Drawing.Point(31, 42);
             this.rbWizytyOdbyte.Name = "rbWizytyOdbyte";
             this.rbWizytyOdbyte.Size = new System.Drawing.Size(86, 17);
             this.rbWizytyOdbyte.TabIndex = 1;
@@ -1694,7 +1683,7 @@
             // rbWizytyNieodbyte
             // 
             this.rbWizytyNieodbyte.AutoSize = true;
-            this.rbWizytyNieodbyte.Location = new System.Drawing.Point(31, 20);
+            this.rbWizytyNieodbyte.Location = new System.Drawing.Point(31, 19);
             this.rbWizytyNieodbyte.Name = "rbWizytyNieodbyte";
             this.rbWizytyNieodbyte.Size = new System.Drawing.Size(100, 17);
             this.rbWizytyNieodbyte.TabIndex = 0;
@@ -1720,7 +1709,7 @@
             "Rok",
             "Więcej niż rok",
             "Zaplanowane"});
-            this.cbWizytyData.Location = new System.Drawing.Point(64, 20);
+            this.cbWizytyData.Location = new System.Drawing.Point(122, 21);
             this.cbWizytyData.Name = "cbWizytyData";
             this.cbWizytyData.Size = new System.Drawing.Size(121, 21);
             this.cbWizytyData.TabIndex = 0;
@@ -1739,7 +1728,7 @@
             this.dgvWizyty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWizyty.Location = new System.Drawing.Point(0, 0);
             this.dgvWizyty.Name = "dgvWizyty";
-            this.dgvWizyty.Size = new System.Drawing.Size(872, 314);
+            this.dgvWizyty.Size = new System.Drawing.Size(872, 360);
             this.dgvWizyty.TabIndex = 0;
             // 
             // w_id
@@ -2020,7 +2009,6 @@
         private System.Windows.Forms.RadioButton rbWizytyNieodbyte;
         private System.Windows.Forms.ComboBox cbWizytyData;
         private System.Windows.Forms.Button bWizytyPrzeloz;
-        private System.Windows.Forms.Button bWizytyAnuluj;
         private System.Windows.Forms.Button bWizytyDodaj;
         private System.Windows.Forms.Button bWizytyWyczysc;
         private System.Windows.Forms.Button bWizytySzukaj;

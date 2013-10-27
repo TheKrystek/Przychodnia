@@ -51,7 +51,7 @@
             // data
             // 
             this.data.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.data.Location = new System.Drawing.Point(182, 30);
+            this.data.Location = new System.Drawing.Point(114, 22);
             this.data.Name = "data";
             this.data.Size = new System.Drawing.Size(104, 20);
             this.data.TabIndex = 0;
@@ -59,7 +59,7 @@
             // czas
             // 
             this.czas.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.czas.Location = new System.Drawing.Point(182, 70);
+            this.czas.Location = new System.Drawing.Point(114, 62);
             this.czas.Name = "czas";
             this.czas.Size = new System.Drawing.Size(104, 20);
             this.czas.TabIndex = 1;
@@ -67,7 +67,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(120, 36);
+            this.label1.Location = new System.Drawing.Point(52, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 2;
@@ -76,7 +76,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(119, 70);
+            this.label2.Location = new System.Drawing.Point(51, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 3;
@@ -86,7 +86,7 @@
             // 
             this.pacjentNazwisko.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pacjentNazwisko.FormattingEnabled = true;
-            this.pacjentNazwisko.Location = new System.Drawing.Point(113, 110);
+            this.pacjentNazwisko.Location = new System.Drawing.Point(97, 107);
             this.pacjentNazwisko.Name = "pacjentNazwisko";
             this.pacjentNazwisko.Size = new System.Drawing.Size(121, 21);
             this.pacjentNazwisko.TabIndex = 4;
@@ -96,7 +96,7 @@
             // 
             this.pacjentImie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pacjentImie.FormattingEnabled = true;
-            this.pacjentImie.Location = new System.Drawing.Point(113, 137);
+            this.pacjentImie.Location = new System.Drawing.Point(97, 134);
             this.pacjentImie.Name = "pacjentImie";
             this.pacjentImie.Size = new System.Drawing.Size(121, 21);
             this.pacjentImie.TabIndex = 5;
@@ -106,7 +106,7 @@
             // 
             this.lekarzImie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lekarzImie.FormattingEnabled = true;
-            this.lekarzImie.Location = new System.Drawing.Point(113, 253);
+            this.lekarzImie.Location = new System.Drawing.Point(97, 250);
             this.lekarzImie.Name = "lekarzImie";
             this.lekarzImie.Size = new System.Drawing.Size(121, 21);
             this.lekarzImie.TabIndex = 8;
@@ -116,7 +116,7 @@
             // 
             this.lekarzNazwisko.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lekarzNazwisko.FormattingEnabled = true;
-            this.lekarzNazwisko.Location = new System.Drawing.Point(113, 226);
+            this.lekarzNazwisko.Location = new System.Drawing.Point(97, 223);
             this.lekarzNazwisko.Name = "lekarzNazwisko";
             this.lekarzNazwisko.Size = new System.Drawing.Size(121, 21);
             this.lekarzNazwisko.TabIndex = 7;
@@ -125,7 +125,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(52, 117);
+            this.label3.Location = new System.Drawing.Point(36, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 10;
@@ -134,7 +134,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 145);
+            this.label4.Location = new System.Drawing.Point(36, 142);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 11;
@@ -143,7 +143,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(52, 171);
+            this.label5.Location = new System.Drawing.Point(36, 168);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 12;
@@ -152,7 +152,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(52, 226);
+            this.label6.Location = new System.Drawing.Point(36, 223);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 13;
@@ -161,7 +161,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(52, 256);
+            this.label7.Location = new System.Drawing.Point(36, 253);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(26, 13);
             this.label7.TabIndex = 14;
@@ -170,7 +170,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(52, 283);
+            this.label8.Location = new System.Drawing.Point(36, 280);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 13);
             this.label8.TabIndex = 15;
@@ -178,7 +178,7 @@
             // 
             // dodaj
             // 
-            this.dodaj.Location = new System.Drawing.Point(259, 341);
+            this.dodaj.Location = new System.Drawing.Point(62, 340);
             this.dodaj.Name = "dodaj";
             this.dodaj.Size = new System.Drawing.Size(75, 23);
             this.dodaj.TabIndex = 16;
@@ -188,7 +188,7 @@
             // 
             // anuluj
             // 
-            this.anuluj.Location = new System.Drawing.Point(356, 341);
+            this.anuluj.Location = new System.Drawing.Point(143, 340);
             this.anuluj.Name = "anuluj";
             this.anuluj.Size = new System.Drawing.Size(75, 23);
             this.anuluj.TabIndex = 17;
@@ -200,7 +200,7 @@
             // 
             this.pacjenciPESEL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pacjenciPESEL.FormattingEnabled = true;
-            this.pacjenciPESEL.Location = new System.Drawing.Point(113, 171);
+            this.pacjenciPESEL.Location = new System.Drawing.Point(97, 168);
             this.pacjenciPESEL.Name = "pacjenciPESEL";
             this.pacjenciPESEL.Size = new System.Drawing.Size(121, 21);
             this.pacjenciPESEL.TabIndex = 18;
@@ -210,7 +210,7 @@
             // 
             this.lekarzePESEL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lekarzePESEL.FormattingEnabled = true;
-            this.lekarzePESEL.Location = new System.Drawing.Point(113, 283);
+            this.lekarzePESEL.Location = new System.Drawing.Point(97, 280);
             this.lekarzePESEL.Name = "lekarzePESEL";
             this.lekarzePESEL.Size = new System.Drawing.Size(121, 21);
             this.lekarzePESEL.TabIndex = 19;
@@ -220,7 +220,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 419);
+            this.ClientSize = new System.Drawing.Size(265, 396);
             this.Controls.Add(this.lekarzePESEL);
             this.Controls.Add(this.pacjenciPESEL);
             this.Controls.Add(this.anuluj);
