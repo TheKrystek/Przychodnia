@@ -1254,9 +1254,15 @@ namespace Przychodnia_rejestracja
         {
             ustawWartoscDomyslnaFiltrowWizyt();
         }
-
+        private void bWizytyDodaj_Click(object sender, EventArgs e)
+        {
+            DodajWizyte window = new DodajWizyte();
+            window.ShowDialog();
+        }
 
         #endregion
+
+        
 
 
 

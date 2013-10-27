@@ -1623,6 +1623,7 @@
             this.bWizytyDodaj.TabIndex = 5;
             this.bWizytyDodaj.Text = "Dodaj";
             this.bWizytyDodaj.UseVisualStyleBackColor = true;
+            this.bWizytyDodaj.Click += new System.EventHandler(this.bWizytyDodaj_Click);
             // 
             // label23
             // 
