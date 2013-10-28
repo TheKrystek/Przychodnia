@@ -47,11 +47,13 @@
             this.miejsce_ur = new System.Windows.Forms.TextBox();
             this.nazwisko = new System.Windows.Forms.TextBox();
             this.imie = new System.Windows.Forms.TextBox();
+            this.zapisz = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.zapisz);
             this.groupBox1.Controls.Add(this.dodaj);
             this.groupBox1.Controls.Add(this.anuluj);
             this.groupBox1.Controls.Add(this.dtpUrodzenia);
@@ -235,6 +237,16 @@
             this.imie.TabIndex = 0;
             this.imie.TextChanged += new System.EventHandler(this.validacja);
             // 
+            // zapisz
+            // 
+            this.zapisz.Location = new System.Drawing.Point(318, 185);
+            this.zapisz.Name = "zapisz";
+            this.zapisz.Size = new System.Drawing.Size(75, 23);
+            this.zapisz.TabIndex = 19;
+            this.zapisz.Text = "Zapisz";
+            this.zapisz.UseVisualStyleBackColor = true;
+            this.zapisz.Visible = false;
+            // 
             // DodajPacjenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,6 +255,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "DodajPacjenta";
             this.Text = "Dodaj Pacjenta";
+            this.Load += new System.EventHandler(this.DodajPacjenta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -270,5 +283,6 @@
         private System.Windows.Forms.TextBox imie;
         private System.Windows.Forms.Button dodaj;
         private System.Windows.Forms.Button anuluj;
+        private System.Windows.Forms.Button zapisz;
     }
 }

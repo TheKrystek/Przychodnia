@@ -181,6 +181,7 @@
             this.w_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.edytujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
@@ -1564,15 +1565,16 @@
             // cmsPacjenci
             // 
             this.cmsPacjenci.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dodajToolStripMenuItem});
+            this.dodajToolStripMenuItem,
+            this.edytujToolStripMenuItem});
             this.cmsPacjenci.Name = "cmsPacjenci";
-            this.cmsPacjenci.Size = new System.Drawing.Size(106, 26);
+            this.cmsPacjenci.Size = new System.Drawing.Size(153, 70);
             this.cmsPacjenci.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsPacjenci_ItemClicked);
             // 
             // dodajToolStripMenuItem
             // 
             this.dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
-            this.dodajToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.dodajToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dodajToolStripMenuItem.Text = "Dodaj";
             // 
             // tabWizyty
@@ -1844,6 +1846,12 @@
             this.tabControl.Size = new System.Drawing.Size(886, 497);
             this.tabControl.TabIndex = 2;
             // 
+            // edytujToolStripMenuItem
+            // 
+            this.edytujToolStripMenuItem.Name = "edytujToolStripMenuItem";
+            this.edytujToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.edytujToolStripMenuItem.Text = "Edytuj";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2077,6 +2085,7 @@
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.ToolStripMenuItem statystykiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oProgramieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem edytujToolStripMenuItem;
     }
 }
 

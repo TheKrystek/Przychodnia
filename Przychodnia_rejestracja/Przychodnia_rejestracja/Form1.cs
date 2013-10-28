@@ -1224,8 +1224,20 @@ namespace Przychodnia_rejestracja
         }
         private void cmsPacjenci_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            DodajPacjenta window = new DodajPacjenta();
-            window.ShowDialog();
+            ToolStripItem item = e.ClickedItem;
+            int index = dgvPacjenci.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (index > -1 && item.Name == "edytujToolStripMenuItem")
+            {
+                int id = Convert.ToInt32(dgvPacjenci.Rows[index].Cells["p_id"].Value);
+                DodajPacjenta window = new DodajPacjenta(id);
+                window.ShowDialog();  
+            }
+
+            if (item.Name == "dodajToolStripMenuItem")
+            {
+                DodajPacjenta window = new DodajPacjenta();
+                window.ShowDialog();
+            }
         }
         #endregion
 
