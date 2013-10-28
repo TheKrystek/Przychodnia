@@ -170,6 +170,7 @@
             this.rbWizytyNieodbyte = new System.Windows.Forms.RadioButton();
             this.cbWizytyData = new System.Windows.Forms.ComboBox();
             this.dgvWizyty = new System.Windows.Forms.DataGridView();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.w_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_data = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -177,7 +178,6 @@
             this.w_nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tabControl = new System.Windows.Forms.TabControl();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -1471,7 +1471,9 @@
             this.p_lekarz});
             this.dgvPacjenci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPacjenci.Location = new System.Drawing.Point(0, 0);
+            this.dgvPacjenci.MultiSelect = false;
             this.dgvPacjenci.Name = "dgvPacjenci";
+            this.dgvPacjenci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPacjenci.Size = new System.Drawing.Size(872, 359);
             this.dgvPacjenci.TabIndex = 0;
             // 
@@ -1577,7 +1579,7 @@
             // 
             // bWizytyWyczysc
             // 
-            this.bWizytyWyczysc.Location = new System.Drawing.Point(440, 45);
+            this.bWizytyWyczysc.Location = new System.Drawing.Point(539, 42);
             this.bWizytyWyczysc.Name = "bWizytyWyczysc";
             this.bWizytyWyczysc.Size = new System.Drawing.Size(75, 23);
             this.bWizytyWyczysc.TabIndex = 9;
@@ -1587,7 +1589,7 @@
             // 
             // bWizytySzukaj
             // 
-            this.bWizytySzukaj.Location = new System.Drawing.Point(440, 15);
+            this.bWizytySzukaj.Location = new System.Drawing.Point(539, 12);
             this.bWizytySzukaj.Name = "bWizytySzukaj";
             this.bWizytySzukaj.Size = new System.Drawing.Size(75, 23);
             this.bWizytySzukaj.TabIndex = 8;
@@ -1597,12 +1599,14 @@
             // 
             // bWizytyPrzeloz
             // 
+            this.bWizytyPrzeloz.Enabled = false;
             this.bWizytyPrzeloz.Location = new System.Drawing.Point(771, 12);
             this.bWizytyPrzeloz.Name = "bWizytyPrzeloz";
             this.bWizytyPrzeloz.Size = new System.Drawing.Size(75, 41);
             this.bWizytyPrzeloz.TabIndex = 7;
             this.bWizytyPrzeloz.Text = "Przełóż";
             this.bWizytyPrzeloz.UseVisualStyleBackColor = true;
+            this.bWizytyPrzeloz.Click += new System.EventHandler(this.bWizytyPrzeloz_Click);
             // 
             // bWizytyDodaj
             // 
@@ -1727,16 +1731,36 @@
             this.w_odbyta});
             this.dgvWizyty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvWizyty.Location = new System.Drawing.Point(0, 0);
+            this.dgvWizyty.MultiSelect = false;
             this.dgvWizyty.Name = "dgvWizyty";
+            this.dgvWizyty.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvWizyty.Size = new System.Drawing.Size(872, 360);
             this.dgvWizyty.TabIndex = 0;
+            this.dgvWizyty.SelectionChanged += new System.EventHandler(this.dgv_SelectionChanged);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabControl.Controls.Add(this.tabWizyty);
+            this.tabControl.Controls.Add(this.tabPacjenci);
+            this.tabControl.Controls.Add(this.tabLekarze);
+            this.tabControl.Controls.Add(this.tabLekarstwa);
+            this.tabControl.Controls.Add(this.tabSwiadczenia);
+            this.tabControl.Controls.Add(this.tabChoroby);
+            this.tabControl.Controls.Add(this.tabSpecjalnosci);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 24);
+            this.tabControl.Multiline = true;
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(886, 497);
+            this.tabControl.TabIndex = 2;
             // 
             // w_id
             // 
             this.w_id.DataPropertyName = "w_id";
             this.w_id.HeaderText = "id";
             this.w_id.Name = "w_id";
-            this.w_id.Visible = false;
             // 
             // w_godzina
             // 
@@ -1783,24 +1807,6 @@
             this.w_odbyta.ReadOnly = true;
             this.w_odbyta.TrueValue = "w_odbyta";
             this.w_odbyta.Width = 60;
-            // 
-            // tabControl
-            // 
-            this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.tabControl.Controls.Add(this.tabWizyty);
-            this.tabControl.Controls.Add(this.tabPacjenci);
-            this.tabControl.Controls.Add(this.tabLekarze);
-            this.tabControl.Controls.Add(this.tabLekarstwa);
-            this.tabControl.Controls.Add(this.tabSwiadczenia);
-            this.tabControl.Controls.Add(this.tabChoroby);
-            this.tabControl.Controls.Add(this.tabSpecjalnosci);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 24);
-            this.tabControl.Multiline = true;
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(886, 497);
-            this.tabControl.TabIndex = 2;
             // 
             // MainWindow
             // 

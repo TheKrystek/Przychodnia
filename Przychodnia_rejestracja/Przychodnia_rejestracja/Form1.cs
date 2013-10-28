@@ -23,6 +23,7 @@ namespace Przychodnia_rejestracja
         int choroba_id;
         int swiadczenie_id;
         int specjalnosc_id;
+        int wizyta_id;
 
         public MainWindow()
         {
@@ -141,6 +142,23 @@ namespace Przychodnia_rejestracja
 
             }
             catch { Console.WriteLine("Wyjatek w dgvRow_DoubleClicked"); }
+        }
+        private void dgv_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridView dgv = (DataGridView)sender;
+                int index = dgv.CurrentCell.RowIndex;
+                if (index > -1){
+                    DateTime data = Convert.ToDateTime(dgv.Rows[index].Cells["w_data"].Value.ToString());
+                    bool zaznaczony = Convert.ToBoolean(dgv.Rows[index].Cells["w_odbyta"].Value);
+                    
+                    bWizytyPrzeloz.Enabled = (data >= DateTime.Now && !zaznaczony);
+                    wizyta_id = Convert.ToInt32(dgv.Rows[index].Cells["w_id"].Value.ToString());
+                }
+
+            }
+            catch { Console.WriteLine("Wyjatek w dgv_SelectionChanged"); }
         }
 
         private void VisibleChanged(object sender, EventArgs e)
@@ -1120,6 +1138,7 @@ namespace Przychodnia_rejestracja
                                  w_data = w.data,
                                  w_godzina = w.czas,
                                  w_imie = p.imie,
+                                 w_id = w.ID_Wizyty,
                                  w_nazwisko = p.nazwisko,
                                  w_odbyta = w.czy_odbyta,
                                  w_lekarz = l.nazwisko + " " + l.imie
@@ -1259,15 +1278,12 @@ namespace Przychodnia_rejestracja
             DodajWizyte window = new DodajWizyte();
             window.ShowDialog();
         }
-
+        private void bWizytyPrzeloz_Click(object sender, EventArgs e)
+        {
+            PrzelozWizyte window = new PrzelozWizyte(wizyta_id);
+            window.ShowDialog();
+        }
         #endregion
-
-        
-
-
-
-
-
 
 
     }

@@ -42,8 +42,7 @@ namespace Przychodnia_rejestracja
 
 
                 var wizyta = new Wizyty();
-                DateTime x = new DateTime(0);
-                wizyta.czas = czas.Value.ToLocalTime() - x;
+                wizyta.czas = new TimeSpan(czas.Value.TimeOfDay.Hours, czas.Value.TimeOfDay.Minutes, 00);
                 wizyta.data = data.Value;
                 wizyta.ID_Lekarza = lekarz.First().id;
                 wizyta.ID_Pacjenta = pacjent.First().id;
@@ -195,6 +194,9 @@ namespace Przychodnia_rejestracja
                     pacjentImie.Items.AddRange(imiona.ToArray());
                 }
 
+                if (pacjentImie.Items.Count == 1)
+                    pacjentImie.SelectedIndex = 0;
+
                 if (String.IsNullOrEmpty(nazwisko))
                     pacjentNazwisko.Items.AddRange(nazwiska.ToArray());
 
@@ -212,6 +214,8 @@ namespace Przychodnia_rejestracja
         {
             aktywujDodaj();
         }
+
+
 
 
     }
