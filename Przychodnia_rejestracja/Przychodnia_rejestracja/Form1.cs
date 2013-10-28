@@ -70,23 +70,6 @@ namespace Przychodnia_rejestracja
             }
             catch { }
         }
-        // Sprawdzanie poprawności formatu: pieniądze
-        private bool PoprawnyFormat_Pieniadze(string text)
-        {
-            Match match = Regex.Match(text, @"^[0-9]{0,6}(\.[0-9]{1,2})?$");
-            return match.Success;
-        }
-
-        // Sprawdzanie poprawności formatu: pieniądze
-        private bool PoprawnyFormat_Tekst(string text, bool firstCapitalRequired = false)
-        {
-            Match match;
-            if (firstCapitalRequired)
-                match = Regex.Match(text, "^[A-ZŚŻŹŁ][a-zA-Z -ąęćśżźółńćŚŻŹŁ]*$");
-            else
-                match = Regex.Match(text, "^[a-zA-Z -ąęćżźśółńćŚŻŹŁ]+$");
-            return match.Success;
-        }
 
         // Sprawdzanie poprawności formatu - Zdarzenie
         private void SprawdzFormat_Tekst(object sender, EventArgs e)
@@ -95,25 +78,26 @@ namespace Przychodnia_rejestracja
             switch (tb.Name)
             {
                 case "tbKoszt":
-                    this.bDodajSwiadczenie.Enabled = PoprawnyFormat_Pieniadze(tb.Text);
+                    this.bDodajSwiadczenie.Enabled = Validacja.Pieniadze(tb.Text);
                     break;
                 case "tbLekCena":
-                    this.bLekDodaj.Enabled = PoprawnyFormat_Pieniadze(tb.Text);
+                    bLekDodaj.Enabled = Validacja.Pieniadze(tb.Text);
                     break;
                 case "tbSwiadczenia":
-                    this.bDodajSwiadczenie.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
+                    bDodajSwiadczenie.Enabled = Validacja.Tekst(tb.Text, true);
                     break;
                 case "tbChoroba":
-                    this.bChDodaj.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
+                    bChDodaj.Enabled = Validacja.Tekst(tb.Text, true);
                     break;
                 case "tbSpecjalnosc":
-                    this.bChDodaj.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
+                    bSpDodaj.Enabled = Validacja.Tekst(tb.Text, true);
                     break;
                 case "tbLekarstwo":
-                    this.bLekDodaj.Enabled = PoprawnyFormat_Tekst(tb.Text, true);
+                    bLekDodaj.Enabled = Validacja.Tekst(tb.Text, true);
                     break;
             }
         }
+      
         // Dwuklik na polu oznacza przejscie do trybu edycji
         private void dgvRow_DoubleClicked(object sender, DataGridViewCellEventArgs e)
         {
@@ -1121,7 +1105,11 @@ namespace Przychodnia_rejestracja
         {
             ustawWartoscDomyslnaFiltrowPacjentow();
         }
-
+        private void cmsPacjenci_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            DodajPacjenta window = new DodajPacjenta();
+            window.ShowDialog();
+        }
         #endregion
 
         #region Wizyty
@@ -1284,6 +1272,8 @@ namespace Przychodnia_rejestracja
             window.ShowDialog();
         }
         #endregion
+
+
 
 
     }

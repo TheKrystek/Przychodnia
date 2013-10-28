@@ -59,6 +59,11 @@
             this.spec_usun = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvWizyty = new System.Windows.Forms.DataGridView();
+            this.wgodzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wimie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wnazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgvPacjenci = new System.Windows.Forms.DataGridView();
             this.p_imie = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,11 +77,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button = new System.Windows.Forms.Button();
-            this.wgodzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wimie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wnazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -258,6 +258,7 @@
             this.imie.Name = "imie";
             this.imie.Size = new System.Drawing.Size(147, 20);
             this.imie.TabIndex = 0;
+            this.imie.TextChanged += new System.EventHandler(this.validacja);
             // 
             // panel1
             // 
@@ -382,6 +383,43 @@
             this.dgvWizyty.TabIndex = 0;
             this.dgvWizyty.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
             // 
+            // wgodzina
+            // 
+            this.wgodzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.wgodzina.DataPropertyName = "wgodzina";
+            this.wgodzina.HeaderText = "Godzina";
+            this.wgodzina.Name = "wgodzina";
+            // 
+            // data
+            // 
+            this.data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.data.DataPropertyName = "data";
+            this.data.HeaderText = "Data";
+            this.data.Name = "data";
+            // 
+            // wimie
+            // 
+            this.wimie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.wimie.DataPropertyName = "wimie";
+            this.wimie.HeaderText = "Imię";
+            this.wimie.Name = "wimie";
+            // 
+            // wnazwisko
+            // 
+            this.wnazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.wnazwisko.DataPropertyName = "wnazwisko";
+            this.wnazwisko.HeaderText = "Nazwisko";
+            this.wnazwisko.Name = "wnazwisko";
+            // 
+            // odbyta
+            // 
+            this.odbyta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.odbyta.DataPropertyName = "odbyta";
+            this.odbyta.HeaderText = "Odbyta";
+            this.odbyta.Name = "odbyta";
+            this.odbyta.ReadOnly = true;
+            this.odbyta.Width = 47;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dgvPacjenci);
@@ -502,43 +540,6 @@
             this.button.Text = "Zapisz";
             this.button.UseVisualStyleBackColor = true;
             this.button.Click += new System.EventHandler(this.button_Click);
-            // 
-            // wgodzina
-            // 
-            this.wgodzina.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.wgodzina.DataPropertyName = "wgodzina";
-            this.wgodzina.HeaderText = "Godzina";
-            this.wgodzina.Name = "wgodzina";
-            // 
-            // data
-            // 
-            this.data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.data.DataPropertyName = "data";
-            this.data.HeaderText = "Data";
-            this.data.Name = "data";
-            // 
-            // wimie
-            // 
-            this.wimie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.wimie.DataPropertyName = "wimie";
-            this.wimie.HeaderText = "Imię";
-            this.wimie.Name = "wimie";
-            // 
-            // wnazwisko
-            // 
-            this.wnazwisko.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.wnazwisko.DataPropertyName = "wnazwisko";
-            this.wnazwisko.HeaderText = "Nazwisko";
-            this.wnazwisko.Name = "wnazwisko";
-            // 
-            // odbyta
-            // 
-            this.odbyta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.odbyta.DataPropertyName = "odbyta";
-            this.odbyta.HeaderText = "Odbyta";
-            this.odbyta.Name = "odbyta";
-            this.odbyta.ReadOnly = true;
-            this.odbyta.Width = 47;
             // 
             // LekarzeSzczegoly
             // 

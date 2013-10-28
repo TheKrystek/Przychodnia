@@ -256,6 +256,19 @@ namespace Przychodnia_rejestracja
             
         }
 
+        private void validacja(object sender, EventArgs e)
+        {
+            aktywujZapisz();
+        }
+
+        void aktywujZapisz() { 
+            button.Enabled = (
+                Validacja.Tekst(imie.Text,true) &&
+                Validacja.Tekst(nazwisko.Text, true) &&
+                Validacja.Tekst(miejsce_ur.Text, true) &&
+                Validacja.Tekst(miejsce_zam.Text, true) &&
+                Validacja.Tekst(ulica.Text,false));
+        }
  
         
 

@@ -79,6 +79,12 @@
     <Compile Include="Diagnozy.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DodajPacjenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DodajPacjenta.Designer.cs">
+      <DependentUpon>DodajPacjenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="DodajSpecjalnosc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,9 +162,13 @@
     <Compile Include="Ulotka.Designer.cs">
       <DependentUpon>Ulotka.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validacja.cs" />
     <Compile Include="Wizyty.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DodajPacjenta.resx">
+      <DependentUpon>DodajPacjenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DodajSpecjalnosc.resx">
       <DependentUpon>DodajSpecjalnosc.cs</DependentUpon>
     </EmbeddedResource>

@@ -155,6 +155,8 @@
             this.p_miasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_kod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.p_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsPacjenci = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.dodajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabWizyty = new System.Windows.Forms.TabPage();
             this.splitWizyty = new System.Windows.Forms.SplitContainer();
             this.bWizytyWyczysc = new System.Windows.Forms.Button();
@@ -170,7 +172,6 @@
             this.rbWizytyNieodbyte = new System.Windows.Forms.RadioButton();
             this.cbWizytyData = new System.Windows.Forms.ComboBox();
             this.dgvWizyty = new System.Windows.Forms.DataGridView();
-            this.tabControl = new System.Windows.Forms.TabControl();
             this.w_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_godzina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_data = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -178,6 +179,7 @@
             this.w_nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -221,6 +223,7 @@
             this.splitPacjenci.Panel2.SuspendLayout();
             this.splitPacjenci.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPacjenci)).BeginInit();
+            this.cmsPacjenci.SuspendLayout();
             this.tabWizyty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitWizyty)).BeginInit();
             this.splitWizyty.Panel1.SuspendLayout();
@@ -385,6 +388,7 @@
             // 
             // bSpDodaj
             // 
+            this.bSpDodaj.Enabled = false;
             this.bSpDodaj.Location = new System.Drawing.Point(160, 73);
             this.bSpDodaj.Name = "bSpDodaj";
             this.bSpDodaj.Size = new System.Drawing.Size(89, 23);
@@ -516,6 +520,7 @@
             // 
             // bChDodaj
             // 
+            this.bChDodaj.Enabled = false;
             this.bChDodaj.Location = new System.Drawing.Point(165, 178);
             this.bChDodaj.Name = "bChDodaj";
             this.bChDodaj.Size = new System.Drawing.Size(89, 23);
@@ -656,6 +661,7 @@
             // 
             // bDodajSwiadczenie
             // 
+            this.bDodajSwiadczenie.Enabled = false;
             this.bDodajSwiadczenie.Location = new System.Drawing.Point(147, 123);
             this.bDodajSwiadczenie.Name = "bDodajSwiadczenie";
             this.bDodajSwiadczenie.Size = new System.Drawing.Size(91, 23);
@@ -961,6 +967,7 @@
             // 
             // bLekDodaj
             // 
+            this.bLekDodaj.Enabled = false;
             this.bLekDodaj.Location = new System.Drawing.Point(273, 350);
             this.bLekDodaj.Name = "bLekDodaj";
             this.bLekDodaj.Size = new System.Drawing.Size(75, 23);
@@ -1469,6 +1476,7 @@
             this.p_miasto,
             this.p_kod,
             this.p_lekarz});
+            this.dgvPacjenci.ContextMenuStrip = this.cmsPacjenci;
             this.dgvPacjenci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPacjenci.Location = new System.Drawing.Point(0, 0);
             this.dgvPacjenci.MultiSelect = false;
@@ -1476,6 +1484,7 @@
             this.dgvPacjenci.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPacjenci.Size = new System.Drawing.Size(872, 359);
             this.dgvPacjenci.TabIndex = 0;
+            this.dgvPacjenci.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
             // 
             // p_id
             // 
@@ -1539,6 +1548,20 @@
             this.p_lekarz.HeaderText = "Lekarz";
             this.p_lekarz.Name = "p_lekarz";
             this.p_lekarz.Visible = false;
+            // 
+            // cmsPacjenci
+            // 
+            this.cmsPacjenci.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajToolStripMenuItem});
+            this.cmsPacjenci.Name = "cmsPacjenci";
+            this.cmsPacjenci.Size = new System.Drawing.Size(106, 26);
+            this.cmsPacjenci.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsPacjenci_ItemClicked);
+            // 
+            // dodajToolStripMenuItem
+            // 
+            this.dodajToolStripMenuItem.Name = "dodajToolStripMenuItem";
+            this.dodajToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.dodajToolStripMenuItem.Text = "Dodaj";
             // 
             // tabWizyty
             // 
@@ -1738,29 +1761,12 @@
             this.dgvWizyty.TabIndex = 0;
             this.dgvWizyty.SelectionChanged += new System.EventHandler(this.dgv_SelectionChanged);
             // 
-            // tabControl
-            // 
-            this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.tabControl.Controls.Add(this.tabWizyty);
-            this.tabControl.Controls.Add(this.tabPacjenci);
-            this.tabControl.Controls.Add(this.tabLekarze);
-            this.tabControl.Controls.Add(this.tabLekarstwa);
-            this.tabControl.Controls.Add(this.tabSwiadczenia);
-            this.tabControl.Controls.Add(this.tabChoroby);
-            this.tabControl.Controls.Add(this.tabSpecjalnosci);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 24);
-            this.tabControl.Multiline = true;
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(886, 497);
-            this.tabControl.TabIndex = 2;
-            // 
             // w_id
             // 
             this.w_id.DataPropertyName = "w_id";
             this.w_id.HeaderText = "id";
             this.w_id.Name = "w_id";
+            this.w_id.Visible = false;
             // 
             // w_godzina
             // 
@@ -1807,6 +1813,24 @@
             this.w_odbyta.ReadOnly = true;
             this.w_odbyta.TrueValue = "w_odbyta";
             this.w_odbyta.Width = 60;
+            // 
+            // tabControl
+            // 
+            this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabControl.Controls.Add(this.tabWizyty);
+            this.tabControl.Controls.Add(this.tabPacjenci);
+            this.tabControl.Controls.Add(this.tabLekarze);
+            this.tabControl.Controls.Add(this.tabLekarstwa);
+            this.tabControl.Controls.Add(this.tabSwiadczenia);
+            this.tabControl.Controls.Add(this.tabChoroby);
+            this.tabControl.Controls.Add(this.tabSpecjalnosci);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 24);
+            this.tabControl.Multiline = true;
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(886, 497);
+            this.tabControl.TabIndex = 2;
             // 
             // MainWindow
             // 
@@ -1869,6 +1893,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPacjenci)).EndInit();
             this.splitPacjenci.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPacjenci)).EndInit();
+            this.cmsPacjenci.ResumeLayout(false);
             this.tabWizyty.ResumeLayout(false);
             this.splitWizyty.Panel1.ResumeLayout(false);
             this.splitWizyty.Panel1.PerformLayout();
@@ -2035,6 +2060,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn w_nazwisko;
         private System.Windows.Forms.DataGridViewTextBoxColumn w_lekarz;
         private System.Windows.Forms.DataGridViewCheckBoxColumn w_odbyta;
+        private System.Windows.Forms.ContextMenuStrip cmsPacjenci;
+        private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem;
     }
 }
 
