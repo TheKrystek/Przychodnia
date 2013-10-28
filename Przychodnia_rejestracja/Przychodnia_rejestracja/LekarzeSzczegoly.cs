@@ -100,6 +100,7 @@ namespace Przychodnia_rejestracja
                                  p_nazwisko = p.nazwisko,
                                  p_data_ur = p.data_urodzenia,
                                  ppesel = p.PESEL,
+                                 p_ulica = p.ulica,
                                  p_miejsce_ur = p.miejsce_urodzenia,
                                  p_adres = p.miejsce_zamieszkania,
                                  p_kod = p.kod_pocztowy

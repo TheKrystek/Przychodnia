@@ -18,7 +18,6 @@ namespace Przychodnia_rejestracja
 {
     public partial class MainWindow : Form
     {
-        int lekarz_id;
         int lekarstwo_id;
         int choroba_id;
         int swiadczenie_id;
@@ -29,11 +28,9 @@ namespace Przychodnia_rejestracja
         {
             InitializeComponent();
 
-
             wczytajDaneDoFiltrowLekarzy();
             wczytajDaneDoFiltrowPacjentow();
             wczytajDaneDoFiltrowWizyt();
-
 
             wyswietlWizyty();
             wyswietlLekarzy();
@@ -190,9 +187,7 @@ namespace Przychodnia_rejestracja
                                   };
                     dgvLekarze.DataSource = lekarze.ToList();
                 }
-
-               
-
+                ustawStatus(dgvLekarze);
             }
             private void cmsLekarze_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
             {
@@ -288,71 +283,122 @@ namespace Przychodnia_rejestracja
             private void konstuujFiltrLekarzy() {
                 using (var dc = new EntitiesPrzychodnia())
                 {
-               
-                    var query = from l in dc.Lekarze
-                                join ls in dc.LekarzSpecjalnosc on l.ID_Lekarza equals ls.ID_Lekarza into a
-                                from ls in a.DefaultIfEmpty()
-                                join s in dc.Specjalnosci on ls.ID_Specjalnosci equals s.ID_Specjalnosci into b
-                                from s in b.DefaultIfEmpty()
-                                        select new
-                                        {
-                                            specjalnosc = s.nazwa,
-                                            imie = l.imie,
-                                            nazwisko = l.nazwisko,
-                                            miejsce_ur = l.miejsce_urodzenia,
-                                            data_ur = l.data_urodzenia,
-                                            id = l.ID_Lekarza,
-                                            miescje_zam = l.miejsce_zamieszkania,
-                                            adres = l.ulica,
-                                            kod_pocztowy = l.kod_pocztowy
-                                        };
-
-
-
-
-                    if ((string)cbLekarzeImie.SelectedItem != "Dowolne")
-                        query = query.Where(l => (string)l.imie == (string)cbLekarzeImie.SelectedItem);
-
-                    if ((string)cbLekarzeNazwisko.SelectedItem != "Dowolne")
-                        query = query.Where(l => (string)l.nazwisko == (string)cbLekarzeNazwisko.SelectedItem);
-
-                    if ((string)cbLekarzeMiasto.SelectedItem != "Dowolne")
-                        query = query.Where(l => (string)l.miescje_zam == (string)cbLekarzeMiasto.SelectedItem);
-
-                    if ((string)cbLekarzeSpecjalnosc.SelectedItem != "Dowolna"){
-                        query = query.Where(s => (string)s.specjalnosc == (string)cbLekarzeSpecjalnosc.SelectedItem);
+                    if ((string)cbLekarzeSpecjalnosc.SelectedItem == "Dowolna"){
+                        konstruujFiltryLekarzyBezSpecjalnosci(dc);
                     }
-                       
 
-                        if ((string)cbLekarzeWiek.SelectedItem != "Dowolny")
+                    if ((string)cbLekarzeSpecjalnosc.SelectedItem != "Dowolna" || cbLekarzeSpecjalnosci.Checked){
+                        konstruujFiltryLekarzyZeSpecjalnoscia(dc);  
+                    }
+                }       
+            }
+            private void konstruujFiltryLekarzyBezSpecjalnosci(EntitiesPrzychodnia dc)
+            {
+                var query = from l in dc.Lekarze
+                            select new
+                            {
+                                imie = l.imie,
+                                nazwisko = l.nazwisko,
+                                miejsce_ur = l.miejsce_urodzenia,
+                                data_ur = l.data_urodzenia,
+                                id = l.ID_Lekarza,
+                                miescje_zam = l.miejsce_zamieszkania,
+                                adres = l.ulica,
+                                kod_pocztowy = l.kod_pocztowy
+                            };
+                if ((string)cbLekarzeImie.SelectedItem != "Dowolne")
+                    query = query.Where(l => (string)l.imie == (string)cbLekarzeImie.SelectedItem);
+
+                if ((string)cbLekarzeNazwisko.SelectedItem != "Dowolne")
+                    query = query.Where(l => (string)l.nazwisko == (string)cbLekarzeNazwisko.SelectedItem);
+
+                if ((string)cbLekarzeMiasto.SelectedItem != "Dowolne")
+                    query = query.Where(l => (string)l.miescje_zam == (string)cbLekarzeMiasto.SelectedItem);
+                if ((string)cbLekarzeWiek.SelectedItem != "Dowolny")
+                {
+                    string value = (string)cbLekarzeWiek.SelectedItem;
+                    if (value == "Powyżej")
+                    {
+                        query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year >= 101);
+                    }
+                    else
+                    {
+                        try
                         {
-                            string value = (string)cbLekarzeWiek.SelectedItem;
-                            if (value == "Powyżej")
-                            {
-                                query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year >= 101);
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    var split = value.Split('-');
-                                    int dol = Convert.ToInt32(split[0]);
-                                    int gora = Convert.ToInt32(split[1]);
-                                    query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year >= dol);
-                                    query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year <= gora);
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Nie udało się rozbić wieku na dwie liczby");
-                                }
-                            }
+                            var split = value.Split('-');
+                            int dol = Convert.ToInt32(split[0]);
+                            int gora = Convert.ToInt32(split[1]);
+                            query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year >= dol);
+                            query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year <= gora);
                         }
-                        var lista = query.ToList();
-                        lista.Distinct();
-                    dgvLekarze.DataSource = lista;
-
+                        catch
+                        {
+                            MessageBox.Show("Nie udało się rozbić wieku na dwie liczby");
+                        }
+                    }
                 }
-                
+                var lista = query.ToList();
+                lista.Distinct();
+                dgvLekarze.DataSource = lista;
+            }
+            private void konstruujFiltryLekarzyZeSpecjalnoscia(EntitiesPrzychodnia dc)
+            {
+                var query = from l in dc.Lekarze
+                            join ls in dc.LekarzSpecjalnosc on l.ID_Lekarza equals ls.ID_Lekarza into a
+                            from ls in a.DefaultIfEmpty()
+                            join s in dc.Specjalnosci on ls.ID_Specjalnosci equals s.ID_Specjalnosci into b
+                            from s in b.DefaultIfEmpty()
+                            select new
+                            {
+                                specjalnosc = s.nazwa,
+                                imie = l.imie,
+                                nazwisko = l.nazwisko,
+                                miejsce_ur = l.miejsce_urodzenia,
+                                data_ur = l.data_urodzenia,
+                                id = l.ID_Lekarza,
+                                miescje_zam = l.miejsce_zamieszkania,
+                                adres = l.ulica,
+                                kod_pocztowy = l.kod_pocztowy
+                            };
+                if ((string)cbLekarzeImie.SelectedItem != "Dowolne")
+                    query = query.Where(l => (string)l.imie == (string)cbLekarzeImie.SelectedItem);
+
+                if ((string)cbLekarzeNazwisko.SelectedItem != "Dowolne")
+                    query = query.Where(l => (string)l.nazwisko == (string)cbLekarzeNazwisko.SelectedItem);
+
+                if ((string)cbLekarzeMiasto.SelectedItem != "Dowolne")
+                    query = query.Where(l => (string)l.miescje_zam == (string)cbLekarzeMiasto.SelectedItem);
+
+                if ((string)cbLekarzeSpecjalnosc.SelectedItem != "Dowolna")
+                {
+                    query = query.Where(s => (string)s.specjalnosc == (string)cbLekarzeSpecjalnosc.SelectedItem);
+                }
+                if ((string)cbLekarzeWiek.SelectedItem != "Dowolny")
+                {
+                    string value = (string)cbLekarzeWiek.SelectedItem;
+                    if (value == "Powyżej")
+                    {
+                        query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year >= 101);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var split = value.Split('-');
+                            int dol = Convert.ToInt32(split[0]);
+                            int gora = Convert.ToInt32(split[1]);
+                            query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year >= dol);
+                            query = query.Where(l => DateTime.Now.Year - l.data_ur.Value.Year <= gora);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Nie udało się rozbić wieku na dwie liczby");
+                        }
+                    }
+                }
+                var lista = query.ToList();
+                lista.Distinct();
+                dgvLekarze.DataSource = lista;
             }
             private void bLekarzeSzukaj_Click(object sender, EventArgs e)
             {
@@ -366,7 +412,11 @@ namespace Przychodnia_rejestracja
             private void cbLekarzeSpecjalnosci_CheckedChanged(object sender, EventArgs e)
             {
                 CheckBox item = (CheckBox)sender;
-                dgvLekarze.Columns["specjalnosc"].Visible = item.Checked;
+                try
+                {
+                    dgvLekarze.Columns["specjalnosc"].Visible = item.Checked;
+                }
+                catch { }
             }
         #endregion
 
@@ -1033,15 +1083,19 @@ namespace Przychodnia_rejestracja
         {
             using (var dc = new EntitiesPrzychodnia())
             {
+                 if ((string)cbPacjenciLekarz.SelectedItem != "Dowolny")
+                    KonstruujFiltryPacjentowZLekarzem(dc);
+                else
+                    KonstruujFiltryPacjentowBezLekarzy(dc);
+            }
+            ustawStatus(dgvPacjenci);
+        }
+        private void KonstruujFiltryPacjentowBezLekarzy(EntitiesPrzychodnia dc)
+{
 
                 var query = from p in dc.Pacjenci
-                            join w in dc.Wizyty on p.ID_Pacjenta equals  w.ID_Pacjenta into a
-                            from w in a.DefaultIfEmpty()
-                            join l in dc.Lekarze on w.ID_Lekarza equals l.ID_Lekarza into b
-                            from l in b.DefaultIfEmpty()
                             select new
                             {
-                                p_lekarz = l.nazwisko + " " + l.imie,
                                 p_imie = p.imie,
                                 p_nazwisko = p.nazwisko,
                                 p_miejsce_urodzenia = p.miejsce_urodzenia,
@@ -1060,15 +1114,7 @@ namespace Przychodnia_rejestracja
 
                 if ((string)cbPacjenciMiasto.SelectedItem != "Dowolne")
                     query = query.Where(p => (string)p.p_miasto == (string)cbPacjenciMiasto.SelectedItem);
-
-                if ((string)cbPacjenciLekarz.SelectedItem != "Dowolny")
-                {
-                    query = query.Where(l => (string)l.p_lekarz == (string)cbPacjenciLekarz.SelectedItem);
-                    dgvPacjenci.Columns["p_lekarz"].Visible = true;
-                }
-                else
-                    dgvPacjenci.Columns["p_lekarz"].Visible = false;
-
+                    
                 if ((string)cbPacjenciWiek.SelectedItem != "Dowolny")
                 {
                     string value = (string)cbPacjenciWiek.SelectedItem;
@@ -1092,10 +1138,81 @@ namespace Przychodnia_rejestracja
                         }
                     }
                 }
-                dgvPacjenci.DataSource = query.ToList();
+                try
+                {
+                    dgvPacjenci.Columns["p_lekarz"].Visible = false;
+                    dgvPacjenci.DataSource = query.ToList();
+                }
+                catch
+                {}     
+        }
+        private void KonstruujFiltryPacjentowZLekarzem(EntitiesPrzychodnia dc)
+        {
+            var query = from p in dc.Pacjenci
+                        join w in dc.Wizyty on p.ID_Pacjenta equals w.ID_Pacjenta into a
+                        from w in a.DefaultIfEmpty()
+                        join l in dc.Lekarze on w.ID_Lekarza equals l.ID_Lekarza into b
+                        from l in b.DefaultIfEmpty()
+                        select new
+                        {
+                            p_lekarz = l.nazwisko + " " + l.imie,
+                            p_imie = p.imie,
+                            p_nazwisko = p.nazwisko,
+                            p_miejsce_urodzenia = p.miejsce_urodzenia,
+                            p_data = p.data_urodzenia,
+                            p_id = p.ID_Pacjenta,
+                            p_miasto = p.miejsce_zamieszkania,
+                            p_adres = p.ulica,
+                            p_kod = p.kod_pocztowy
+                        };
 
+            if ((string)cbPacjenciImie.SelectedItem != "Dowolne")
+                query = query.Where(p => (string)p.p_imie == (string)cbPacjenciImie.SelectedItem);
+
+            if ((string)cbPacjenciNazwisko.SelectedItem != "Dowolne")
+                query = query.Where(p => (string)p.p_nazwisko == (string)cbPacjenciNazwisko.SelectedItem);
+
+            if ((string)cbPacjenciMiasto.SelectedItem != "Dowolne")
+                query = query.Where(p => (string)p.p_miasto == (string)cbPacjenciMiasto.SelectedItem);
+
+            if ((string)cbPacjenciLekarz.SelectedItem != "Dowolny")
+            {
+                query = query.Where(l => (string)l.p_lekarz == (string)cbPacjenciLekarz.SelectedItem);
+                dgvPacjenci.Columns["p_lekarz"].Visible = true;
             }
+            else
+                dgvPacjenci.Columns["p_lekarz"].Visible = false;
 
+            if ((string)cbPacjenciWiek.SelectedItem != "Dowolny")
+            {
+                string value = (string)cbPacjenciWiek.SelectedItem;
+                if (value == "Powyżej")
+                {
+                    query = query.Where(p => DateTime.Now.Year - p.p_data.Value.Year >= 101);
+                }
+                else
+                {
+                    try
+                    {
+                        var split = value.Split('-');
+                        int dol = Convert.ToInt32(split[0]);
+                        int gora = Convert.ToInt32(split[1]);
+                        query = query.Where(p => DateTime.Now.Year - p.p_data.Value.Year >= dol);
+                        query = query.Where(p => DateTime.Now.Year - p.p_data.Value.Year <= gora);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Nie udało się rozbić wieku na dwie liczby");
+                    }
+                }
+            }
+            try
+            {
+                dgvPacjenci.Columns["p_lekarz"].Visible = true;
+                dgvPacjenci.DataSource = query.ToList();
+            }
+            catch{}
+           
         }
         private void bPacjenciSzukaj_Click(object sender, EventArgs e)
         {
@@ -1255,6 +1372,7 @@ namespace Przychodnia_rejestracja
         private void bWizytySzukaj_Click(object sender, EventArgs e)
         {
             konstuujFiltrWizyt();
+            ustawStatus(dgvWizyty);
         }
 
         private void bWizytyWyczysc_Click(object sender, EventArgs e)
@@ -1273,8 +1391,24 @@ namespace Przychodnia_rejestracja
         }
         #endregion
 
+        private void oProgramieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OProgramie window = new OProgramie();
+            window.Show();
+        }
+
+        private void statystykiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Statystyki window = new Statystyki();
+            window.Show();
+        }
 
 
+        private void ustawStatus(DataGridView dgv) {
+            int liczba = dgv.Rows.Count;
+            this.status.Text = String.Format("Liczba rekordów: {0}",liczba);
+        
+        }
 
     }
 }

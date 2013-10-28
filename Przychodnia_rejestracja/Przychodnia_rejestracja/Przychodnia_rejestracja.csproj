@@ -11,6 +11,7 @@
     <AssemblyName>Przychodnia_rejestracja</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -118,6 +118,12 @@
     <Compile Include="LekarzSpecjalnosc.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OProgramie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OProgramie.Designer.cs">
+      <DependentUpon>OProgramie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pacjenci.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
@@ -150,6 +156,12 @@
     <Compile Include="Specjalnosci.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Statystyki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Statystyki.Designer.cs">
+      <DependentUpon>Statystyki.cs</DependentUpon>
+    </Compile>
     <Compile Include="Swiadczenia.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
@@ -181,6 +193,9 @@
     <EmbeddedResource Include="LekarzeSzczegoly.resx">
       <DependentUpon>LekarzeSzczegoly.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OProgramie.resx">
+      <DependentUpon>OProgramie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -192,6 +207,9 @@
     </Compile>
     <EmbeddedResource Include="PrzelozWizyte.resx">
       <DependentUpon>PrzelozWizyte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statystyki.resx">
+      <DependentUpon>Statystyki.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ulotka.resx">
       <DependentUpon>Ulotka.cs</DependentUpon>

@@ -30,9 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opcjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statystykiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oProgramieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsLekarze = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lekarze_szczegoly = new System.Windows.Forms.ToolStripMenuItem();
@@ -180,6 +181,7 @@
             this.w_lekarz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.w_odbyta = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.cmsLekarze.SuspendLayout();
             this.tabSpecjalnosci.SuspendLayout();
@@ -236,17 +238,23 @@
             // 
             // statusStrip
             // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.status});
             this.statusStrip.Location = new System.Drawing.Point(0, 521);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(886, 22);
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
+            // status
+            // 
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(0, 17);
+            // 
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.plikToolStripMenuItem,
-            this.opcjeToolStripMenuItem,
             this.oProgramieToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -256,21 +264,25 @@
             // 
             // plikToolStripMenuItem
             // 
+            this.plikToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statystykiToolStripMenuItem});
             this.plikToolStripMenuItem.Name = "plikToolStripMenuItem";
             this.plikToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.plikToolStripMenuItem.Text = "Plik";
             // 
-            // opcjeToolStripMenuItem
+            // statystykiToolStripMenuItem
             // 
-            this.opcjeToolStripMenuItem.Name = "opcjeToolStripMenuItem";
-            this.opcjeToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.opcjeToolStripMenuItem.Text = "Opcje";
+            this.statystykiToolStripMenuItem.Name = "statystykiToolStripMenuItem";
+            this.statystykiToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.statystykiToolStripMenuItem.Text = "Statystyki";
+            this.statystykiToolStripMenuItem.Click += new System.EventHandler(this.statystykiToolStripMenuItem_Click);
             // 
             // oProgramieToolStripMenuItem
             // 
             this.oProgramieToolStripMenuItem.Name = "oProgramieToolStripMenuItem";
             this.oProgramieToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.oProgramieToolStripMenuItem.Text = "O programie";
+            this.oProgramieToolStripMenuItem.Click += new System.EventHandler(this.oProgramieToolStripMenuItem_Click);
             // 
             // cmsLekarze
             // 
@@ -318,7 +330,7 @@
             // 
             this.splitSpecjalnosci.Panel2.Controls.Add(this.gbSpecjalnosci);
             this.splitSpecjalnosci.Size = new System.Drawing.Size(872, 465);
-            this.splitSpecjalnosci.SplitterDistance = 594;
+            this.splitSpecjalnosci.SplitterDistance = 573;
             this.splitSpecjalnosci.TabIndex = 0;
             // 
             // dgvSpecjalnosci
@@ -330,7 +342,7 @@
             this.dgvSpecjalnosci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSpecjalnosci.Location = new System.Drawing.Point(0, 0);
             this.dgvSpecjalnosci.Name = "dgvSpecjalnosci";
-            this.dgvSpecjalnosci.Size = new System.Drawing.Size(594, 465);
+            this.dgvSpecjalnosci.Size = new System.Drawing.Size(573, 465);
             this.dgvSpecjalnosci.TabIndex = 0;
             this.dgvSpecjalnosci.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRow_DoubleClicked);
             // 
@@ -358,7 +370,7 @@
             this.gbSpecjalnosci.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbSpecjalnosci.Location = new System.Drawing.Point(0, 0);
             this.gbSpecjalnosci.Name = "gbSpecjalnosci";
-            this.gbSpecjalnosci.Size = new System.Drawing.Size(274, 149);
+            this.gbSpecjalnosci.Size = new System.Drawing.Size(295, 149);
             this.gbSpecjalnosci.TabIndex = 0;
             this.gbSpecjalnosci.TabStop = false;
             this.gbSpecjalnosci.Text = "Dodaj specjalność";
@@ -439,7 +451,7 @@
             // 
             this.splitChoroby.Panel2.Controls.Add(this.gbChoroby);
             this.splitChoroby.Size = new System.Drawing.Size(872, 465);
-            this.splitChoroby.SplitterDistance = 562;
+            this.splitChoroby.SplitterDistance = 574;
             this.splitChoroby.TabIndex = 0;
             // 
             // dgvChoroby
@@ -454,7 +466,7 @@
             this.dgvChoroby.MultiSelect = false;
             this.dgvChoroby.Name = "dgvChoroby";
             this.dgvChoroby.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChoroby.Size = new System.Drawing.Size(562, 465);
+            this.dgvChoroby.Size = new System.Drawing.Size(574, 465);
             this.dgvChoroby.TabIndex = 0;
             this.dgvChoroby.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRow_DoubleClicked);
             // 
@@ -490,7 +502,7 @@
             this.gbChoroby.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbChoroby.Location = new System.Drawing.Point(0, 0);
             this.gbChoroby.Name = "gbChoroby";
-            this.gbChoroby.Size = new System.Drawing.Size(306, 245);
+            this.gbChoroby.Size = new System.Drawing.Size(294, 245);
             this.gbChoroby.TabIndex = 0;
             this.gbChoroby.TabStop = false;
             this.gbChoroby.Text = "Dodaj chorobę";
@@ -1048,7 +1060,7 @@
             // 
             this.splitLekarze.Panel2.Controls.Add(this.dgvLekarze);
             this.splitLekarze.Size = new System.Drawing.Size(872, 465);
-            this.splitLekarze.SplitterDistance = 82;
+            this.splitLekarze.SplitterDistance = 99;
             this.splitLekarze.TabIndex = 0;
             // 
             // cbLekarzeSpecjalnosci
@@ -1219,7 +1231,7 @@
             this.dgvLekarze.RowHeadersVisible = false;
             this.dgvLekarze.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLekarze.ShowCellToolTips = false;
-            this.dgvLekarze.Size = new System.Drawing.Size(872, 379);
+            this.dgvLekarze.Size = new System.Drawing.Size(872, 362);
             this.dgvLekarze.TabIndex = 0;
             this.dgvLekarze.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDown);
             // 
@@ -1602,7 +1614,7 @@
             // 
             // bWizytyWyczysc
             // 
-            this.bWizytyWyczysc.Location = new System.Drawing.Point(539, 42);
+            this.bWizytyWyczysc.Location = new System.Drawing.Point(431, 42);
             this.bWizytyWyczysc.Name = "bWizytyWyczysc";
             this.bWizytyWyczysc.Size = new System.Drawing.Size(75, 23);
             this.bWizytyWyczysc.TabIndex = 9;
@@ -1612,7 +1624,7 @@
             // 
             // bWizytySzukaj
             // 
-            this.bWizytySzukaj.Location = new System.Drawing.Point(539, 12);
+            this.bWizytySzukaj.Location = new System.Drawing.Point(431, 12);
             this.bWizytySzukaj.Name = "bWizytySzukaj";
             this.bWizytySzukaj.Size = new System.Drawing.Size(75, 23);
             this.bWizytySzukaj.TabIndex = 8;
@@ -1843,6 +1855,8 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainWindow";
             this.Text = "Przychodnia Lekarska - Rejestracja";
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.cmsLekarze.ResumeLayout(false);
@@ -1914,8 +1928,6 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opcjeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem oProgramieToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip cmsLekarze;
         private System.Windows.Forms.ToolStripMenuItem lekarze_szczegoly;
         private System.Windows.Forms.ToolStripMenuItem lekarze_dodaj;
@@ -2062,6 +2074,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn w_odbyta;
         private System.Windows.Forms.ContextMenuStrip cmsPacjenci;
         private System.Windows.Forms.ToolStripMenuItem dodajToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel status;
+        private System.Windows.Forms.ToolStripMenuItem statystykiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oProgramieToolStripMenuItem;
     }
 }
 
