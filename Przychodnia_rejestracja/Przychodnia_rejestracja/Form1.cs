@@ -1302,11 +1302,11 @@ namespace Przychodnia_rejestracja
                             orderby w.data descending, w.czas ascending
                             select new
                             {
-                                w_lekarz = l.nazwisko + " " + l.imie,
-                                w_imie = p.imie,
-                                w_nazwisko = p.nazwisko,
                                 w_godzina = w.czas,
                                 w_data = w.data,
+                                w_imie = p.imie,
+                                w_nazwisko = p.nazwisko,
+                                w_lekarz = l.nazwisko + " " + l.imie,
                                 w_odbyta = w.czy_odbyta
                             };
 
@@ -1374,7 +1374,6 @@ namespace Przychodnia_rejestracja
                     }
                 
                 }
-
 
                 dgvWizyty.DataSource = query.ToList();
 

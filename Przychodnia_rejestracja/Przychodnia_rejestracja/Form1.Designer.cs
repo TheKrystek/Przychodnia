@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
@@ -1568,7 +1569,7 @@
             this.dodajToolStripMenuItem,
             this.edytujToolStripMenuItem});
             this.cmsPacjenci.Name = "cmsPacjenci";
-            this.cmsPacjenci.Size = new System.Drawing.Size(153, 70);
+            this.cmsPacjenci.Size = new System.Drawing.Size(108, 48);
             this.cmsPacjenci.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsPacjenci_ItemClicked);
             // 
             // dodajToolStripMenuItem
@@ -1860,6 +1861,7 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainWindow";
             this.Text = "Przychodnia Lekarska - Rejestracja";

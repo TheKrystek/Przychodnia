@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DodajSpecjalnosc));
             this.panel_lakarz = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.cbLekarze = new System.Windows.Forms.ComboBox();
@@ -150,6 +151,7 @@
             this.ClientSize = new System.Drawing.Size(265, 170);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel_lakarz);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DodajSpecjalnosc";
             this.Text = "Dodaj Specjalność - ";
             this.Load += new System.EventHandler(this.DodajSpecjalnosc_Load);

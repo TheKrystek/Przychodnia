@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DodajWizyte));
             this.data = new System.Windows.Forms.DateTimePicker();
             this.czas = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -276,6 +277,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.anuluj);
             this.Controls.Add(this.dodaj);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DodajWizyte";
             this.Text = "Dodaj Wizytę";
             this.Load += new System.EventHandler(this.DodajWizyte_Load);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DodajPacjenta));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dodaj = new System.Windows.Forms.Button();
             this.anuluj = new System.Windows.Forms.Button();
@@ -82,6 +83,7 @@
             // 
             // dodaj
             // 
+            this.dodaj.Enabled = false;
             this.dodaj.Location = new System.Drawing.Point(399, 185);
             this.dodaj.Name = "dodaj";
             this.dodaj.Size = new System.Drawing.Size(75, 23);
@@ -239,6 +241,7 @@
             // 
             // zapisz
             // 
+            this.zapisz.ForeColor = System.Drawing.SystemColors.ControlText;
             this.zapisz.Location = new System.Drawing.Point(318, 185);
             this.zapisz.Name = "zapisz";
             this.zapisz.Size = new System.Drawing.Size(75, 23);
@@ -254,6 +257,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(580, 220);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DodajPacjenta";
             this.Text = "Dodaj Pacjenta";
             this.Load += new System.EventHandler(this.DodajPacjenta_Load);

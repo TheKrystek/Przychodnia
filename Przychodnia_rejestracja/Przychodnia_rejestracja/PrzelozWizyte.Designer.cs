@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrzelozWizyte));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.godzina = new System.Windows.Forms.DateTimePicker();
             this.data = new System.Windows.Forms.DateTimePicker();
@@ -159,7 +160,7 @@
             this.dodaj.Name = "dodaj";
             this.dodaj.Size = new System.Drawing.Size(75, 23);
             this.dodaj.TabIndex = 23;
-            this.dodaj.Text = "Dodaj";
+            this.dodaj.Text = "Przełóż";
             this.dodaj.UseVisualStyleBackColor = true;
             this.dodaj.Click += new System.EventHandler(this.dodaj_Click);
             // 
@@ -172,8 +173,9 @@
             this.Controls.Add(this.dodaj);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PrzelozWizyte";
-            this.Text = "PrzelozWizyte";
+            this.Text = "Przełóż Wizytę";
             this.Load += new System.EventHandler(this.PrzelozWizyte_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
