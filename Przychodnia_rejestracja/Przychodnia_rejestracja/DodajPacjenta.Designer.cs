@@ -246,6 +246,7 @@
             this.zapisz.Text = "Zapisz";
             this.zapisz.UseVisualStyleBackColor = true;
             this.zapisz.Visible = false;
+            this.zapisz.Click += new System.EventHandler(this.zapisz_Click);
             // 
             // DodajPacjenta
             // 

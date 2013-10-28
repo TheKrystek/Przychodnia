@@ -109,7 +109,7 @@ namespace Przychodnia_rejestracja
 
         void aktywujZapisz()
         {
-            dodaj.Enabled = (
+            bool enabled = (
                 Validacja.Tekst(imie.Text, true) &&
                 Validacja.Tekst(nazwisko.Text, true) &&
                 Validacja.Tekst(miejsce_ur.Text, true) &&
@@ -117,6 +117,11 @@ namespace Przychodnia_rejestracja
                 Validacja.Tekst(ulica.Text, false) &&
                 Validacja.Kod(kod.Text) &&
                 !String.IsNullOrEmpty(pesel.Text));
+
+            if (dodaj.Visible)
+                dodaj.Enabled = enabled;
+            else
+                zapisz.Enabled = enabled;
         }
 
         private void DodajPacjenta_Load(object sender, EventArgs e)
@@ -173,6 +178,12 @@ namespace Przychodnia_rejestracja
                 this.kod.Text = pacjent.First().kod_pocztowy;
                 this.pesel.Text = pacjent.First().pesel;
             }
+        }
+
+        private void zapisz_Click(object sender, EventArgs e)
+        {
+            edytujPacjenta();
+            this.Close();
         }
 
     }
