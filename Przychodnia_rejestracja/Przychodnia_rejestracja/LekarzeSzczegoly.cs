@@ -123,6 +123,7 @@ namespace Przychodnia_rejestracja
                     lekarz.PESEL = pesel.Text;
                     lekarz.ulica = ulica.Text;
                     lekarz.kod_pocztowy = kod.Text;
+                    button.Enabled = true;
                     try{
                         dc.SaveChanges();
                     }
@@ -267,7 +268,9 @@ namespace Przychodnia_rejestracja
                 Validacja.Tekst(nazwisko.Text, true) &&
                 Validacja.Tekst(miejsce_ur.Text, true) &&
                 Validacja.Tekst(miejsce_zam.Text, true) &&
-                Validacja.Tekst(ulica.Text,false));
+                Validacja.Tekst(ulica.Text,false) &&
+                Validacja.Kod(kod.Text)&&
+                !String.IsNullOrEmpty(pesel.Text));
         }
  
         

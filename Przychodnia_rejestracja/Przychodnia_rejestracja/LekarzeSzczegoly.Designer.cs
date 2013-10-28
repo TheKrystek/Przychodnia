@@ -136,7 +136,8 @@
             this.dtpUrodzenia.Location = new System.Drawing.Point(132, 109);
             this.dtpUrodzenia.Name = "dtpUrodzenia";
             this.dtpUrodzenia.Size = new System.Drawing.Size(147, 20);
-            this.dtpUrodzenia.TabIndex = 16;
+            this.dtpUrodzenia.TabIndex = 3;
+            this.dtpUrodzenia.Value = new System.DateTime(1990, 1, 1, 16, 38, 0, 0);
             // 
             // label8
             // 
@@ -152,7 +153,8 @@
             this.pesel.Location = new System.Drawing.Point(132, 82);
             this.pesel.Name = "pesel";
             this.pesel.Size = new System.Drawing.Size(147, 20);
-            this.pesel.TabIndex = 14;
+            this.pesel.TabIndex = 2;
+            this.pesel.TextChanged += new System.EventHandler(this.validacja);
             // 
             // label7
             // 
@@ -168,7 +170,8 @@
             this.kod.Location = new System.Drawing.Point(408, 82);
             this.kod.Name = "kod";
             this.kod.Size = new System.Drawing.Size(147, 20);
-            this.kod.TabIndex = 12;
+            this.kod.TabIndex = 7;
+            this.kod.TextChanged += new System.EventHandler(this.validacja);
             // 
             // label6
             // 
@@ -229,21 +232,24 @@
             this.ulica.Location = new System.Drawing.Point(408, 56);
             this.ulica.Name = "ulica";
             this.ulica.Size = new System.Drawing.Size(147, 20);
-            this.ulica.TabIndex = 5;
+            this.ulica.TabIndex = 6;
+            this.ulica.TextChanged += new System.EventHandler(this.validacja);
             // 
             // miejsce_zam
             // 
             this.miejsce_zam.Location = new System.Drawing.Point(408, 30);
             this.miejsce_zam.Name = "miejsce_zam";
             this.miejsce_zam.Size = new System.Drawing.Size(147, 20);
-            this.miejsce_zam.TabIndex = 4;
+            this.miejsce_zam.TabIndex = 5;
+            this.miejsce_zam.TextChanged += new System.EventHandler(this.validacja);
             // 
             // miejsce_ur
             // 
             this.miejsce_ur.Location = new System.Drawing.Point(132, 134);
             this.miejsce_ur.Name = "miejsce_ur";
             this.miejsce_ur.Size = new System.Drawing.Size(147, 20);
-            this.miejsce_ur.TabIndex = 3;
+            this.miejsce_ur.TabIndex = 4;
+            this.miejsce_ur.TextChanged += new System.EventHandler(this.validacja);
             // 
             // nazwisko
             // 
@@ -251,6 +257,7 @@
             this.nazwisko.Name = "nazwisko";
             this.nazwisko.Size = new System.Drawing.Size(147, 20);
             this.nazwisko.TabIndex = 1;
+            this.nazwisko.TextChanged += new System.EventHandler(this.validacja);
             // 
             // imie
             // 
@@ -533,6 +540,7 @@
             // button
             // 
             this.button.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button.Enabled = false;
             this.button.Location = new System.Drawing.Point(590, 0);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(84, 31);

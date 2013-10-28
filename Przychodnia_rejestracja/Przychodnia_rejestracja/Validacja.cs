@@ -26,5 +26,13 @@ namespace Przychodnia_rejestracja
                 match = Regex.Match(text, "^[a-zA-Z -ąęćżźśółńćŚŻŹŁ]+$");
             return match.Success;
         }
+
+        // Sprawdzanie poprawności formatu: kod pocztowy
+        static public bool Kod(string text)
+        {
+            Match match = Regex.Match(text, "^[0-9]{2}-[0-9]{3}$");
+            return match.Success;
+        }
+
     }
 }

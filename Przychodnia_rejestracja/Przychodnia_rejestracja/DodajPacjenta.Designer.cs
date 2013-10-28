@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dodaj = new System.Windows.Forms.Button();
+            this.anuluj = new System.Windows.Forms.Button();
             this.dtpUrodzenia = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.pesel = new System.Windows.Forms.TextBox();
@@ -45,8 +47,6 @@
             this.miejsce_ur = new System.Windows.Forms.TextBox();
             this.nazwisko = new System.Windows.Forms.TextBox();
             this.imie = new System.Windows.Forms.TextBox();
-            this.anuluj = new System.Windows.Forms.Button();
-            this.dodaj = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +78,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dane Osobowe";
             // 
+            // dodaj
+            // 
+            this.dodaj.Location = new System.Drawing.Point(399, 185);
+            this.dodaj.Name = "dodaj";
+            this.dodaj.Size = new System.Drawing.Size(75, 23);
+            this.dodaj.TabIndex = 18;
+            this.dodaj.Text = "Dodaj";
+            this.dodaj.UseVisualStyleBackColor = true;
+            this.dodaj.Click += new System.EventHandler(this.dodaj_Click);
+            // 
+            // anuluj
+            // 
+            this.anuluj.Location = new System.Drawing.Point(480, 185);
+            this.anuluj.Name = "anuluj";
+            this.anuluj.Size = new System.Drawing.Size(75, 23);
+            this.anuluj.TabIndex = 17;
+            this.anuluj.Text = "Anuluj";
+            this.anuluj.UseVisualStyleBackColor = true;
+            this.anuluj.Click += new System.EventHandler(this.anuluj_Click);
+            // 
             // dtpUrodzenia
             // 
             this.dtpUrodzenia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -85,6 +105,7 @@
             this.dtpUrodzenia.Name = "dtpUrodzenia";
             this.dtpUrodzenia.Size = new System.Drawing.Size(147, 20);
             this.dtpUrodzenia.TabIndex = 16;
+            this.dtpUrodzenia.Value = new System.DateTime(1990, 1, 1, 16, 36, 0, 0);
             // 
             // label8
             // 
@@ -101,6 +122,7 @@
             this.pesel.Name = "pesel";
             this.pesel.Size = new System.Drawing.Size(147, 20);
             this.pesel.TabIndex = 14;
+            this.pesel.TextChanged += new System.EventHandler(this.validacja);
             // 
             // label7
             // 
@@ -117,6 +139,7 @@
             this.kod.Name = "kod";
             this.kod.Size = new System.Drawing.Size(147, 20);
             this.kod.TabIndex = 12;
+            this.kod.TextChanged += new System.EventHandler(this.validacja);
             // 
             // label6
             // 
@@ -178,6 +201,7 @@
             this.ulica.Name = "ulica";
             this.ulica.Size = new System.Drawing.Size(147, 20);
             this.ulica.TabIndex = 5;
+            this.ulica.TextChanged += new System.EventHandler(this.validacja);
             // 
             // miejsce_zam
             // 
@@ -185,6 +209,7 @@
             this.miejsce_zam.Name = "miejsce_zam";
             this.miejsce_zam.Size = new System.Drawing.Size(147, 20);
             this.miejsce_zam.TabIndex = 4;
+            this.miejsce_zam.TextChanged += new System.EventHandler(this.validacja);
             // 
             // miejsce_ur
             // 
@@ -192,6 +217,7 @@
             this.miejsce_ur.Name = "miejsce_ur";
             this.miejsce_ur.Size = new System.Drawing.Size(147, 20);
             this.miejsce_ur.TabIndex = 3;
+            this.miejsce_ur.TextChanged += new System.EventHandler(this.validacja);
             // 
             // nazwisko
             // 
@@ -199,6 +225,7 @@
             this.nazwisko.Name = "nazwisko";
             this.nazwisko.Size = new System.Drawing.Size(147, 20);
             this.nazwisko.TabIndex = 1;
+            this.nazwisko.TextChanged += new System.EventHandler(this.validacja);
             // 
             // imie
             // 
@@ -206,26 +233,7 @@
             this.imie.Name = "imie";
             this.imie.Size = new System.Drawing.Size(147, 20);
             this.imie.TabIndex = 0;
-            // 
-            // anuluj
-            // 
-            this.anuluj.Location = new System.Drawing.Point(480, 185);
-            this.anuluj.Name = "anuluj";
-            this.anuluj.Size = new System.Drawing.Size(75, 23);
-            this.anuluj.TabIndex = 17;
-            this.anuluj.Text = "Anuluj";
-            this.anuluj.UseVisualStyleBackColor = true;
-            this.anuluj.Click += new System.EventHandler(this.anuluj_Click);
-            // 
-            // dodaj
-            // 
-            this.dodaj.Location = new System.Drawing.Point(399, 185);
-            this.dodaj.Name = "dodaj";
-            this.dodaj.Size = new System.Drawing.Size(75, 23);
-            this.dodaj.TabIndex = 18;
-            this.dodaj.Text = "Dodaj";
-            this.dodaj.UseVisualStyleBackColor = true;
-            this.dodaj.Click += new System.EventHandler(this.dodaj_Click);
+            this.imie.TextChanged += new System.EventHandler(this.validacja);
             // 
             // DodajPacjenta
             // 
@@ -234,7 +242,7 @@
             this.ClientSize = new System.Drawing.Size(580, 220);
             this.Controls.Add(this.groupBox1);
             this.Name = "DodajPacjenta";
-            this.Text = "DodajPacjenta";
+            this.Text = "Dodaj Pacjenta";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
