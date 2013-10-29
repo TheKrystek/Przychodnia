@@ -129,8 +129,8 @@ namespace Przychodnia_rejestracja
                 imiona.Sort();
                 nazwiska.Sort();
                 pesele.Sort();
-
-                lekarzePESEL.Items.Clear();
+                pesele.Distinct();
+                
                 if (String.IsNullOrEmpty(imie))
                 {
                     lekarzImie.Items.Clear();
@@ -143,6 +143,7 @@ namespace Przychodnia_rejestracja
                 if (String.IsNullOrEmpty(nazwisko))
                     lekarzNazwisko.Items.AddRange(nazwiska.ToArray());
 
+                lekarzePESEL.Items.Clear();
                 lekarzePESEL.Items.AddRange(pesele.ToArray());
                 if (lekarzePESEL.Items.Count == 1)
                     lekarzePESEL.SelectedIndex = 0;
