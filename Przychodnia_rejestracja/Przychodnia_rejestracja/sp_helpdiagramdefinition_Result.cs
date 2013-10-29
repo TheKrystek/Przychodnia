@@ -10,17 +10,10 @@
 namespace Przychodnia_rejestracja
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Recepty
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int ID_Recepty { get; set; }
-        public int ID_Wizyty { get; set; }
-        public int ID_Lekarstwa { get; set; }
-        public string uwagi { get; set; }
-    
-        public virtual Lekarstwa Lekarstwa { get; set; }
-        public virtual Wizyty Wizyty { get; set; }
-        public virtual Lekarstwa Lekarstwa1 { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

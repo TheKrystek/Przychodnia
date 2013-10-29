@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -44,12 +45,14 @@ namespace Przychodnia_rejestracja
                     case "Najpopularniejsze choroby według miesięcy diagnozy":
                         this.najpopularniejszeChorobyWedlugMiesiecy();
                         break;
-                    case "Pacjentki zbyt często odwiedzajace swoich lekarzy":
+                    case "Pacjentki zbyt często odwiedzajace swoich lekarzy (częściej niż średnia)":
                         this.pacjentkiZbytCzestoOdwiedzajaceLekarzy();
                         break;
                     default:
                         break;
                 }
+                ustawStatus();
+                pokazPotrzebneKolumny();
             }  
         }
         void ustawStatus(string nazwa = "Wyników") {
@@ -62,15 +65,14 @@ namespace Przychodnia_rejestracja
                               join w in dc.Wizyty on l.ID_Lekarza equals w.ID_Lekarza
                               join r in dc.Recepty on w.ID_Wizyty equals r.ID_Wizyty
                               group l by new { l.ID_Lekarza, l.imie, l.nazwisko } into g
-                              orderby g.Key descending
+                              orderby g.Count() descending
                               select new
                               {
-                                  imie = g.Key.imie,
-                                  nazwisko = g.Key.nazwisko,
+                                  imie_lekarza = g.Key.imie,
+                                  nazwisko_lekarza = g.Key.nazwisko,
                                   liczba = g.Count()
                               };
                 output.DataSource = query.ToList();
-                ustawStatus();
             }
         }    
         void lekarzeZNajwiekszaSumaLekow() {
@@ -85,12 +87,12 @@ namespace Przychodnia_rejestracja
                               orderby suma descending
                               select new
                               {
-                                  imie = g.Key.imie,
-                                  nazwisko = g.Key.nazwisko,
+                                  imie_lekarza = g.Key.imie,
+                                  nazwisko_lekarza = g.Key.nazwisko,
                                   suma = g.Sum(wynik => wynik.le.cena)
                               };
                 output.DataSource = query.ToList();
-                ustawStatus();
+                
             }
         }
         void lekarzeZNajwiekszaLiczbaPacjentow() {
@@ -100,14 +102,14 @@ namespace Przychodnia_rejestracja
                             join w in dc.Wizyty on l.ID_Lekarza equals w.ID_Lekarza
                             join p in dc.Pacjenci on w.ID_Pacjenta equals p.ID_Pacjenta
                             group l by new {l.ID_Lekarza, l.imie, l.nazwisko} into g
+                            orderby g.Count() descending
                             select new
                             {
-                                imie = g.Key.imie,
-                                nazwisko = g.Key.nazwisko,
+                                imie_lekarza = g.Key.imie,
+                                nazwisko_lekarza = g.Key.nazwisko,
                                 liczba = g.Count()
                             };
                 output.DataSource = query.ToList();
-                ustawStatus();
             }
         }
         void lekarzeZSumaReceptWiekszaNizSrednia() {
@@ -124,14 +126,13 @@ namespace Przychodnia_rejestracja
                             where suma > srednia
                             select new
                             {
-                                imie = g.Key.imie,
-                                nazwisko = g.Key.nazwisko,
+                                imie_lekarza = g.Key.imie,
+                                nazwisko_lekarza = g.Key.nazwisko,
                                 suma = g.Sum(wynik => wynik.le.cena),
                                 srednia = g.Average(wynik => wynik.le.cena),
                                 roznica = suma - srednia
                             };
                 output.DataSource = query.ToList();
-                ustawStatus();
             }
         }
         void lekarzeWypisujacyNajdrozszeLeki() {
@@ -159,6 +160,7 @@ namespace Przychodnia_rejestracja
                             join r in dc.Recepty on w.ID_Wizyty equals r.ID_Wizyty
                             join le in dc.Lekarstwa on r.ID_Lekarstwa equals le.ID_Lekarstwa
                             where subquery.Take(10).Contains(le)
+                            orderby le.cena descending
                             select new
                             {
                                 imie_lekarza = l.imie,
@@ -168,7 +170,6 @@ namespace Przychodnia_rejestracja
                             };
 
                 output.DataSource = query.ToList();
-                ustawStatus();
             }
         }
         void chorobyILiczbaIchDiagnoz() {
@@ -177,12 +178,12 @@ namespace Przychodnia_rejestracja
                 var query = from ch in dc.Choroby
                             join d in dc.Diagnozy on ch.ID_Choroby equals d.ID_Choroby
                             group ch by new {ch.ID_Choroby, ch.nazwa} into g
+                            orderby g.Key.nazwa ascending
                             select new { 
                                 nazwa_choroby = g.Key.nazwa,
-                                suma = g.Count()
+                                liczba = g.Count()
                             };
                 output.DataSource = query.ToList();
-                ustawStatus();
             }
         }
         void najpopularniejszeChorobyWedlugMiesiecy() {
@@ -201,6 +202,7 @@ namespace Przychodnia_rejestracja
                             join d in dc.Diagnozy on ch.ID_Choroby equals d.ID_Choroby
                             join w in dc.Wizyty on d.ID_Wizyty equals w.ID_Wizyty
                             group new {ch, w} by new { ch.ID_Choroby, ch.nazwa, w.data.Value.Month} into g
+                            orderby g.Key.nazwa ascending, g.Key.Month ascending
                             select new
                             {
                                 nazwa_choroby = g.Key.nazwa,
@@ -209,19 +211,21 @@ namespace Przychodnia_rejestracja
                             };
 
                 output.DataSource = query.ToList();
-                ustawStatus();
             }
         }
-        void pacjentkiZbytCzestoOdwiedzajaceLekarzy() { 
-          
-                // Aby wyznaczyc srednia liczbe wizyt pacjentki u danego lekarza poslugujemy sie procedurą składowaną?
-                // (stored procedure)
+        void pacjentkiZbytCzestoOdwiedzajaceLekarzy() {  
+            using (var dc = new EntitiesPrzychodnia())
+            {
                 
-                double srednia = 
+                var wynik = dc.Database.SqlQuery<int>("exec SredniaWizytPacjentekULekarza");
+                int srednia = 1;
+                if (wynik.Count() == 1)
+                    srednia = wynik.ElementAt(0);
 
                 var query = from l in dc.Lekarze
                             join w in dc.Wizyty on l.ID_Lekarza equals w.ID_Lekarza
                             join p in dc.Pacjenci on w.ID_Pacjenta equals p.ID_Pacjenta
+                            where l.plec == "m" && p.plec == "k"
                             group new { l, p } by new { 
                                     l.ID_Lekarza, 
                                     imie_lekarza = l.imie, 
@@ -230,22 +234,29 @@ namespace Przychodnia_rejestracja
                                     imie_pacjenta = p.imie, 
                                     nazwisko_pacjenta = p.nazwisko 
                                 } into g
-                            let suma = g.Average(x => x.sum)
-                            let srednia = g.Average(x => x.le.cena)
-                            orderby suma descending
-                            where suma > srednia
+                            let liczba_odwiedzin = g.Count()
+                            where liczba_odwiedzin > srednia
+                            orderby liczba_odwiedzin descending
                             select new
                             {
-                                imie_ = g.Key.imie,
-                                nazwisko = g.Key.nazwisko,
-                                suma = g.Sum(wynik => wynik.le.cena),
-                                srednia = g.Average(wynik => wynik.le.cena),
-                                roznica = suma - srednia
+                                imie_lekarza = g.Key.imie_lekarza,
+                                nazwisko_lekarza = g.Key.nazwisko_lekarza,
+                                imie_pacjenta  = g.Key.imie_pacjenta,
+                                nazwisko_pacjenta = g.Key.nazwisko_pacjenta,
+                                suma = g.Count()
                             };
                 output.DataSource = query.ToList();
-                ustawStatus();
             }
         }
+        void pokazPotrzebneKolumny() {
+            for (int i = 0; i < output.ColumnCount;i++)
+            {
+                if (output.RowCount > 0)
+                {
+                    output.Columns[i].Visible = (output.Rows[0].Cells[i].Value != null);
+                }
+            }
 
+        }
     }
 }

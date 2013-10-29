@@ -16,7 +16,6 @@
           <EntitySet Name="Recepty" EntityType="PrzychodniaModel.Store.Recepty" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Specjalnosci" EntityType="PrzychodniaModel.Store.Specjalnosci" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Swiadczenia" EntityType="PrzychodniaModel.Store.Swiadczenia" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="PrzychodniaModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Wizyty" EntityType="PrzychodniaModel.Store.Wizyty" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Badania_Swiadczenia" Association="PrzychodniaModel.Store.FK_Badania_Swiadczenia">
             <End Role="Swiadczenia" EntitySet="Swiadczenia" />
@@ -157,16 +156,6 @@
           <Property Name="nazwa" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="koszt" Type="float" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Wizyty">
           <Key>
             <PropertyRef Name="ID_Wizyty" />
@@ -252,13 +241,13 @@
         </Association>
         <Association Name="FK_Recepty_Lekarstwa">
           <End Role="Lekarstwa" Type="PrzychodniaModel.Store.Lekarstwa" Multiplicity="1" />
-          <End Role="Recepty" Type="PrzychodniaModel.Store.Recepty" Multiplicity="0..1" />
+          <End Role="Recepty" Type="PrzychodniaModel.Store.Recepty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lekarstwa">
               <PropertyRef Name="ID_Lekarstwa" />
             </Principal>
             <Dependent Role="Recepty">
-              <PropertyRef Name="ID_Recepty" />
+              <PropertyRef Name="ID_Lekarstwa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,6 +287,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SredniaWizytPacjentekULekarza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -313,7 +303,6 @@
           <EntitySet Name="Recepty" EntityType="PrzychodniaModel.Recepty" />
           <EntitySet Name="Specjalnosci" EntityType="PrzychodniaModel.Specjalnosci" />
           <EntitySet Name="Swiadczenia" EntityType="PrzychodniaModel.Swiadczenia" />
-          <EntitySet Name="sysdiagrams" EntityType="PrzychodniaModel.sysdiagrams" />
           <EntitySet Name="Wizyty" EntityType="PrzychodniaModel.Wizyty" />
           <AssociationSet Name="FK_Badania_Swiadczenia" Association="PrzychodniaModel.FK_Badania_Swiadczenia">
             <End Role="Swiadczenia" EntitySet="Swiadczenia" />
@@ -353,6 +342,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Recepty_Wizyty" Association="PrzychodniaModel.FK_Recepty_Wizyty">
             <End Role="Wizyty" EntitySet="Wizyty" />
+            <End Role="Recepty" EntitySet="Recepty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recepty_Lekarstwa1" Association="PrzychodniaModel.FK_Recepty_Lekarstwa1">
+            <End Role="Lekarstwa" EntitySet="Lekarstwa" />
             <End Role="Recepty" EntitySet="Recepty" />
           </AssociationSet>
         </EntityContainer>
@@ -396,6 +389,7 @@
           <Property Name="cena" Type="Double" />
           <Property Name="ulotka" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Recepty" Relationship="PrzychodniaModel.FK_Recepty_Lekarstwa" FromRole="Lekarstwa" ToRole="Recepty" />
+          <NavigationProperty Name="Recepty1" Relationship="PrzychodniaModel.FK_Recepty_Lekarstwa1" FromRole="Lekarstwa" ToRole="Recepty" />
         </EntityType>
         <EntityType Name="Lekarze">
           <Key>
@@ -451,6 +445,7 @@
           <Property Name="uwagi" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Lekarstwa" Relationship="PrzychodniaModel.FK_Recepty_Lekarstwa" FromRole="Recepty" ToRole="Lekarstwa" />
           <NavigationProperty Name="Wizyty" Relationship="PrzychodniaModel.FK_Recepty_Wizyty" FromRole="Recepty" ToRole="Wizyty" />
+          <NavigationProperty Name="Lekarstwa1" Relationship="PrzychodniaModel.FK_Recepty_Lekarstwa1" FromRole="Recepty" ToRole="Lekarstwa" />
         </EntityType>
         <EntityType Name="Specjalnosci">
           <Key>
@@ -468,16 +463,6 @@
           <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="koszt" Type="Double" />
           <NavigationProperty Name="Badania" Relationship="PrzychodniaModel.FK_Badania_Swiadczenia" FromRole="Swiadczenia" ToRole="Badania" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Wizyty">
           <Key>
@@ -615,6 +600,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Recepty_Lekarstwa1">
+          <End Type="PrzychodniaModel.Lekarstwa" Role="Lekarstwa" Multiplicity="1" />
+          <End Type="PrzychodniaModel.Recepty" Role="Recepty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarstwa">
+              <PropertyRef Name="ID_Lekarstwa" />
+            </Principal>
+            <Dependent Role="Recepty">
+              <PropertyRef Name="ID_Lekarstwa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -726,17 +734,6 @@
                 <ScalarProperty Name="ID_Swiadczenia" ColumnName="ID_Swiadczenia" />
                 <ScalarProperty Name="nazwa" ColumnName="nazwa" />
                 <ScalarProperty Name="koszt" ColumnName="koszt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PrzychodniaModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

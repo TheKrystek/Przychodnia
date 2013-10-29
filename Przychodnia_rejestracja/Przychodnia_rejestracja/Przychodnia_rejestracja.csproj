@@ -156,6 +156,12 @@
     <Compile Include="Specjalnosci.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>PrzychodniaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>PrzychodniaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Statystyki.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,9 +169,6 @@
       <DependentUpon>Statystyki.cs</DependentUpon>
     </Compile>
     <Compile Include="Swiadczenia.cs">
-      <DependentUpon>PrzychodniaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>PrzychodniaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Ulotka.cs">

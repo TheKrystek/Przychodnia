@@ -14,11 +14,17 @@ namespace Przychodnia_rejestracja
     
     public partial class Lekarstwa
     {
+        public Lekarstwa()
+        {
+            this.Recepty1 = new HashSet<Recepty>();
+        }
+    
         public int ID_Lekarstwa { get; set; }
         public string nazwa { get; set; }
         public Nullable<double> cena { get; set; }
         public string ulotka { get; set; }
     
         public virtual Recepty Recepty { get; set; }
+        public virtual ICollection<Recepty> Recepty1 { get; set; }
     }
 }

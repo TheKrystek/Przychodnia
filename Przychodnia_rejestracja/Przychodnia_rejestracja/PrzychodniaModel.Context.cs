@@ -35,7 +35,6 @@ namespace Przychodnia_rejestracja
         public DbSet<Recepty> Recepty { get; set; }
         public DbSet<Specjalnosci> Specjalnosci { get; set; }
         public DbSet<Swiadczenia> Swiadczenia { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Wizyty> Wizyty { get; set; }
     }
 }

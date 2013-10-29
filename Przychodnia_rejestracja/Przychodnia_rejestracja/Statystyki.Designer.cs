@@ -37,6 +37,18 @@
             this.output = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.imie_lekarza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nazwisko_lekarza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imie_pacjenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nazwisko_pacjenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.liczba = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.suma = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.srednia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roznica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.miesiac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cena_leku = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nazwa_leku = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nazwa_choroby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.output)).BeginInit();
@@ -101,7 +113,8 @@
             "Lekarze którzy wypisali recepty na więcej niż średnia",
             "Lekarze wypisujący najdroższe leki",
             "Choroby i liczba zdiagnozowanych przypadków",
-            "Najpopularniejsze choroby według miesięcy diagnozy"});
+            "Najpopularniejsze choroby według miesięcy diagnozy",
+            "Pacjentki zbyt często odwiedzajace swoich lekarzy (częściej niż średnia)"});
             this.lista.Location = new System.Drawing.Point(78, 9);
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(554, 21);
@@ -110,6 +123,19 @@
             // output
             // 
             this.output.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.output.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.imie_lekarza,
+            this.nazwisko_lekarza,
+            this.imie_pacjenta,
+            this.nazwisko_pacjenta,
+            this.liczba,
+            this.suma,
+            this.srednia,
+            this.roznica,
+            this.miesiac,
+            this.cena_leku,
+            this.nazwa_leku,
+            this.nazwa_choroby});
             this.output.Dock = System.Windows.Forms.DockStyle.Fill;
             this.output.Location = new System.Drawing.Point(3, 55);
             this.output.Name = "output";
@@ -130,6 +156,96 @@
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 16);
+            // 
+            // imie_lekarza
+            // 
+            this.imie_lekarza.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.imie_lekarza.DataPropertyName = "imie_lekarza";
+            this.imie_lekarza.HeaderText = "Imię lekarza";
+            this.imie_lekarza.Name = "imie_lekarza";
+            // 
+            // nazwisko_lekarza
+            // 
+            this.nazwisko_lekarza.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazwisko_lekarza.DataPropertyName = "nazwisko_lekarza";
+            this.nazwisko_lekarza.HeaderText = "Nazwisko lekarza";
+            this.nazwisko_lekarza.Name = "nazwisko_lekarza";
+            // 
+            // imie_pacjenta
+            // 
+            this.imie_pacjenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.imie_pacjenta.DataPropertyName = "imie_pacjenta";
+            this.imie_pacjenta.HeaderText = "Imię pacjenta";
+            this.imie_pacjenta.Name = "imie_pacjenta";
+            // 
+            // nazwisko_pacjenta
+            // 
+            this.nazwisko_pacjenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazwisko_pacjenta.DataPropertyName = "nazwisko_pacjenta";
+            this.nazwisko_pacjenta.HeaderText = "Nazwisko pacjenta";
+            this.nazwisko_pacjenta.Name = "nazwisko_pacjenta";
+            // 
+            // liczba
+            // 
+            this.liczba.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.liczba.DataPropertyName = "liczba";
+            this.liczba.HeaderText = "Liczba";
+            this.liczba.Name = "liczba";
+            this.liczba.Width = 63;
+            // 
+            // suma
+            // 
+            this.suma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.suma.DataPropertyName = "suma";
+            this.suma.HeaderText = "Suma";
+            this.suma.Name = "suma";
+            this.suma.Width = 59;
+            // 
+            // srednia
+            // 
+            this.srednia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.srednia.DataPropertyName = "srednia";
+            this.srednia.HeaderText = "Średnia";
+            this.srednia.Name = "srednia";
+            this.srednia.Width = 68;
+            // 
+            // roznica
+            // 
+            this.roznica.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.roznica.DataPropertyName = "roznica";
+            this.roznica.HeaderText = "Różnica";
+            this.roznica.Name = "roznica";
+            this.roznica.Width = 71;
+            // 
+            // miesiac
+            // 
+            this.miesiac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.miesiac.DataPropertyName = "miesiac";
+            this.miesiac.HeaderText = "Miesiąc";
+            this.miesiac.Name = "miesiac";
+            this.miesiac.Width = 68;
+            // 
+            // cena_leku
+            // 
+            this.cena_leku.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cena_leku.DataPropertyName = "cena_leku";
+            this.cena_leku.HeaderText = "Cena leku";
+            this.cena_leku.Name = "cena_leku";
+            this.cena_leku.Width = 74;
+            // 
+            // nazwa_leku
+            // 
+            this.nazwa_leku.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazwa_leku.DataPropertyName = "nazwa_leku";
+            this.nazwa_leku.HeaderText = "Nazwa leku";
+            this.nazwa_leku.Name = "nazwa_leku";
+            // 
+            // nazwa_choroby
+            // 
+            this.nazwa_choroby.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nazwa_choroby.DataPropertyName = "nazwa_choroby";
+            this.nazwa_choroby.HeaderText = "Nazwa choroby";
+            this.nazwa_choroby.Name = "nazwa_choroby";
             // 
             // Statystyki
             // 
@@ -161,5 +277,17 @@
         private System.Windows.Forms.ComboBox lista;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imie_lekarza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazwisko_lekarza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imie_pacjenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazwisko_pacjenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn liczba;
+        private System.Windows.Forms.DataGridViewTextBoxColumn suma;
+        private System.Windows.Forms.DataGridViewTextBoxColumn srednia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn roznica;
+        private System.Windows.Forms.DataGridViewTextBoxColumn miesiac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cena_leku;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazwa_leku;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazwa_choroby;
     }
 }
